@@ -1,15 +1,17 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '../../Utils/Colors'
-import { WebBrowserPresentationStyle } from 'expo-web-browser'
 import { useWarmUpBrowser } from '../../hooks/warmUpBrowser'
-import { useOAuth } from "@clerk/clerk-expo";
+import { useOAuth } from '@clerk/clerk-expo'
+import * as WebBrowser from 'expo-web-browser'
 
-WebBrowserPresentationStyle.maybeCompleteAuthSession()
+WebBrowser.maybeCompleteAuthSession()
 
 export default function Login() {
   useWarmUpBrowser()
-  const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+
+  const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' })
+
   const onPress = React.useCallback(async () => {
     try {
       const { createdSessionId, signIn, signUp, setActive } =
@@ -21,7 +23,7 @@ export default function Login() {
         // Use signIn or signUp for next steps such as MFA
       }
     } catch (err) {
-      console.error('OAuth error', err)
+      console.error('OAuth error ????', err)
     }
   }, [])
 
@@ -48,8 +50,8 @@ export default function Login() {
 
         <TouchableOpacity
           style={styles.button}
-          // onPress={onPress}
-          onPress={() => console.log('button clik success')}
+          onPress={onPress}
+          // onPress={() => console.log('button clik success')}
         >
           <Text
             style={{ fontSize: 20, fontWeight: 'bold', color: Colors.biru2 }}
