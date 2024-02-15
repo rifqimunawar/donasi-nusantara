@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import Login from './App/Screens/LoginScreen/Login'
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo'
 import Colors from './App/Utils/Colors'
-import * as SecureStore from "expo-secure-store";
+import * as SecureStore from 'expo-secure-store'
 import { NavigationContainer } from '@react-navigation/native'
 import TabNavigation from './App/Navigations/TabNavigation'
 
@@ -22,7 +22,7 @@ const tokenCache = {
       return
     }
   },
-};
+}
 
 export default function App() {
   return (
@@ -33,7 +33,7 @@ export default function App() {
       <View style={styles.container}>
         <SignedIn>
           <NavigationContainer>
-            <TabNavigation/>
+            <TabNavigation />
           </NavigationContainer>
         </SignedIn>
 
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.biru4,
-    paddingTop: 20,
+    paddingTop: 40,
   },
 })
