@@ -25,7 +25,12 @@ export default function Header() {
                 Welcome.
               </Text>
               <Text
-                style={{ color: Colors.white, marginLeft: 10, fontSize: 20 }}
+                style={{
+                  color: Colors.white,
+                  marginLeft: 10,
+                  fontSize: 20,
+                  fontFamily: 'outfit',
+                }}
               >
                 {user?.fullName}
               </Text>
@@ -42,7 +47,10 @@ export default function Header() {
         <View style={styles.seacrhControll}>
           <TextInput placeholder="Search..." style={styles.textInput} />
           <TouchableOpacity style={styles.searchBtn}>
-            <FontAwesome name="search" size={24} color={Colors.biru2} 
+            <FontAwesome
+              name="search"
+              size={24}
+              color={Colors.biru2}
               onPress={() => console.log('Search')}
             />
           </TouchableOpacity>
