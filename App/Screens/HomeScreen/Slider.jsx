@@ -8,7 +8,6 @@ import {
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../../Utils/GlobalApi'
-import Colors from '../../Utils/Colors'
 
 export default function Slider() {
   const [sliderData, setSliderData] = useState(null)
@@ -34,20 +33,19 @@ export default function Slider() {
       <Text style={styles.heading}>Effers For You</Text>
       {loading ? (
         <ActivityIndicator
-          style={{ marginTop: 20, color:Colors.biru2 }}
+          style={{ marginTop: 20 }}
           size="large"
-          // color="#0000ff"
+          color="#0000ff"
         />
       ) : (
         <FlatList
           data={sliderData}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={{ marginBottom: 20 }}>
-              <Text>{item.name}</Text>
+          horizontal={true}
+          renderItem={({ item,index }) => (
+            <View>
               <Image
                 source={{ uri: item.image?.url }}
-                style={{ width: 200, height: 200 }}
+                style={styles.sliderImage}
               />
             </View>
           )}
@@ -62,4 +60,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  sliderImage:{
+    width:270,
+    height:150,
+    borderRadius:20,
+    objectFit:'center',
+  }
 })

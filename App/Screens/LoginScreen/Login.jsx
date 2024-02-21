@@ -35,17 +35,28 @@ export default function Login() {
       />
       <View style={styles.subContainer}>
         <Text style={{ fontSize: 27, fontWeight: 'bold', color: Colors.white }}>
-          Salam Pergerakan!!!
+          Pergerakan Mahasiswa
+        </Text>
+        <Text style={{ fontSize: 27, fontWeight: 'bold', color: Colors.white }}>
+          Islam Indonesia
         </Text>
         <Text
           style={{
             fontSize: 20,
             marginTop: 20,
-            marginBottom: 50,
             color: Colors.white,
           }}
         >
-          Tangan Terkepal dan maju kemuka!!!!
+          Komisariat Universitas
+        </Text>
+        <Text
+          style={{
+            fontSize: 20,
+            marginBottom: 30,
+            color: Colors.white,
+          }}
+        >
+          Islam Nusantara
         </Text>
 
         <TouchableOpacity
@@ -82,6 +93,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     padding: 20,
     alignItems: 'center',
+    textAlign:'center',
   },
   button: {
     alignItems: 'center',
