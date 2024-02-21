@@ -10,6 +10,7 @@ import React from 'react'
 import { useUser } from '@clerk/clerk-expo'
 import Colors from '../../Utils/Colors'
 import { FontAwesome } from '@expo/vector-icons'
+import TimeComponent from './TimeComponent'
 
 export default function Header() {
   const { user, isLoading } = useUser()
@@ -54,6 +55,9 @@ export default function Header() {
               onPress={() => console.log('Search')}
             />
           </TouchableOpacity>
+        </View>
+        <View>
+          <TimeComponent/>
         </View>
       </View>
     )

@@ -2,53 +2,59 @@ import {
   View,
   Text,
   StyleSheet,
+  ActivityIndicator,
   FlatList,
   Image,
-  ActivityIndicator,
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../../Utils/GlobalApi'
 import Colors from '../../Utils/Colors'
 
-export default function Slider() {
-  const [sliderData, setSliderData] = useState(null)
+export default function Category() {
+  const [categoryData, setCategoryData] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await GlobalApi.GetSlider()
-        setSliderData(result.sliders1)
+        const result = await GlobalApi.GetCategory()
+        setCategoryData(result.categories)
         setLoading(false)
       } catch (error) {
-        console.error('Error fetching slider data:', error)
+        console.log('Error Fetching Data :', error)
         setLoading(false)
       }
     }
-
     fetchData()
   }, [])
 
   return (
-    <View>
-      <Text style={styles.heading}>Effers For You</Text>
+    <View style={{ marginTop: 25 }}>
+      <Text style={styles.heading}>Category</Text>
+
       {loading ? (
         <ActivityIndicator
           style={{ marginTop: 20 }}
-          size="large"
+          size={'large'}
           color={Colors.biru2}
         />
       ) : (
         <FlatList
-          data={sliderData}
+          data={categoryData}
           horizontal={true}
-          showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => (
-            <View style={{ marginRight:15, marginTop:20, }}>
+            <View
+              style={{
+                margin: 15,
+                marginTop: 20,
+                alignItems:'center',
+              }}
+            >
               <Image
                 source={{ uri: item.image?.url }}
-                style={styles.sliderImage}
+                style={styles.categoryImage}
               />
+              <Text>{item.title}</Text>
             </View>
           )}
         />
@@ -62,10 +68,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  sliderImage:{
-    width:270,
-    height:150,
-    borderRadius:20,
-    objectFit:'center',
-  }
+  categoryImage: {
+    width: 50,
+    height: 50,
+    borderRadius:50,
+    objectFit:'cover',
+  },
 })

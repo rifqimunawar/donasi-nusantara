@@ -6,6 +6,7 @@ import BookingScreen from '../Screens/BookingScreen/BookingScreen'
 import ProfileScreen from '../Screens/ProfileScreen/ProfileScreen'
 import { FontAwesome } from '@expo/vector-icons'
 import Colors from '../Utils/Colors'
+import CalendarScreen from '../Screens/CalendarScreen/CalendarScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -38,6 +39,21 @@ export default function TabNavigation() {
           ),
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="home" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="calendar"
+        component={CalendarScreen}
+        options={{
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
+              Calendar
+            </Text>
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="calendar" size={size} color={color} />
           ),
         }}
       />
