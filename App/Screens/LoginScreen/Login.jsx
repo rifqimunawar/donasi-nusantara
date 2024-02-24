@@ -52,7 +52,7 @@ export default function Login() {
         <Text
           style={{
             fontSize: 20,
-            marginBottom: 30,
+            marginBottom: 20,
             color: Colors.white,
           }}
         >
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.biru2,
     height: '70%',
-    marginTop: 30,
+    marginTop: 10,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     padding: 20,

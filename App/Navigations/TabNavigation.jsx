@@ -16,7 +16,7 @@ export default function TabNavigation() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: Colors.biru3,
-        elevation:10,
+        elevation: 10,
       }}
       tabBarOptions={{
         style: {
@@ -28,7 +28,9 @@ export default function TabNavigation() {
         },
       }}
     >
-      <Tab.Screen
+
+    
+<Tab.Screen
         name="home"
         component={HomeScreen}
         options={{
@@ -42,6 +44,21 @@ export default function TabNavigation() {
           ),
         }}
       />
+      <Tab.Screen
+        name="booking"
+        component={BookingScreen}
+        options={{
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
+              News
+            </Text>
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="newspaper-o" size={size} color={color} />
+          ),
+        }}
+      />
+
 
       <Tab.Screen
         name="calendar"
@@ -54,21 +71,6 @@ export default function TabNavigation() {
           ),
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="calendar" size={size} color={color} />
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="booking"
-        component={BookingScreen}
-        options={{
-          tabBarLabel: ({ color }) => (
-            <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
-              Booking
-            </Text>
-          ),
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="bookmark" size={size} color={color} />
           ),
         }}
       />
