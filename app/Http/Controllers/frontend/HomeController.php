@@ -15,4 +15,10 @@ class HomeController extends Controller
     public function about(){
       return Inertia::render('frontend/Aboutpage');
     }
-}
+
+    public function admin(){
+      return Inertia::render('backend/admin');
+    }
+
+  }
+

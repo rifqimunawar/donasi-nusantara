@@ -1,7 +1,9 @@
+import BottomNavbar from "@/Components/BottomNavbar";
 import FutureComponent from "@/Components/FutureComponent";
 import HeroComponent from "@/Components/HeroComponent";
-import ListCampaign from "@/Components/ListCampaign";
+import HorizontalCampaign from "@/Components/HorizontalCampaign";
 import NavbarComponent from "@/Components/NavbarComponent";
+import VertcalCampaign from "@/Components/VerticalCampaign";
 import { Link } from "@inertiajs/react";
 import React from "react";
 
@@ -19,7 +21,13 @@ export default function Homepage() {
                     <FutureComponent />
                 </div>
                 <div className="mt-5">
-                <ListCampaign/>
+                    <HorizontalCampaign />
+                </div>
+                <div className="mt-5">
+                    <VertcalCampaign />
+                </div>
+                <div className="btm-center">
+                    <BottomNavbar />
                 </div>
             </div>
         </section>

@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
 
-use App\Models\Campaign;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CampaignController extends Controller
+class CategoryCampaignController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Inertia::render('backend/categorycampaign/index');
     }
 
     /**
@@ -20,7 +21,7 @@ class CampaignController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('backend/categorycampaign/create');
     }
 
     /**
@@ -34,7 +35,7 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Campaign $campaign)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +43,7 @@ class CampaignController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Campaign $campaign)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +51,7 @@ class CampaignController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Campaign $campaign)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +59,7 @@ class CampaignController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Campaign $campaign)
+    public function destroy(string $id)
     {
         //
     }
