@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar{
+  background-color: blueviolet;
+}
+.hero{
+  width: 100rem;
+  background-color: rgb(159, 125, 191);
+  height: 8rem;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.futurecomponent .icon{
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+}
+.futurecomponent .icon img{
+  object-fit: fill;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 2px solid;
+}
