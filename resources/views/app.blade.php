@@ -10,6 +10,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
         <html data-theme="retro"></html>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Scripts -->
         @routes
         @viteReactRefresh
