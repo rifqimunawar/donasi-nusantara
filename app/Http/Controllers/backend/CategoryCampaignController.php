@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Category_Campaign;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,8 +30,21 @@ class CategoryCampaignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $categories = new Category_Campaign();
+      $request->input('title');
+
+
+      if ($request->hasFile('file')) {
+        $image = $request->file('file');
+          $newFileName = 'icon_' . now()->timestamp . '.' . $image->getClientOriginalExtension();
+          $image->move(public_path('img/'), $newFileName);
+          $categories->img = $newFileName;
+          $categories->save();
+          return "sukess";
+        } else {
+          return "erroimg";
     }
+  }
 
     /**
      * Display the specified resource.

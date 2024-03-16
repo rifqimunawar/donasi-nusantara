@@ -28,8 +28,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/admin', [HomeController::class, 'admin']);
+  
+  
   Route::get('/category/campaign', [CategoryCampaignController::class, 'index'])->name('category.campaign');
   Route::get('/category/campaign/create', [CategoryCampaignController::class, 'create'])->name('category.create');
+  Route::post('/category/campaign/store', [CategoryCampaignController::class, 'store'])->name('category.store');
+  
   
 });
 Route::middleware('auth')->group(function () {

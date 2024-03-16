@@ -19,7 +19,6 @@ return new class extends Migration
           $table->integer('price'); // Menggunakan tipe data 'decimal' untuk harga
           $table->timestamp('time'); // Menggunakan tipe data 'timestamp' untuk waktu
           $table->unsignedBigInteger('category_id'); // Menggunakan tipe data 'unsignedBigInteger' untuk kunci asing
-          $table->foreign('category_id')->references('id')->on('cateogory_campaigns'); // Membuat kunci asing
           $table->timestamps(); // Tambahkan kolom created_at dan updated_at
         });
     }
