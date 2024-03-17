@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\CampaignController;
 use App\Http\Controllers\backend\CategoryCampaignController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,7 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/campaign/{id}/detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -33,6 +35,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/category/campaign', [CategoryCampaignController::class, 'index'])->name('category.campaign');
   Route::get('/category/campaign/create', [CategoryCampaignController::class, 'create'])->name('category.create');
   Route::post('/category/campaign/store', [CategoryCampaignController::class, 'store'])->name('category.store');
+  Route::get('/category/campaign/{id}/edit', [CategoryCampaignController::class, 'edit'])->name('category.edit');
+  Route::put('/category/campaign/{id}/update', [CategoryCampaignController::class, 'update'])->name('category.update');
+  Route::delete('/category/campaign/{id}/delete', [CategoryCampaignController::class, 'destroy'])->name('category.destroy');
+  
+  Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign');
+  Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaign.create');
+  Route::post('/campaign/store', [CampaignController::class, 'store'])->name('campaign.store');
+  Route::get('/campaign/{id}/edit', [CampaignController::class, 'edit'])->name('campaign.edit');
+  Route::put('/campaign/{id}/update', [CampaignController::class, 'update'])->name('campaign.update');
+  Route::delete('/campaign/{id}/delete', [CampaignController::class, 'destroy'])->name('campaign.destroy');
   
   
 });
