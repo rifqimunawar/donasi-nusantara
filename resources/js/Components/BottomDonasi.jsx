@@ -29,7 +29,7 @@ export default function BottomDonasi({ campaign }) {
                     </button>
                 </div>
                 <div className="col-span-2">
-                    <Link href="" className="btn btn-primary w-full">Donasi Sekarang</Link>
+                    <Link href={`/create/${campaign.id}/donasi`} className="btn btn-primary w-full">Donasi Sekarang</Link>
                 </div>
             </div>
             {modalOpen && (

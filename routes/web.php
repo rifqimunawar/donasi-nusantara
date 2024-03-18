@@ -18,6 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/list', [HomeController::class, 'list'])->name('list');
+Route::get('/create/{id}/donasi', [HomeController::class, 'create'])->name('createDonasi');
+Route::post('/store/donasi', [HomeController::class, 'store'])->name('storeDonasi');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/campaign/{id}/detail', [HomeController::class, 'detail'])->name('detail');
 

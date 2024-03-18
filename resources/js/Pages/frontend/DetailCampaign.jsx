@@ -1,14 +1,17 @@
 import BottomDonasi from "@/Components/BottomDonasi";
 import BottomNavbar from "@/Components/BottomNavbar";
+import DonaturComponent from "@/Components/DonaturComponent";
 import HeroComponent from "@/Components/HeroComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
 import React, { useEffect, useState } from "react";
 
-export default function DetailCampaign({ campaign }) {
+export default function DetailCampaign({ campaign, donaturs }) {
     const [presentase, setPresentase] = useState("");
     const formattedPrice = campaign.price.toLocaleString("id-ID");
     const formattedCollected = campaign.collected.toLocaleString("id-ID");
+    const jumlahDonatur = donaturs.length;
 
+    console.log(donaturs);
     useEffect(() => {
         const calculatePercentage = () => {
             const collected = campaign.collected;
@@ -33,7 +36,7 @@ export default function DetailCampaign({ campaign }) {
                     <NavbarComponent />
                 </div>
                 <div className="mt-5">
-                    <img src={campaign.img} className="w-full h-60" />
+                    <img src={campaign.img} className="w-full h-60 object-cover" />
                 </div>
 
                 <div className="m-5">
@@ -51,9 +54,9 @@ export default function DetailCampaign({ campaign }) {
                         <div className="flex flex-col items-center">
                             <div className="mb-1.5 mt-1.5 flex items-center">
                                 <div className="h-5 w-5">
-                                    <i class="bi bi-suit-heart-fill"></i>
+                                    <i className="bi bi-suit-heart-fill"></i>
                                 </div>{" "}
-                                <p> 890</p>
+                                <p> {jumlahDonatur}</p>
                             </div>
                             <p>Donasi</p>
                         </div>
@@ -62,7 +65,7 @@ export default function DetailCampaign({ campaign }) {
                         <div className="flex flex-col items-center">
                             <div className="mb-1.5 mt-1.5 flex items-center">
                                 <div className="h-5 w-5">
-                                    <i class="bi bi-cash-coin"></i>
+                                    <i className="bi bi-cash-coin"></i>
                                 </div>{" "}
                                 <p> Transparansi</p>
                             </div>
@@ -77,6 +80,14 @@ export default function DetailCampaign({ campaign }) {
 
                 <div className="m-5 mt-7 text-l">
                     <p>{campaign.description}</p>
+                </div>
+
+
+                <div className="m-5 mt-7 ">
+                <p className="text-xl mb-3">Para Donatur</p>
+                    {donaturs.map((donatur, index) => (
+                        <DonaturComponent donatur={donatur} key={index} />
+                    ))}
                 </div>
 
                 <div className="btm-center">
