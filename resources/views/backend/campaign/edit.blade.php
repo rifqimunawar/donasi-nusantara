@@ -25,7 +25,7 @@
                 <label class="block mb-2 text-sm font-medium text-gray-900" htmlFor="user_avatar">
                     Upload Image Pamflet
                 </label>
-                <input required name="img" type="file"
+                <input name="img" type="file" value="{{ $campaign->img }}"
                     class="block file-input file-input-bordered file-input-secondary w-full" />
             </div>
         

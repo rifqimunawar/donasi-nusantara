@@ -20,19 +20,32 @@ class HomeController extends Controller
         foreach ($campaigns as $campaign) {
           $campaign->img = config('app.MASTER_IMG_URL') . 'img/' . $campaign->img;
       }
+
         return Inertia::render('frontend/Homepage', [
             'campaigns' => $campaigns
         ]);
     }
-
-    public function detail($id){
-      $campaign = DB::table('campaigns')->find($id);
-      return Inertia::render('frontend/DetailCampaign', ['campaign'=>$campaign]);
+    public function detail($id)
+    {
+        $campaign = DB::table('campaigns')->where('id', $id)->first();
+    
+        if (!$campaign) {
+            abort(404); // Kampanye tidak ditemukan
+        }
+    
+        // Memperbarui URL gambar
+        // $campaign->img = config('app.MASTER_IMG_URL') ."/". 'img/' . $campaign->img;
+        $campaign->img = 'http://127.0.0.1:8000/' . 'img/' . $campaign->img;
+        // dd($campaign);
+    
+        return Inertia::render('frontend/DetailCampaign', ['campaign' => $campaign]);
     }
+    
+    
 
     public function about(){
       return Inertia::render('frontend/Aboutpage');
     }
 
 
-  }
+}

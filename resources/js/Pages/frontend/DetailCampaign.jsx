@@ -1,9 +1,31 @@
+import BottomDonasi from "@/Components/BottomDonasi";
 import BottomNavbar from "@/Components/BottomNavbar";
 import HeroComponent from "@/Components/HeroComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default function DetailCampaign({campaign}) {
+export default function DetailCampaign({ campaign }) {
+    const [presentase, setPresentase] = useState("");
+    const formattedPrice = campaign.price.toLocaleString("id-ID");
+    const formattedCollected = campaign.collected.toLocaleString("id-ID");
+
+    useEffect(() => {
+        const calculatePercentage = () => {
+            const collected = campaign.collected;
+            const price = campaign.price;
+
+            // Hitung presentase terkumpul
+            const percentage = (collected / price) * 100;
+
+            // Perbarui state presentase
+            setPresentase(percentage);
+        };
+
+        // Panggil fungsi hitung presentase setelah komponen dimuat
+        calculatePercentage();
+    }, [campaign]);
+
+    // console.log({ campaign });
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
             <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
@@ -11,11 +33,54 @@ export default function DetailCampaign({campaign}) {
                     <NavbarComponent />
                 </div>
                 <div className="mt-5">
-                    <img src={campaign.img}/>
+                    <img src={campaign.img} className="w-full h-60" />
+                </div>
+
+                <div className="m-5">
+                    <p className="text-2xl text-wrap">{campaign.title}</p>
+                    <p className="text-xl">Rp : {formattedPrice}</p>
+                    <p>Sudah terkumpul Rp : {formattedCollected}</p>
+                    <progress
+                        className="progress progress-info "
+                        value={presentase}
+                        max="100"
+                    ></progress>
+                </div>
+                <div className="mt-4 ml-5 mr-5 grid grid-cols-2 gap-3 text-sm">
+                    <button className="btn btn-primary">
+                        <div className="flex flex-col items-center">
+                            <div className="mb-1.5 mt-1.5 flex items-center">
+                                <div className="h-5 w-5">
+                                    <i class="bi bi-suit-heart-fill"></i>
+                                </div>{" "}
+                                <p> 890</p>
+                            </div>
+                            <p>Donasi</p>
+                        </div>
+                    </button>
+                    <button className="btn btn-primary">
+                        <div className="flex flex-col items-center">
+                            <div className="mb-1.5 mt-1.5 flex items-center">
+                                <div className="h-5 w-5">
+                                    <i class="bi bi-cash-coin"></i>
+                                </div>{" "}
+                                <p> Transparansi</p>
+                            </div>
+                            <p>Dana</p>
+                        </div>
+                    </button>
+                </div>
+
+                <div className="heading m-5 mt-7 text-xl">
+                    <p>Kisah Penggalang Dana</p>
+                </div>
+
+                <div className="m-5 mt-7 text-l">
+                    <p>{campaign.description}</p>
                 </div>
 
                 <div className="btm-center">
-                    <BottomNavbar />
+                    <BottomDonasi campaign={campaign} />
                 </div>
             </div>
         </section>
