@@ -24,28 +24,15 @@ export default function VerticalCampaign({ campaigns }) {
 
 function CampaignItem({ campaign }) {
     const [countdown, setCountdown] = useState("");
-
     const [presentase, setPresentase] = useState("");
-
     useEffect(() => {
-        // Fungsi untuk menghitung mundur dari tanggal sekarang ke tanggal target
         const calculateCountdown = () => {
-            // Tanggal target dari properti campaign.time
             const targetDate = new Date(campaign.time);
-            // Tanggal sekarang
             const now = new Date();
-
-            // Hitung selisih waktu antara tanggal target dan tanggal sekarang
             const difference = targetDate.getTime() - now.getTime();
-
-            // Hitung jumlah hari mundur
             const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-
-            // Perbarui state countdown
             setCountdown(days);
         };
-
-        // Panggil fungsi hitung mundur setelah komponen dimuat
         calculateCountdown();
     }, [campaign]);
 
@@ -53,8 +40,6 @@ function CampaignItem({ campaign }) {
         const calculatePercentage = () => {
             const collected = campaign.collected;
             const price = campaign.price;
-
-            // Hitung presentase terkumpul
             const percentage = (collected / price) * 100;
             setPresentase(percentage);
         };
@@ -80,7 +65,6 @@ function CampaignItem({ campaign }) {
                         value={presentase} // Menggunakan nilai presentase sebagai value
                         max="100"
                     ></progress>
-
                     <div className="flex justify-between">
                         <p>
                             Terkumpul{" "}
