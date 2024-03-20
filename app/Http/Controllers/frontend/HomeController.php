@@ -21,13 +21,18 @@ class HomeController extends Controller
 
   public function home(){
     $campaigns = DB::table('campaigns')->get();
+    $categories = DB::table('category_campaigns')->get();
 
         foreach ($campaigns as $campaign) {
           $campaign->img = config('app.MASTER_IMG_URL') . 'img/' . $campaign->img;
       }
+        foreach ($categories as $item) {
+          $item->file = config('app.MASTER_IMG_URL') . 'img/' . $item->file;
+      }
 
         return Inertia::render('frontend/Homepage', [
-            'campaigns' => $campaigns
+            'campaigns' => $campaigns,
+            'categories'=>$categories
         ]);
     }
     public function detail($id)
@@ -54,7 +59,16 @@ class HomeController extends Controller
           'campaigns' => $campaigns
       ]);
     }
-    
+
+    public function categorylist($id) {
+      $campaigns = DB::table('campaigns')->where('category_id', $id)->get();
+      foreach ($campaigns as $campaign) {
+          $campaign->img = config('app.MASTER_IMG_URL') . 'img/' . $campaign->img;
+      }
+      $category = DB::table('category_campaigns')->findOrFail($id); // Tidak perlu menggunakan get() setelah findOrFail
+      return Inertia::render('frontend/CategoryList', ['campaigns' => $campaigns, 'category' => $category]);
+  }
+  
     public function create($id)
     {
         $campaignID = $id;

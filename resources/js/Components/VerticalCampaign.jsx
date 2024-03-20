@@ -4,9 +4,6 @@ import React, { useEffect, useState } from "react";
 export default function VerticalCampaign({ campaigns }) {
     return (
         <section className="m-3">
-            <div className="heading">
-                <h2>Campaign Terbaru</h2>
-            </div>
             <section className="" style={{ overflowH: "auto", width: "100%" }}>
                 <div>
                     {/* Looping data campaigns */}

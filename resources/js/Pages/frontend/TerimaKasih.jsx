@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import React from 'react'
 
 export default function TerimaKasih({donatur, campaign}) {
@@ -6,6 +6,7 @@ export default function TerimaKasih({donatur, campaign}) {
   const formatNominal = Number(donatur.nominal).toLocaleString("id-ID");
   return (
     <div className='flex justify-center items-center m-3'>
+            <Head title="Payment" />
       <div className='text-center mt-12'>
         <h2 className='text-2xl'>Terima Kasih</h2>
         <h2 className='text-3xl font-bold'>{formatNominal}</h2>

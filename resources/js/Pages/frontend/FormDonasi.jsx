@@ -1,6 +1,6 @@
 import BottomNavbar from "@/Components/BottomNavbar";
 import NavbarComponent from "@/Components/NavbarComponent";
-import { router } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -41,6 +41,7 @@ export default function FormDonasi({ campaignID }) {
                 <div>
                     <NavbarComponent />
                 </div>
+            <Head title="Donasi" />
                 <div>
                     <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <label className="form-control m-5">

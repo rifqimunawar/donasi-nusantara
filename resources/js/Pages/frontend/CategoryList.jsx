@@ -4,7 +4,9 @@ import VerticalCampaign from "@/Components/VerticalCampaign";
 import { Head } from "@inertiajs/react";
 import React from "react";
 
-export default function ListPage({ campaigns }) {
+export default function CategoryList({ campaigns, category }) {
+    const title = category.title;
+    console.log(title);
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
             <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
@@ -14,7 +16,7 @@ export default function ListPage({ campaigns }) {
                 </div>
                 <div className="mt-5">
                     <div className="heading">
-                        <h2>Campaign Terbaru</h2>
+                        <h2>hello {title}</h2>
                     </div>
                     <VerticalCampaign campaigns={campaigns} />
                 </div>

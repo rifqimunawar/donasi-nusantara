@@ -3,6 +3,7 @@ import BottomNavbar from "@/Components/BottomNavbar";
 import DonaturComponent from "@/Components/DonaturComponent";
 import HeroComponent from "@/Components/HeroComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
+import { Head } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 
 export default function DetailCampaign({ campaign, donaturs }) {
@@ -35,6 +36,7 @@ export default function DetailCampaign({ campaign, donaturs }) {
                 <div>
                     <NavbarComponent />
                 </div>
+            <Head title="Detail" />
                 <div className="mt-5">
                     <img src={campaign.img} className="w-full h-60 object-cover" />
                 </div>

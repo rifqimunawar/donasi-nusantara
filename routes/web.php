@@ -26,6 +26,7 @@ Route::get('/sukses/payment/{snapToken}', [HomeController::class, 'payment'])->n
 Route::get('/getTest', [HomeController::class, 'getTest'])->name('getTest');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/donasi/campaign/{id}/detail', [HomeController::class, 'detail'])->name('detail');
+Route::get('category/{id}/campaign', [HomeController::class, 'categorylist']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
