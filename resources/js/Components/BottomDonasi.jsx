@@ -24,7 +24,7 @@ export default function BottomDonasi({ campaign }) {
                     <button
                         className="btn btn-primary w-full"
                         onClick={openModal}
-                    >
+                    ><i className="bi bi-share"></i>
                         Share
                     </button>
                 </div>

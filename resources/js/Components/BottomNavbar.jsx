@@ -13,7 +13,7 @@ export default function BottomNavbar() {
                     <i class="bi bi-card-list"></i>
                     <p>List</p>
                 </Link>
-                <Link href={'/galang'} className="btn btn-primary w-full">
+                <Link href={'/galang/dana'} className="btn btn-primary w-full">
                     <i class="bi bi-cash-coin"></i>
                     <p>Donasi</p>
                 </Link>
