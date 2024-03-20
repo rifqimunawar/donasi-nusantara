@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('snap_token')->nullable();
             $table->string('message')->nullable();
             $table->string('nominal');
+            $table->string('statusPay')->default(false);
             $table->string('like')->default(0);
             $table->string('campaign_id');
             $table->timestamps();

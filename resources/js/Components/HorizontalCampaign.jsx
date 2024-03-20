@@ -24,7 +24,7 @@ export default function HorizontalCampaign({ campaigns }) {
 
 function CampaignList({ campaign }) {
     const [presentase, setPresentase] = useState("");
-
+    const formattedCollected = Number(campaign.collected).toLocaleString("id-ID");
 
     useEffect(() => {
         const calculatePercentage = () => {
@@ -46,12 +46,12 @@ function CampaignList({ campaign }) {
         <Link
             className="listCom"
             style={{ flex: "0 0 auto", width: "200px" }}
-            href={`/campaign/${campaign.id}/detail`}
+            href={`/donasi/campaign/${campaign.id}/detail`}
         >
             <img src={campaign.img} alt={campaign.title} style={{ width:'200px', height:"100px", objectFit:"cover" }} />
             <p>{campaign.title}</p>
             <p>
-                terkumpul <span>{campaign.collected}</span>
+                terkumpul <span>{formattedCollected}</span>
             </p>
             <progress
                 className="progress progress-info "

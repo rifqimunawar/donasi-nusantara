@@ -67,9 +67,9 @@ export default function DetailCampaign({ campaign, donaturs }) {
                                 <div className="h-5 w-5">
                                     <i className="bi bi-cash-coin"></i>
                                 </div>{" "}
-                                <p> Transparansi</p>
+                                <p> </p>
                             </div>
-                            <p>Dana</p>
+                            <p>Rincian Dana</p>
                         </div>
                     </button>
                 </div>

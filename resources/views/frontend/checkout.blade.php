@@ -23,6 +23,14 @@
         </label>
         <label class="form-control m-5">
             <div class="label">
+                <span class="label-text">Email</span>
+            </div>
+            <input type="text" name="email" required value="Hamba@gmail.com" class="input input-bordered" />
+            <div class="label">
+            </div>
+        </label>
+        <label class="form-control m-5">
+            <div class="label">
                 <span class="label-text">Pesan/Do'a (Opstional)</span>
             </div>
             <input type="text" hidden name="campaign_id" value="{{ $campaignID }}">

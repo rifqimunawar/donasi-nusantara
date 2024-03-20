@@ -19,7 +19,7 @@ export default function BottomDonasi({ campaign }) {
 
     return (
         <div className="fixed bottom-1 w-full container">
-            <div className="grid grid-cols-3 gap-3 mx-auto max-w-screen-lg">
+            <div className="grid grid-cols-3 gap-3 mx-auto max-w-screen-sm">
                 <div className="col-span-1">
                     <button
                         className="btn btn-primary w-full"

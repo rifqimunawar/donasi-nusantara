@@ -25,6 +25,7 @@ export default function VerticalCampaign({ campaigns }) {
 function CampaignItem({ campaign }) {
     const [countdown, setCountdown] = useState("");
     const [presentase, setPresentase] = useState("");
+    const formattedCollected = Number(campaign.collected).toLocaleString("id-ID");
     useEffect(() => {
         const calculateCountdown = () => {
             const targetDate = new Date(campaign.time);
@@ -47,7 +48,7 @@ function CampaignItem({ campaign }) {
     }, [campaign]);
 
     return (
-        <Link href={`/campaign/${campaign.id}/detail`}>
+        <Link href={`/donasi/campaign/${campaign.id}/detail`}>
             <div className="verCampaign flex mb-3" style={{ flex: "0 0 auto" }}>
                 <img
                     src={campaign.img}
@@ -68,7 +69,7 @@ function CampaignItem({ campaign }) {
                     <div className="flex justify-between">
                         <p>
                             Terkumpul{" "}
-                            <span className="">{campaign.collected}</span>
+                            <span className="">{formattedCollected}</span>
                         </p>
                         <p>
                             {countdown > 0 ? countdown : 0}{" "}

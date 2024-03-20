@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import React from "react";
 
 export default function NavbarComponent() {
@@ -30,22 +31,25 @@ export default function NavbarComponent() {
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                     >
                         <li>
-                            <a>Homepage</a>
+                            <Link href={'/home'}>Homepage</Link>
                         </li>
                         <li>
-                            <a>Portfolio</a>
+                            <Link href={'/list'}>List Campaign</Link>
                         </li>
                         <li>
-                            <a>About</a>
+                            <Link href={'/galang'}>Galang Dana</Link>
+                        </li>
+                        <li>
+                            <Link href={'/login'}>Profile</Link>
                         </li>
                     </ul>
                 </div>
             </div>
             <div className="navbar-center">
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">Donasi Uhuy</a>
             </div>
             <div className="navbar-end">
-                <button className="btn btn-ghost btn-circle">
+                {/* <button className="btn btn-ghost btn-circle">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -79,7 +83,7 @@ export default function NavbarComponent() {
                         </svg>
                         <span className="badge badge-xs badge-primary indicator-item"></span>
                     </div>
-                </button>
+                </button> */}
             </div>
         </div>
     );

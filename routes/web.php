@@ -17,12 +17,15 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/galang', [HomeController::class, 'galang'])->name('galang');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/list', [HomeController::class, 'list'])->name('list');
 Route::get('/create/{id}/donasi', [HomeController::class, 'create'])->name('createDonasi');
 Route::post('/store/donasi', [HomeController::class, 'store'])->name('storeDonasi');
+Route::get('/sukses/payment/{snapToken}', [HomeController::class, 'payment'])->name('payment');
+Route::get('/getTest', [HomeController::class, 'getTest'])->name('getTest');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/campaign/{id}/detail', [HomeController::class, 'detail'])->name('detail');
+Route::get('/donasi/campaign/{id}/detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

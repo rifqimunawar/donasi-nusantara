@@ -30,7 +30,7 @@ export default function DonaturComponent({donatur}) {
 
 
   return (
-    <div className='bg-base-100 mb-2'>
+    <div className='bg-base-100 mb-2 rounded-xl'>
       <div className='grid grid-cols-4'>
         <div className='col-span-1 flex justify-center items-center'>
         <img src='https://kitabisa.com/_next/image?url=https%3A%2F%2Fassets.kitabisa.cc%2Fimages%2Ficons%2Ficon_anonymous-user.png&w=64&q=75'/>
