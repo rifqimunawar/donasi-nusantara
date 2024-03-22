@@ -128,8 +128,10 @@ class HomeController extends Controller
       return Inertia::render('frontend/TerimaKasih', ['donatur'=>$donatur, 'campaign'=>$campaign]);
         // return response()->json(['Data donatur berhasil disimpan Terima Kasih'], 200);
     }
-    public function about(){
-      return Inertia::render('frontend/Aboutpage');
+    public function rincian($id){
+      $campaign = Campaign::findOrFail($id);
+      // dd($campaign);
+      return Inertia::render('frontend/RincianPage', ['campaign' => $campaign]);
     }
 
 

@@ -48,27 +48,29 @@
             </div>
         </label>
         <div class="flex justify-center">
-            <button type="submit" class="btn btn-secondary" id="saveButton" disabled onclick="submit()">Simpan</button>
+            <button type="submit"
+                class="btn btn primary"
+                id="saveButton" disabled onclick="periksa()">Lanjutkan</button>
         </div>
     </form>
 
     <script>
-    function submit() {
-        let button = document.getElementById("saveButton");
-        if (button.innerText === "Simpan") {
-            button.innerText = "Menyimpan..."; // Mengubah teks tombol menjadi "Menyimpan..."
-            button.disabled = true; // Menonaktifkan tombol saat sedang menyimpan
+        function submit() {
+            let button = document.getElementById("saveButton");
+            if (button.innerText === "Lanjutkan") {
+                button.innerText = "Melanjutkan..."; // Mengubah teks tombol menjadi "Menyimpan..."
+                button.disabled = true; // Menonaktifkan tombol saat sedang menyimpan
+            }
         }
-    }
 
         function periksa() {
             let nominal = document.getElementById("nominal").value; // Mengambil nilai dari input nominal
             if (nominal >= 1000) {
                 document.getElementById("saveButton").disabled =
-                    false; // Mengaktifkan tombol jika nilai nominal lebih dari atau sama dengan 1000
+                false; // Mengaktifkan tombol jika nilai nominal lebih dari atau sama dengan 1000
             } else {
                 document.getElementById("saveButton").disabled =
-                    true; // Menonaktifkan tombol jika nilai nominal kurang dari 1000
+                true; // Menonaktifkan tombol jika nilai nominal kurang dari 1000
             }
         }
     </script>

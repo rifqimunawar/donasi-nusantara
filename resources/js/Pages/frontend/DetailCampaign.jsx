@@ -3,13 +3,13 @@ import BottomNavbar from "@/Components/BottomNavbar";
 import DonaturComponent from "@/Components/DonaturComponent";
 import HeroComponent from "@/Components/HeroComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 
 export default function DetailCampaign({ campaign, donaturs }) {
     const [presentase, setPresentase] = useState("");
-    const formattedPrice = campaign.price.toLocaleString("id-ID");
-    const formattedCollected = campaign.collected.toLocaleString("id-ID");
+    const formattedPrice = Number(campaign.price).toLocaleString("id-ID");
+    const formattedCollected = Number(campaign.collected).toLocaleString("id-ID");
     const jumlahDonatur = donaturs.length;
 
     console.log(donaturs);
@@ -36,9 +36,12 @@ export default function DetailCampaign({ campaign, donaturs }) {
                 <div>
                     <NavbarComponent />
                 </div>
-            <Head title="Detail" />
+                <Head title="Detail" />
                 <div className="mt-5">
-                    <img src={campaign.img} className="w-full h-60 object-cover" />
+                    <img
+                        src={campaign.img}
+                        className="w-full h-60 object-cover"
+                    />
                 </div>
 
                 <div className="m-5">
@@ -63,17 +66,19 @@ export default function DetailCampaign({ campaign, donaturs }) {
                             <p>Donasi</p>
                         </div>
                     </button>
-                    <button className="btn btn-primary">
-                        <div className="flex flex-col items-center">
-                            <div className="mb-1.5 mt-1.5 flex items-center">
-                                <div className="h-5 w-5">
-                                    <i className="bi bi-cash-coin"></i>
-                                </div>{" "}
-                                <p> </p>
+                    <Link href={`/rincian/${campaign.id}`} className="btn btn-primary">
+                        <button >
+                            <div className="flex flex-col items-center">
+                                <div className="mb-1.5 mt-1.5 flex items-center">
+                                    <div className="h-5 w-5">
+                                        <i className="bi bi-cash-coin"></i>
+                                    </div>{" "}
+                                    <p> </p>
+                                </div>
+                                <p>Rincian Dana</p>
                             </div>
-                            <p>Rincian Dana</p>
-                        </div>
-                    </button>
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="heading m-5 mt-7 text-xl">
@@ -84,9 +89,8 @@ export default function DetailCampaign({ campaign, donaturs }) {
                     <p>{campaign.description}</p>
                 </div>
 
-
                 <div className="m-5 mt-7 ">
-                <p className="text-xl mb-3">Para Donatur</p>
+                    <p className="text-xl mb-3">Para Donatur</p>
                     {donaturs.map((donatur, index) => (
                         <DonaturComponent donatur={donatur} key={index} />
                     ))}

@@ -37,7 +37,7 @@ export default function NavbarComponent() {
                             <Link href={'/list'}>List Campaign</Link>
                         </li>
                         <li>
-                            <Link href={'/galang'}>Galang Dana</Link>
+                            <Link href={'/galang/dana'}>Galang Dana</Link>
                         </li>
                         <li>
                             <Link href={'/login'}>Profile</Link>
