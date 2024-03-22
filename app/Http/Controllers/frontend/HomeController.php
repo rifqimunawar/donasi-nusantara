@@ -63,9 +63,10 @@ class HomeController extends Controller
     public function categorylist($id) {
       $campaigns = DB::table('campaigns')->where('category_id', $id)->get();
       foreach ($campaigns as $campaign) {
-          $campaign->img = config('app.MASTER_IMG_URL') . 'img/' . $campaign->img;
+          $campaign->img = "http://127.0.0.1:8000/" . 'img/' . $campaign->img;
       }
-      $category = DB::table('category_campaigns')->findOrFail($id); // Tidak perlu menggunakan get() setelah findOrFail
+      $category = DB::table('category_campaigns')->find($id); // Tidak perlu menggunakan get() setelah findOrFail
+      $category ->file = "http://127.0.0.1:8000/" . 'img/' . $category->file;
       return Inertia::render('frontend/CategoryList', ['campaigns' => $campaigns, 'category' => $category]);
   }
   
@@ -84,12 +85,19 @@ class HomeController extends Controller
       $donasi->message = $request->message;
       $donasi->email = $request->email;
       $gross_amount = $request->nominal;
+
       // \Midtrans\Config::$serverKey = config('midtrans.serverKey');
       // \Midtrans\Config::$isProduction = config('midtrans.isProduction');
       // \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
       // \Midtrans\Config::$is3ds = config('midtrans.is3ds');
-      \Midtrans\Config::$serverKey = "SB-Mid-server-jDkHnM0kbcCW5rQSpQv6gJkf";
-      \Midtrans\Config::$isProduction = false;
+      // ========== Developer
+      // \Midtrans\Config::$serverKey = "SB-Mid-server-jDkHnM0kbcCW5rQSpQv6gJkf";
+      // \Midtrans\Config::$isProduction = false;
+      // \Midtrans\Config::$isSanitized = true;
+      // \Midtrans\Config::$is3ds = true;
+      // ========================= Productions
+      \Midtrans\Config::$serverKey = "Mid-server-2UqvfV-7JUl9H1UFtWWekwiZ";
+      \Midtrans\Config::$isProduction = true;
       \Midtrans\Config::$isSanitized = true;
       \Midtrans\Config::$is3ds = true;
       $params = array(
@@ -138,7 +146,7 @@ class HomeController extends Controller
     public function galang(){
       $categories = DB::table('category_campaigns')->get();
       foreach ($categories as $category) {
-        $category->file = config('app.MASTER_IMG_URL') . 'img/' . $category->file;
+        $category->file = "http://127.0.0.1:8000/" . 'img/' . $category->file;
     }
       return Inertia::render('frontend/GalangDana', ['categories'=>$categories]);
     }

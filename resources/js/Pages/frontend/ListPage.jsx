@@ -13,7 +13,7 @@ export default function ListPage({ campaigns }) {
                     <NavbarComponent />
                 </div>
                 <div className="mt-5">
-                    <div className="heading">
+                    <div className="m-3">
                         <h2>Campaign Terbaru</h2>
                     </div>
                     <VerticalCampaign campaigns={campaigns} />

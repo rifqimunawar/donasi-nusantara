@@ -13,7 +13,8 @@ export default function GalangDana({ categories }) {
                     <NavbarComponent />
                 </div>
                 <div className="text-center m-7 font-sans font-bold text-lg">
-                    Ajukan Penggalangan Dana Sekarang!!!
+                    Ajukan Galang Dana Sekarang!!!
+                    <p>Ayo kita bantu saudara kita!!!</p>
                 </div>
 
                 <div className="mt-5 m-6">

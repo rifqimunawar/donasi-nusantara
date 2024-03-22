@@ -48,7 +48,7 @@ function CampaignList({ campaign }) {
             style={{ flex: "0 0 auto", width: "200px" }}
             href={`/donasi/campaign/${campaign.id}/detail`}
         >
-            <img src={campaign.img} alt={campaign.title} style={{ width:'200px', height:"100px", objectFit:"cover" }} />
+            <img src={campaign.img} alt={campaign.title} style={{ width:'200px', height:"100px", objectFit:"cover", borderRadius:"10px"}} />
             <p>{campaign.title}</p>
             <p>
                 terkumpul <span>{formattedCollected}</span>

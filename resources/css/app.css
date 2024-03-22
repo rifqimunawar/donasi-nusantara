@@ -22,7 +22,9 @@ section {
     background-color: rgb(159, 125, 191);
     height: 8rem;
     border-radius: 20px;
-    padding: 5px;
+    margin-bottom: 25px;
+    object-fit: cover;
+    box-shadow: 5px 5px 12px #b7947e
 }
 
 .futurecomponent .icon {

@@ -15,8 +15,8 @@ export default function CategoryList({ campaigns, category }) {
                     <NavbarComponent />
                 </div>
                 <div className="mt-5">
-                    <div className="heading">
-                        <h2>hello {title}</h2>
+                    <div className="text-center m-3 mb-5">
+                        <h2 className="text-lg inline">Kategori {title}</h2>
                     </div>
                     <VerticalCampaign campaigns={campaigns} />
                 </div>
