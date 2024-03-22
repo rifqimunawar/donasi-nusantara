@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\frontend;
 
+use Midtrans\Snap;
 use Inertia\Inertia;
 use App\Models\Donatur;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use App\Mail\KonfirmasiEmail;
+use App\Models\Category_Campaign;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Category_Campaign;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -96,7 +97,7 @@ class HomeController extends Controller
               'gross_amount' => $gross_amount,
           )
       );
-      $snapToken = \Midtrans\Snap::getSnapToken($params);
+      $snapToken = Snap::getSnapToken($params);
       $donasi->snap_token = $snapToken;
       $donasi->save();
       $campaign_id = $donasi->campaign_id;
