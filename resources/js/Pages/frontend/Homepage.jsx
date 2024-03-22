@@ -1,4 +1,5 @@
 import BottomNavbar from "@/Components/BottomNavbar";
+import FooterComponent from "@/Components/FooterComponent";
 import FutureComponent from "@/Components/FutureComponent";
 import HeroComponent from "@/Components/HeroComponent";
 import HorizontalCampaign from "@/Components/HorizontalCampaign";
@@ -26,6 +27,9 @@ export default function Homepage({campaigns, categories}) {
                 </div>
                 <div className="mt-5">
                 <VerticalCampaign campaigns={campaigns} />
+                </div>
+                <div>
+                  <FooterComponent/>
                 </div>
                 <div className="btm-center">
                     <BottomNavbar />

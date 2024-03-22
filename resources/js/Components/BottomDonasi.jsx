@@ -12,7 +12,7 @@ export default function BottomDonasi({ campaign }) {
         setModalOpen(false);
     };
 
-    const shareUrl = `http://127.0.0.1:8000/campaign/${campaign.id}/detail`;
+    const shareUrl = `https://donasi-nusantara.my.id/campaign/${campaign.id}/detail`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
         `${campaign.title} ${shareUrl}`
     )}`;
@@ -43,7 +43,7 @@ export default function BottomDonasi({ campaign }) {
                                 <Link href={whatsappUrl}>
                                     <div className="col-span-1 text-center">
                                         <img
-                                            src="http://127.0.0.1:8000/img/wa.png"
+                                            src="https://donasi-nusantara.my.id/img/wa.png"
                                             alt="wa"
                                             className="mx-auto"
                                         />

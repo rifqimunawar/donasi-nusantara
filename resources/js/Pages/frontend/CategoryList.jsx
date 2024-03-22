@@ -1,4 +1,5 @@
 import BottomNavbar from "@/Components/BottomNavbar";
+import FooterComponent from "@/Components/FooterComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
 import VerticalCampaign from "@/Components/VerticalCampaign";
 import { Head } from "@inertiajs/react";
@@ -19,6 +20,9 @@ export default function CategoryList({ campaigns, category }) {
                         <h2 className="text-lg inline">Kategori {title}</h2>
                     </div>
                     <VerticalCampaign campaigns={campaigns} />
+                </div>
+                <div>
+                  <FooterComponent/>
                 </div>
                 <div className="btm-center">
                     <BottomNavbar />
