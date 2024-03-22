@@ -24,10 +24,10 @@ class HomeController extends Controller
     $categories = DB::table('category_campaigns')->get();
 
         foreach ($campaigns as $campaign) {
-          $campaign->img = config('app.MASTER_IMG_URL') . 'img/' . $campaign->img;
+          $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
       }
         foreach ($categories as $item) {
-          $item->file = config('app.MASTER_IMG_URL') . 'img/' . $item->file;
+          $item->file = env('MASTER_IMG_URL') . 'img/' . $item->file;
       }
 
         return Inertia::render('frontend/Homepage', [
@@ -42,7 +42,7 @@ class HomeController extends Controller
             abort(404);
         }
         $donaturs = $campaign->donaturs()->where('statusPay', true)->latest()->get();
-        $campaign->img = 'http://127.0.0.1:8000/' . 'img/' . $campaign->img;
+        $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
         return Inertia::render('frontend/DetailCampaign', [
             'campaign' => $campaign,
             'donaturs' => $donaturs,
@@ -52,7 +52,7 @@ class HomeController extends Controller
       $campaigns = DB::table('campaigns')->get();
 
       foreach ($campaigns as $campaign) {
-        $campaign->img = config('app.MASTER_IMG_URL') . 'img/' . $campaign->img;
+        $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
     }
 
       return Inertia::render('frontend/ListPage', [
@@ -63,10 +63,10 @@ class HomeController extends Controller
     public function categorylist($id) {
       $campaigns = DB::table('campaigns')->where('category_id', $id)->get();
       foreach ($campaigns as $campaign) {
-          $campaign->img = "http://127.0.0.1:8000/" . 'img/' . $campaign->img;
+          $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
       }
       $category = DB::table('category_campaigns')->find($id); // Tidak perlu menggunakan get() setelah findOrFail
-      $category ->file = "http://127.0.0.1:8000/" . 'img/' . $category->file;
+      $category ->file = env('MASTER_IMG_URL') . 'img/' . $category->file;
       return Inertia::render('frontend/CategoryList', ['campaigns' => $campaigns, 'category' => $category]);
   }
   
@@ -86,20 +86,10 @@ class HomeController extends Controller
       $donasi->email = $request->email;
       $gross_amount = $request->nominal;
 
-      // \Midtrans\Config::$serverKey = config('midtrans.serverKey');
-      // \Midtrans\Config::$isProduction = config('midtrans.isProduction');
-      // \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
-      // \Midtrans\Config::$is3ds = config('midtrans.is3ds');
-      // ========== Developer
-      // \Midtrans\Config::$serverKey = "SB-Mid-server-jDkHnM0kbcCW5rQSpQv6gJkf";
-      // \Midtrans\Config::$isProduction = false;
-      // \Midtrans\Config::$isSanitized = true;
-      // \Midtrans\Config::$is3ds = true;
-      // ========================= Productions
-      \Midtrans\Config::$serverKey = "Mid-server-2UqvfV-7JUl9H1UFtWWekwiZ";
-      \Midtrans\Config::$isProduction = true;
-      \Midtrans\Config::$isSanitized = true;
-      \Midtrans\Config::$is3ds = true;
+      \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+      \Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
+      \Midtrans\Config::$isSanitized = env('MIDTRANS_IS_SANITIZED');
+      \Midtrans\Config::$is3ds = env('MIDTRANS_IS_3DS');
       $params = array(
           'transaction_details' => array(
               'order_id' => rand(),
@@ -146,7 +136,7 @@ class HomeController extends Controller
     public function galang(){
       $categories = DB::table('category_campaigns')->get();
       foreach ($categories as $category) {
-        $category->file = "http://127.0.0.1:8000/" . 'img/' . $category->file;
+        $category->file = env('MASTER_IMG_URL') . 'img/' . $category->file;
     }
       return Inertia::render('frontend/GalangDana', ['categories'=>$categories]);
     }
