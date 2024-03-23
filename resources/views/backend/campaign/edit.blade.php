@@ -33,7 +33,7 @@
                 <label htmlFor="description" class="block mb-1 text-sm font-medium text-gray-900">
                     Deskripsi
                 </label>
-                <textarea name="description" required class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                <textarea name="description" id="editor" required class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                     rows="5">{{ $campaign->description }}</textarea>
             </div>
         
@@ -77,4 +77,16 @@
 
         </div>
     </div>
+
+    <script>
+      ClassicEditor
+          .create(document.querySelector('#editor'), {
+              ckfinder: {
+                  uploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+              }
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  </script>
 @endsection

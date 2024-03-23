@@ -48,6 +48,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::delete('/category/campaign/{id}/delete', [CategoryCampaignController::class, 'destroy'])->name('category.destroy');
   
   Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign');
+  Route::post('/upload', [CampaignController::class, 'upload'])->name('ckeditor.upload');
   Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaign.create');
   Route::post('/campaign/store', [CampaignController::class, 'store'])->name('campaign.store');
   Route::get('/campaign/{id}/edit', [CampaignController::class, 'edit'])->name('campaign.edit');

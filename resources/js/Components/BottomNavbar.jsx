@@ -7,19 +7,19 @@ export default function BottomNavbar() {
             <div className="grid grid-cols-4 gap-3 mx-auto max-w-screen-lg">
                 <Link href={'/home'} className="btn btn-primary w-full">
                     <i class="bi bi-house"></i>
-                    <p>Home</p>
+                    <p className="text-xs">Home</p>
                 </Link>
                 <Link href={'/list'} className="btn btn-primary w-full">
                     <i class="bi bi-card-list"></i>
-                    <p>List</p>
+                    <p className="text-xs">List</p>
                 </Link>
                 <Link href={'/galang/dana'} className="btn btn-primary w-full">
                     <i class="bi bi-cash-coin"></i>
-                    <p>Donasi</p>
+                    <p className="text-xs">Donasi</p>
                 </Link>
                 <Link href={'/login'} className="btn btn-primary w-full">
                     <i class="bi bi-person-circle"></i>
-                    <p>Profile</p>
+                    <p className="text-xs">Profile</p>
                 </Link>
             </div>
         </div>

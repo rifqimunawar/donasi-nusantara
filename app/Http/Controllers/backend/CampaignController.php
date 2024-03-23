@@ -49,6 +49,18 @@ class CampaignController extends Controller
     return redirect()->route('campaign'); 
   }
 
+  public function upload(Request $request)
+  {
+    if ($request->hasFile('upload')) {
+        $extension = $request->file('upload')->getClientOriginalExtension();
+        $fileName = now()->timestamp . '_' . uniqid() . '.' . $extension;
+        $request->file('upload')->move(public_path('media'), $fileName);
+        $url = asset('media/' . $fileName);
+        return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
+    }
+
+  }
+
   public function edit(string $id)
   {
     $campaign = DB::table('campaigns')->find($id);

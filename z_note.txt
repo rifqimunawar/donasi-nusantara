@@ -1,0 +1,8 @@
+- ck editor
+- profile page
+- backup
+- footer evry page
+- hero component ditambah
+- button bottombar di br 
+- color component
+- halaman dashboard

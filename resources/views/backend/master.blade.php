@@ -8,7 +8,10 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <html data-theme="retro"></html>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    <html data-theme="retro">
+
+    </html>
 </head>
 
 <body>

@@ -3,18 +3,18 @@ import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 
-export default function RincianPage({campaign}) {
-  const collected = campaign.collected;
-  const total = campaign.price;
-  
-  const biayaTeknologi = () => {
-    return collected * 0.25; // 25% dari collected
-  };
-  
-  const danaPenggalang = () => {
-    return collected * 0.75; // 75% dari collected
-  };
-  
+export default function RincianPage({ campaign }) {
+    const collected = campaign.collected;
+    const total = campaign.price;
+
+    const biayaTeknologi = () => {
+        return collected * 0.25; // 25% dari collected
+    };
+
+    const danaPenggalang = () => {
+        return collected * 0.75; // 75% dari collected
+    };
+
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
             <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
@@ -41,24 +41,40 @@ export default function RincianPage({campaign}) {
                                 <tr className="">
                                     <th>100%</th>
                                     <td>Dana Terkumpul</td>
-                                    <td>{collected.toLocaleString('id-ID')}</td>
+                                    <td>
+                                        {Number(collected).toLocaleString(
+                                            "id-ID"
+                                        )}
+                                    </td>
                                 </tr>
                                 {/* row 2 */}
                                 <tr>
                                     <th>25%</th>
                                     <td>Biaya Teknologi</td>
-                                    <td>{biayaTeknologi().toLocaleString('id-ID')}</td>
+                                    <td>
+                                        {Number(
+                                            biayaTeknologi()
+                                        ).toLocaleString("id-ID")}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>75%</th>
                                     <td>Dana Penggalang</td>
-                                    <td>{danaPenggalang().toLocaleString('id-ID')}</td>
+                                    <td>
+                                        {Number(
+                                            danaPenggalang()
+                                        ).toLocaleString("id-ID")}
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <div className="bg-base-200 rounded-lg">
-                      <p className="p-2 mt-8">Dana teknologi adalah dana yang digunakan oleh developer/pengembang website untuk mengelola dan memaksimalkan website "Donasi Nusantara"</p>
+                        <p className="p-2 mt-8">
+                            Dana teknologi adalah dana yang digunakan oleh
+                            developer/pengembang website untuk mengelola dan
+                            memaksimalkan website "Donasi Nusantara"
+                        </p>
                     </div>
                 </div>
                 <div className="btm-center">

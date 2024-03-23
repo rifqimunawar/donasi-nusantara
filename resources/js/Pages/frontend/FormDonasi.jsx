@@ -1,4 +1,5 @@
 import BottomNavbar from "@/Components/BottomNavbar";
+import FooterComponent from "@/Components/FooterComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, router } from "@inertiajs/react";
 import axios from "axios";
@@ -115,6 +116,9 @@ export default function FormDonasi({ campaignID }) {
                             </button>
                         </div>
                     </form>
+                </div>
+                <div>
+                  <FooterComponent/>
                 </div>
                 <div className="btm-center">
                     <BottomNavbar />

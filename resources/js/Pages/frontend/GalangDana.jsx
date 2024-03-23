@@ -1,5 +1,6 @@
 // GalangDana.js
 import BottomNavbar from "@/Components/BottomNavbar";
+import FooterComponent from "@/Components/FooterComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
@@ -27,6 +28,9 @@ export default function GalangDana({ categories }) {
                             />
                         ))}
                     </div>
+                </div>
+                <div>
+                  <FooterComponent/>
                 </div>
                 <div className="btm-center">
                     <BottomNavbar />

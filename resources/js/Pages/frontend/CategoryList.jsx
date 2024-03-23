@@ -21,9 +21,9 @@ export default function CategoryList({ campaigns, category }) {
                     </div>
                     <VerticalCampaign campaigns={campaigns} />
                 </div>
-                <div>
+                {/* <div>
                   <FooterComponent/>
-                </div>
+                </div> */}
                 <div className="btm-center">
                     <BottomNavbar />
                 </div>

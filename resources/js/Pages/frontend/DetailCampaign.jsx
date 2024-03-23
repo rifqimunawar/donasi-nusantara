@@ -1,7 +1,7 @@
 import BottomDonasi from "@/Components/BottomDonasi";
 import BottomNavbar from "@/Components/BottomNavbar";
 import DonaturComponent from "@/Components/DonaturComponent";
-import HeroComponent from "@/Components/HeroComponent";
+import FooterComponent from "@/Components/FooterComponent";
 import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
@@ -9,7 +9,9 @@ import React, { useEffect, useState } from "react";
 export default function DetailCampaign({ campaign, donaturs }) {
     const [presentase, setPresentase] = useState("");
     const formattedPrice = Number(campaign.price).toLocaleString("id-ID");
-    const formattedCollected = Number(campaign.collected).toLocaleString("id-ID");
+    const formattedCollected = Number(campaign.collected).toLocaleString(
+        "id-ID"
+    );
     const jumlahDonatur = donaturs.length;
 
     console.log(donaturs);
@@ -66,8 +68,11 @@ export default function DetailCampaign({ campaign, donaturs }) {
                             <p>Donasi</p>
                         </div>
                     </button>
-                    <Link href={`/rincian/${campaign.id}`} className="btn btn-primary">
-                        <button >
+                    <Link
+                        href={`/rincian/${campaign.id}`}
+                        className="btn btn-primary"
+                    >
+                        <button>
                             <div className="flex flex-col items-center">
                                 <div className="mb-1.5 mt-1.5 flex items-center">
                                     <div className="h-5 w-5">
@@ -85,8 +90,12 @@ export default function DetailCampaign({ campaign, donaturs }) {
                     <p>Kisah Penggalang Dana</p>
                 </div>
 
-                <div className="m-5 mt-7 text-l">
-                    <p>{campaign.description}</p>
+                <div className="m-5 mt-7 text-l text-justify">
+                    <p
+                        dangerouslySetInnerHTML={{
+                            __html: campaign.description,
+                        }}
+                    />
                 </div>
 
                 <div className="m-5 mt-7 ">
@@ -95,6 +104,10 @@ export default function DetailCampaign({ campaign, donaturs }) {
                         <DonaturComponent donatur={donatur} key={index} />
                     ))}
                 </div>
+
+                {/* <div>
+                  <FooterComponent/>
+                </div> */}
 
                 <div className="btm-center">
                     <BottomDonasi campaign={campaign} />
