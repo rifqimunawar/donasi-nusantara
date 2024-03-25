@@ -16,7 +16,7 @@
                         Judul
                     </label>
                     <input name="title" required type="text"
-                        class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" />
+                        class="rounded-lg block w-full" />
                 </div>
 
                 <div class="mb-5">
@@ -31,7 +31,7 @@
                     <label htmlFor="description" class="block mb-1 text-sm font-medium text-gray-900">
                         Deskripsi
                     </label>
-                    <textarea name="description" id="editor" required class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                    <textarea name="description" id="editor" required class="rounded-lg block w-full"
                         rows="5"></textarea>
                 </div>
 
@@ -40,7 +40,7 @@
                         Harga
                     </label>
                     <input name="price" required type="number"
-                        class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" />
+                        class="rounded-lg block w-full" />
                 </div>
 
                 <div class="mb-5">
@@ -48,7 +48,11 @@
                         Waktu
                     </label>
                     <input name="time" required type="datetime-local"
-                        class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full" />
+                        class="rounded-lg block w-full" />
+                </div>
+                <div class="hidden">
+                    <input name="user_id" type="text" value="{{ $user->id }}"
+                        class="rounded-lg block w-full" />
                 </div>
 
                 <div class="mb-5">
@@ -56,7 +60,7 @@
                         Kategori
                     </label>
                     <select name="category_id" required
-                        class="rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full">
+                        class="rounded-lg block w-full">
                         <option selected disabled >== Pilih Kategori ==</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->title }}</option>

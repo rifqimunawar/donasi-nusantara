@@ -1,8 +1,7 @@
-- ck editor
-- profile page
+- role admin/user
+- status aktivasi campaign
+- galang dana page
+- profile page -> next create button for list my campaign
 - backup
-- footer evry page
-- hero component ditambah
-- button bottombar di br 
 - color component
 - halaman dashboard

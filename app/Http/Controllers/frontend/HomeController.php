@@ -19,22 +19,37 @@ class HomeController extends Controller
   }
 
 
-  public function home(){
-    $campaigns = DB::table('campaigns')->get();
-    $categories = DB::table('category_campaigns')->get();
+      public function home(){
+        $masterUrl = env('MASTER_IMG_URL') . 'img/';
+        $campaigns = DB::table('campaigns')->get();
+        $categories = DB::table('category_campaigns')->get();
 
         foreach ($campaigns as $campaign) {
-          $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
-      }
+            $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
+        }
+
         foreach ($categories as $item) {
-          $item->file = env('MASTER_IMG_URL') . 'img/' . $item->file;
-      }
+            $item->file = env('MASTER_IMG_URL') . 'img/' . $item->file;
+        }
+
+        $data = [
+            [
+                'id' => 1,
+                'img' => $masterUrl . 'dela.jpg',
+            ],
+            [
+                'id' => 2,
+                'img' => $masterUrl . 'dela.jpeg',
+            ],
+        ];
 
         return Inertia::render('frontend/Homepage', [
             'campaigns' => $campaigns,
-            'categories'=>$categories
+            'categories' => $categories,
+            'data' => $data
         ]);
     }
+
     public function detail($id)
     {
         $campaign = Campaign::findOrFail($id);

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\backend;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignController extends Controller
 {
@@ -14,25 +16,37 @@ class CampaignController extends Controller
     return view('backend.campaign.index', compact('campaign'));
   }
   public function create()
-  {
+  {   $user = Auth::user();
       $categories = DB::table('category_campaigns')->get(); // Mengambil semua kategori dari database
-      return view('backend.campaign.create', ['categories' => $categories]);
+      return view('backend.campaign.create', ['categories' => $categories, 'user'=>$user]);
+  }
+  public function usercreate()
+  {
+    $user = Auth::user();
+      // dd($user);
+      $categories = DB::table('category_campaigns')->get(); // Mengambil semua kategori dari database
+      return Inertia::render('frontend/campaign/create', [
+        'categories' => $categories, 
+        'user'=>$user,
+      ]);
   }
   public function store(Request $request)
   {
+    // return $request;
     $title = $request->input('title');
-    $img = null; // Inisialisasi $img dengan null
+    $img = null;
 
     if ($request->hasFile('img')) {
         $image = $request->file('img');
         $newFileName = 'pamflet' . now()->timestamp . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('img/'), $newFileName);
-        $img = $newFileName; // Menyimpan nama file gambar ke dalam variabel $img
+        $img = $newFileName;
     }
 
     $description = $request->input('description');
     $price = $request->input('price');
     $time = $request->input('time');
+    $user_id = $request->input('user_id');
     $category_id = $request->input('category_id');
 
     $affected = DB::table('campaigns')->insert([

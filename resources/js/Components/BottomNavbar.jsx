@@ -17,7 +17,7 @@ export default function BottomNavbar() {
                     <i class="bi bi-cash-coin"></i>
                     <p className="text-xs">Donasi</p>
                 </Link>
-                <Link href={'/login'} className="btn btn-primary w-full">
+                <Link href={'/profile'} className="btn btn-primary w-full">
                     <i class="bi bi-person-circle"></i>
                     <p className="text-xs">Profile</p>
                 </Link>
