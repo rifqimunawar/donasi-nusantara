@@ -5,7 +5,6 @@ namespace Laravel\Breeze\Console;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
@@ -103,63 +102,33 @@ class InstallCommand extends Command implements PromptsForMissingInput
     }
 
     /**
-     * Install the given middleware names into the application.
+     * Install the middleware to a group in the application Http Kernel.
      *
-     * @param  array|string  $name
+     * @param  string  $after
+     * @param  string  $name
      * @param  string  $group
-     * @param  string  $modifier
      * @return void
      */
-    protected function installMiddleware($names, $group = 'web', $modifier = 'append')
+    protected function installMiddlewareAfter($after, $name, $group = 'web')
     {
-        $bootstrapApp = file_get_contents(base_path('bootstrap/app.php'));
+        $httpKernel = file_get_contents(app_path('Http/Kernel.php'));
 
-        $names = collect(Arr::wrap($names))
-            ->filter(fn ($name) => ! Str::contains($bootstrapApp, $name))
-            ->whenNotEmpty(function ($names) use ($bootstrapApp, $group, $modifier) {
-                $names = $names->map(fn ($name) => "$name")->implode(','.PHP_EOL.'            ');
+        $middlewareGroups = Str::before(Str::after($httpKernel, '$middlewareGroups = ['), '];');
+        $middlewareGroup = Str::before(Str::after($middlewareGroups, "'$group' => ["), '],');
 
-                $bootstrapApp = str_replace(
-                    '->withMiddleware(function (Middleware $middleware) {',
-                    '->withMiddleware(function (Middleware $middleware) {'
-                        .PHP_EOL."        \$middleware->$group($modifier: ["
-                        .PHP_EOL."            $names,"
-                        .PHP_EOL.'        ]);'
-                        .PHP_EOL,
-                    $bootstrapApp,
-                );
+        if (! Str::contains($middlewareGroup, $name)) {
+            $modifiedMiddlewareGroup = str_replace(
+                $after.',',
+                $after.','.PHP_EOL.'            '.$name.',',
+                $middlewareGroup,
+            );
 
-                file_put_contents(base_path('bootstrap/app.php'), $bootstrapApp);
-            });
-    }
-
-    /**
-     * Install the given middleware aliases into the application.
-     *
-     * @param  array  $aliases
-     * @return void
-     */
-    protected function installMiddlewareAliases($aliases)
-    {
-        $bootstrapApp = file_get_contents(base_path('bootstrap/app.php'));
-
-        $aliases = collect($aliases)
-            ->filter(fn ($alias) => ! Str::contains($bootstrapApp, $alias))
-            ->whenNotEmpty(function ($aliases) use ($bootstrapApp) {
-                $aliases = $aliases->map(fn ($name, $alias) => "'$alias' => $name")->implode(','.PHP_EOL.'            ');
-
-                $bootstrapApp = str_replace(
-                    '->withMiddleware(function (Middleware $middleware) {',
-                    '->withMiddleware(function (Middleware $middleware) {'
-                        .PHP_EOL.'        $middleware->alias(['
-                        .PHP_EOL."            $aliases,"
-                        .PHP_EOL.'        ]);'
-                        .PHP_EOL,
-                    $bootstrapApp,
-                );
-
-                file_put_contents(base_path('bootstrap/app.php'), $bootstrapApp);
-            });
+            file_put_contents(app_path('Http/Kernel.php'), str_replace(
+                $middlewareGroups,
+                str_replace($middlewareGroup, $modifiedMiddlewareGroup, $middlewareGroups),
+                $httpKernel
+            ));
+        }
     }
 
     /**
@@ -388,7 +357,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         $input->setOption('pest', select(
             label: 'Which testing framework do you prefer?',
-            options: ['Pest', 'PHPUnit'],
+            options: ['PHPUnit', 'Pest'],
             default: $this->isUsingPest() ? 'Pest' : 'PHPUnit',
         ) === 'Pest');
     }

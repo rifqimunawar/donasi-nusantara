@@ -27,7 +27,7 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                                 </p>
                             </header>
                             <Link
-                                href={route("user.create.campaign")}
+                                href={route("user.campaign")}
                                 className="btn btn-info btn-sm text-white"
                             >
                                 Buat Campaign Sekarang

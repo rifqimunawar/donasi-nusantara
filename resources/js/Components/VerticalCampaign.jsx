@@ -46,7 +46,7 @@ function CampaignItem({ campaign }) {
 
     return (
         <Link href={`/donasi/campaign/${campaign.id}/detail`}>
-            <div className="verCampaign flex mb-3" style={{ flex: "0 0 auto" }}>
+            <div className="verCampaign flex mb-3 bg-info" style={{ flex: "0 0 auto" }}>
                 <img
                     src={campaign.img}
                     style={{
@@ -55,15 +55,15 @@ function CampaignItem({ campaign }) {
                         objectFit: "cover",
                     }}
                 />
-                <div style={{ width: "100%" }}>
-                    <p>{campaign.title}</p>
+                <div style={{ width: "100%", padding:"5px" }}>
+                    <p className="text-info-content">{campaign.title}</p>
                     <progress
-                        className="progress progress-info"
+                        className="progress progress secondary"
                         style={{ width: "100%" }}
                         value={presentase} // Menggunakan nilai presentase sebagai value
                         max="100"
                     ></progress>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-info-content text-sm">
                         <p>
                             Terkumpul{" "}
                             <span className="">{formattedCollected}</span>

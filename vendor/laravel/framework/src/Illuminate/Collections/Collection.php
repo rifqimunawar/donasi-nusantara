@@ -998,8 +998,11 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Push all of the given items onto the collection.
      *
-     * @param  iterable<array-key, TValue>  $source
-     * @return static
+     * @template TConcatKey of array-key
+     * @template TConcatValue
+     *
+     * @param  iterable<TConcatKey, TConcatValue>  $source
+     * @return static<TKey|TConcatKey, TValue|TConcatValue>
      */
     public function concat($source)
     {
@@ -1146,11 +1149,12 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Shuffle the items in the collection.
      *
+     * @param  int|null  $seed
      * @return static
      */
-    public function shuffle()
+    public function shuffle($seed = null)
     {
-        return new static(Arr::shuffle($this->items));
+        return new static(Arr::shuffle($this->items, $seed));
     }
 
     /**

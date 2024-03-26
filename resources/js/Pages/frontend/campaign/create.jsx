@@ -19,27 +19,7 @@ export default function create({ user, categories }) {
                         <p className="mt-1 text-sm text-gray-600 mb-3"></p>
                     </header>
                 </div>
-                <div className="overflow-x-auto">
-                    <table className="table">
-                        {/* head */}
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Title</th>
-                                <th>Terkumpul</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>2</th>
-                                <td>Hart Hagerty</td>
-                                <td>Desktop Support Technician</td>
-                                <td>Purple</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+
                 <div className="btm-center">
                     <BottomNavbar />
                 </div>

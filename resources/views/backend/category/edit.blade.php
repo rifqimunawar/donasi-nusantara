@@ -31,13 +31,13 @@
                     <label class="block mb-2 text-sm font-medium text-gray-900" htmlFor="user_avatar">
                         Upload Icon Category
                     </label>
-                    <input required name="file" type="file" value={{ $category->file }}
+                    <input name="file" type="file" value={{ $category->file }}
                         class="block file-input file-input-bordered file-input-secondary w-full" />
                 </div>
 
 
                 <div class="mb-5 flex justify-center gap-3">
-                    <a href={{ route('category.campaign') }} class="btn btn-warning btn-sm">
+                    <a href={{ route('category') }} class="btn btn-warning btn-sm">
                         Kembali
                     </a>
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>

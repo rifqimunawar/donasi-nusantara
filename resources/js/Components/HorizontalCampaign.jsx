@@ -24,7 +24,9 @@ export default function HorizontalCampaign({ campaigns }) {
 
 function CampaignList({ campaign }) {
     const [presentase, setPresentase] = useState("");
-    const formattedCollected = Number(campaign.collected).toLocaleString("id-ID");
+    const formattedCollected = Number(campaign.collected).toLocaleString(
+        "id-ID"
+    );
 
     useEffect(() => {
         const calculatePercentage = () => {
@@ -44,20 +46,31 @@ function CampaignList({ campaign }) {
 
     return (
         <Link
-            className="listCom"
+            className="listCom bg-info"
             style={{ flex: "0 0 auto", width: "200px" }}
             href={`/donasi/campaign/${campaign.id}/detail`}
         >
-            <img src={campaign.img} alt={campaign.title} style={{ width:'200px', height:"100px", objectFit:"cover", borderRadius:"10px"}} />
-            <p>{campaign.title}</p>
-            <p>
-                terkumpul <span>{formattedCollected}</span>
-            </p>
-            <progress
-                className="progress progress-info "
-                value={presentase}
-                max="100"
-            ></progress>
+            <img
+                src={campaign.img}
+                alt={campaign.title}
+                style={{
+                    width: "200px",
+                    height: "100px",
+                    objectFit: "cover",
+                    borderRadius: "10px",
+                }}
+            />
+            <div className="p-2">
+                <p className="text-info-content">{campaign.title}</p>
+                <p className="text-info-content text-sm">
+                    Terkumpul <span>{formattedCollected}</span>
+                </p>
+                <progress
+                    className="progress progress secondary"
+                    value={presentase}
+                    max="100"
+                ></progress>
+            </div>
         </Link>
     );
 }
