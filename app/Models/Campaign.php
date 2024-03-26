@@ -9,4 +9,9 @@ class Campaign extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function donaturs()
+    {
+        return $this->hasMany(Donatur::class);
+    }
 }

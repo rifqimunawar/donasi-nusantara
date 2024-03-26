@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/u/camp/', [CampaignForUserCont::class, 'index'])->name('user.campaign');
   Route::get('/u/camp/create', [CampaignForUserCont::class, 'create'])->name('user.campaign.create');
   Route::post('/u/camp/store', [CampaignForUserCont::class, 'store'])->name('user.campaign.store');
+  Route::get('/u/camp/{id}/edit', [CampaignForUserCont::class, 'edit'])->name('user.campaign.edit');
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

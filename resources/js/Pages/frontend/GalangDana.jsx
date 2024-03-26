@@ -42,7 +42,7 @@ export default function GalangDana({ categories }) {
 
 function CategoriesComponent({ categories }) {
     return (
-        <Link href={'/login'}>
+        <Link href={'/u/camp/create'}>
         <hr/>
             <div className="bg-base-100 mb-3 rounded-lg shadow-md">
                 <div className="grid grid-cols-4">
