@@ -1,6 +1,6 @@
 import BottomNavbar from "@/Components/BottomNavbar";
 import NavbarComponent from "@/Components/NavbarComponent";
-import { Head, router } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
 
 export default function Create({ user, categories }) {
@@ -11,6 +11,8 @@ export default function Create({ user, categories }) {
         price: "",
         user_id: user.id,
         time: "",
+        norek: "",
+        bank: "",
         category_id: "",
     });
 
@@ -25,9 +27,10 @@ export default function Create({ user, categories }) {
 
     // Menyimpan data saat form disubmit
     const handleSubmit = (e) => {
-      e.preventDefault();
-      router.post('/u/camp/store', formData);
-  }
+        e.preventDefault();
+        console.log(formData)
+        // router.post("/u/camp/store", formData);
+    };
 
     useEffect(() => {
         // Lakukan sesuatu saat komponen dimuat
@@ -48,10 +51,7 @@ export default function Create({ user, categories }) {
                         <p className="mt-1 text-sm text-gray-600 mb-3"></p>
                     </header>
                     {/* Form */}
-                    <form
-                        onSubmit={handleSubmit}
-                        encType="multipart/form-data"
-                    >
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
                         <div className="mb-5">
                             <label
                                 htmlFor="base-input"
@@ -108,7 +108,7 @@ export default function Create({ user, categories }) {
                                 htmlFor="price"
                                 className="block mb-1 text-sm font-medium text-gray-900"
                             >
-                                Harga
+                                Target Dana Terkumpul
                             </label>
                             <input
                                 name="price"
@@ -165,13 +165,54 @@ export default function Create({ user, categories }) {
                             </select>
                         </div>
 
+                        <div className="mb-5">
+                            <label
+                                htmlFor="category_id"
+                                className="block mb-1 text-sm font-medium text-gray-900"
+                            >
+                                Bank Penarikan
+                            </label>
+                            <select
+                                name="bank"
+                                required
+                                value={formData.bank}
+                                onChange={handleChange}
+                                className="rounded-lg block w-full"
+                            >
+                                <option value="" selected disabled>
+                                    == Pilih Bank ==
+                                </option>
+                                <option value={"MANDIRI"}>MANDIRI</option>
+                                <option value={"BRI"}>BRI</option>
+                                <option value={"BCA"}>BCA</option>
+                                <option value={"BNI"}>BNI</option>
+                            </select>
+                        </div>
+
+                        <div className="mb-5">
+                            <label
+                                htmlFor="norek"
+                                className="block mb-1 text-sm font-medium text-gray-900"
+                            >
+                                Nomor Rekening Penarikan
+                            </label>
+                            <input
+                                name="norek"
+                                required
+                                type="number"
+                                value={formData.norek}
+                                onChange={handleChange}
+                                className="rounded-lg block w-full"
+                            />
+                        </div>
+
                         <div className="mb-5 flex justify-center gap-3">
-                            <a
+                            <Link
                                 href="/u/camp/"
                                 className="btn btn-warning btn-sm"
                             >
                                 Kembali
-                            </a>
+                            </Link>
                             <button
                                 type="submit"
                                 className="btn btn-primary btn-sm"

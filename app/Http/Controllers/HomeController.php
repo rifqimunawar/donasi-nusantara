@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,11 @@ class HomeController extends Controller
         ],
         [
             'id' => 2,
-            'img' => $masterUrl . 'dela.jpeg',
+            'img' => $masterUrl . 'ndi.jpg',
+        ],
+        [
+            'id' => 3,
+            'img' => $masterUrl . 'IKI.JPG',
         ],
     ];
 
@@ -72,7 +77,7 @@ class HomeController extends Controller
       foreach ($campaigns as $campaign) {
           $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
       }
-      $category = DB::table('category_campaigns')->find($id); // Tidak perlu menggunakan get() setelah findOrFail
+      $category = Category::find($id); // Tidak perlu menggunakan get() setelah findOrFail
       $category ->file = env('MASTER_IMG_URL') . 'img/' . $category->file;
       return Inertia::render('frontend/CategoryList', ['campaigns' => $campaigns, 'category' => $category]);
     }
@@ -148,5 +153,35 @@ class HomeController extends Controller
         $category->file = env('MASTER_IMG_URL') . 'img/' . $category->file;
     }
       return Inertia::render('frontend/GalangDana', ['categories'=>$categories]);
+    }
+
+    public function withdraw(){
+      $user_id = Auth::user()->id;
+      $campaigns = Campaign::where('user_id', $user_id)->get();
+      $saldoBersih = 0;
+      
+      foreach ($campaigns as $campaign) {
+          $saldoBersih += $campaign->collected * 0.75; 
+      }
+      return Inertia::render('frontend/withdraw/index', [
+        'campaigns' => $campaigns,
+        'saldoBersih' => $saldoBersih,
+        'user_id' => $user_id,
+      ]);
+    }
+
+    public function confirmasi($id){
+      $campaigns = Campaign::findOrFail($id);
+      $saldoBersih = 0;
+      $saldoBersih += $campaigns->collected * 0.75; 
+      return Inertia::render('frontend/withdraw/confir', [
+        'campaigns' =>$campaigns,
+        'saldoBersih' =>$saldoBersih
+      ]);
+    }
+
+    public function conStore(Request $request){
+
+      return $request;
     }
 }

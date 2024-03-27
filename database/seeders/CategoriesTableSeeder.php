@@ -39,7 +39,7 @@ class CategoriesTableSeeder extends Seeder
             ),
             2 => 
             array (
-                'id' => 5,
+                'id' => 3,
                 'title' => 'Lingkungan',
                 'slug' => 'lingkungan',
                 'file' => 'icon_1711439569.png',
@@ -48,7 +48,7 @@ class CategoriesTableSeeder extends Seeder
             ),
             3 => 
             array (
-                'id' => 6,
+                'id' => 4,
                 'title' => 'Pendidikan',
                 'slug' => 'pendidikan',
                 'file' => 'icon_1711439585.png',
@@ -57,7 +57,7 @@ class CategoriesTableSeeder extends Seeder
             ),
             4 => 
             array (
-                'id' => 7,
+                'id' => 5,
                 'title' => 'Infrastruktur',
                 'slug' => 'infrastruktur',
                 'file' => 'icon_1711439611.png',

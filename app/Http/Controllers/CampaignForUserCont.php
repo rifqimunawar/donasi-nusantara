@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Campaign;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,8 @@ class CampaignForUserCont extends Controller
     $time = $request->input('time');
     $user_id = $request->input('user_id');
     $category_id = $request->input('category_id');
+    $norek = $request->input('norek');
+    $bank = $request->input('bank');
 
     $affected = Campaign::insert([
         'title' => $title,
@@ -66,6 +69,8 @@ class CampaignForUserCont extends Controller
         'description' => $description,
         'price' => $price,
         'time' => $time,
+        'bank' => $bank,
+        'norek' => $norek,
         'user_id'=>$user_id,
         'category_id' => $category_id,
         'created_at' => now(),
@@ -74,4 +79,51 @@ class CampaignForUserCont extends Controller
 
     return redirect()->route('user.campaign'); 
   }
+
+  public function edit($id){
+    $user = Auth::user();
+    $categories = Category::all();
+    $campaign = Campaign::findOrFail($id);
+    $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
+    return Inertia::render('frontend/campaign/edit', [
+      'campaign'=>$campaign,
+      'categories'=>$categories,
+      'user'=>$user,
+    ]);
+  }
+
+  public function update(Request $request, $id)
+  {
+      $campaign = Campaign::findOrFail($id);
+  
+      // Update only if the request has a new title
+      if ($request->has('title')) {
+          $campaign->title = $request->input('title');
+      }
+  
+      // Update image if provided
+      if ($request->hasFile('img')) {
+          $image = $request->file('img');
+          $newFileName = 'pamflet' . now()->timestamp . '.' . $image->getClientOriginalExtension();
+          $image->move(public_path('img/'), $newFileName);
+          $campaign->img = $newFileName;
+      }
+  
+      // Update other fields
+      $campaign->description = $request->input('description', $campaign->description);
+      $campaign->price = $request->input('price', $campaign->price);
+      $campaign->time = $request->input('time', $campaign->time);
+      $campaign->bank = $request->input('bank', $campaign->bank);
+      $campaign->norek = $request->input('norek', $campaign->norek);
+      $campaign->user_id = $request->input('user_id', $campaign->user_id);
+      $campaign->category_id = $request->input('category_id', $campaign->category_id);
+      $campaign->updated_at = now();
+  
+      $campaign->save();
+  
+      return redirect()->route('user.campaign');
+  }
+
+
+  
 }

@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('role')->default('user');
             $table->integer('saldo')->default(0);
-            $table->string('bank')->default('BRI');
-            $table->string('norek')->default('407301012966508');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

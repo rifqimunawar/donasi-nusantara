@@ -40,7 +40,7 @@ export default function NavbarComponent() {
                             <Link href={'/galang/dana'}>Galang Dana</Link>
                         </li>
                         <li>
-                            <Link href={'/login'}>Profile</Link>
+                            <Link href={'/profile'}>Profile</Link>
                         </li>
                     </ul>
                 </div>

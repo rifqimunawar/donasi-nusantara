@@ -20,6 +20,9 @@ return new class extends Migration
             $table->integer('price'); // Menggunakan tipe data 'decimal' untuk harga
             $table->integer('collected')->default(0); // Menggunakan tipe data 'decimal' untuk harga
             $table->timestamp('time'); // Menggunakan tipe data 'timestamp' untuk waktu
+            $table->string('bank')->default('BRI');
+            $table->string('norek')->default('407301012966508');
+            $table->string('statusDana')->default(0); //digunakan untuk mengetahui status pendarikan dana
             $table->unsignedBigInteger('category_id'); // Menggunakan tipe data 'unsignedBigInteger' untuk kunci asing
             $table->unsignedBigInteger('user_id'); // Menggunakan tipe data 'unsignedBigInteger' untuk kunci asing  
             $table->timestamps();

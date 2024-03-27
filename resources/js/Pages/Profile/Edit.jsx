@@ -5,12 +5,21 @@ import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationFor
 import { Head, Link, usePage } from "@inertiajs/react";
 import NavbarComponent from "@/Components/NavbarComponent";
 import BottomNavbar from "@/Components/BottomNavbar";
+import PrimaryButton from "@/Components/PrimaryButton";
+import DangerButton from "@/Components/DangerButton";
 
-export default function Edit({ auth, mustVerifyEmail, status }) {
-  const user = usePage().props.auth.user;
+export default function Edit({
+    auth,
+    mustVerifyEmail,
+    status,
+    campaigns,
+    saldo,
+}) {
+    const totalCamp = campaigns.length;
+    const user = usePage().props.auth.user;
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
-            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
+            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden  pb-[66px]">
                 <NavbarComponent />
                 <Head title="Profile" />
 
@@ -19,11 +28,11 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                         <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                             <header>
                                 <h2 className="text-lg font-medium text-gray-900">
-                                    {user.name}
+                                    Selamat Datang : {user.name}
                                 </h2>
 
                                 <p className="mt-1 text-sm text-gray-600 mb-3">
-                                    Saldo Anda Rp: 0
+                                    Jumlah Campaign : {totalCamp}
                                 </p>
                             </header>
                             <Link
@@ -31,6 +40,25 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                                 className="btn btn-info btn-sm text-white"
                             >
                                 Buat Campaign Sekarang
+                            </Link>
+                        </div>
+
+                        <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                            <header>
+                                <h2 className="text-lg font-medium text-gray-900">
+                                    Withdraw
+                                </h2>
+
+                                <p className="mt-1 text-sm text-gray-600 mb-3">
+                                    Saldo Anda Rp:{" "}
+                                    {Number(saldo).toLocaleString()}
+                                </p>
+                            </header>
+                            <Link
+                                href={route("user.withdraw")}
+                                className="btn btn-warning btn-sm text-white"
+                            >
+                                Tarik Saldo
                             </Link>
                         </div>
 
@@ -59,14 +87,16 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                                     If you logout! you must login agin
                                 </p>
                             </header>
-                            <Link
-                                href={route("logout")}
-                                as="button"
-                                method="post"
-                                className="btn btn-warning btn-sm text-white"
-                            >
-                                Logout
-                            </Link>
+                            <DangerButton>
+                                <Link
+                                    href={route("logout")}
+                                    as="button"
+                                    method="post"
+                                    className=" text-white"
+                                >
+                                    Logout
+                                </Link>
+                            </DangerButton>
                         </div>
 
                         <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg mb-1">

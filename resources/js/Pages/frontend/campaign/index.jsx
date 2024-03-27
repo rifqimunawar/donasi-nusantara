@@ -6,12 +6,12 @@ import React from "react";
 export default function Index({ campaigns }) {
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
-            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
+            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden  pb-[66px]">
                 <Head title="Galang Dana" />
                 <div>
                     <NavbarComponent />
                 </div>
-                <div className="p-4 sm:p-8 bg-white shadow lg:rounded-lg m-3">
+                <div className="p-4 sm:p-8 shadow lg:rounded-lg m-3">
                     <header>
                         <h2 className="text-lg font-medium text-gray-900"></h2>
                         <p className="mt-1 text-sm text-gray-600 mb-3"></p>
