@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Campaign;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Campaign;
+use App\Models\Withdraw;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ProfileController extends Controller
 {
@@ -21,16 +22,22 @@ class ProfileController extends Controller
     {
       $user_id = Auth::user()->id;
       $campaigns = Campaign::where('user_id', $user_id)->get();
-      $saldo = 0;
+      $totalSaldoCampaign = 0;
       
       foreach ($campaigns as $campaign) {
-          $saldo += $campaign->collected * 0.75; 
+          $totalSaldoCampaign += $campaign->collected * 0.75; 
       }
+
+      $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
+      $nominalsCount = $withdraws->sum(function ($withdraw) {
+          return $withdraw->nominal;
+      });
+      $sisaSaldo = $totalSaldoCampaign -= $nominalsCount;
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
             'campaigns'=>$campaigns,
-            'saldo'=>$saldo,
+            'saldo'=>$sisaSaldo,
         ]);
     }
 

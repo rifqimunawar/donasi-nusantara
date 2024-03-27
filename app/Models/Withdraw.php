@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Campaign extends Model
+class Withdraw extends Model
 {
     use HasFactory;
     protected $guarded=[];
-
-    public function donaturs()
+    public function campaign()
     {
-        return $this->hasMany(Donatur::class);
+        return $this->belongsTo(Campaign::class);
     }
-
-    public function withdraw()
+    public function user()
     {
-        return $this->hasMany(Withdraw::class);
+        return $this->belongsTo(User::class);
     }
 }

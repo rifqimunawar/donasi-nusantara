@@ -3,10 +3,12 @@ import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link, router } from "@inertiajs/react";
 import React, { useState } from "react";
 
-export default function confir({ campaigns, saldoBersih }) {
+export default function confir({ campaigns, saldoBersih, user }) {
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
+        name: user.name,
+        user_id: user.id,
+        campaign_id: campaigns.id,
+        email: user.email,
         nominal: "",
         bank: campaigns.bank,
         norek: campaigns.norek,
@@ -21,13 +23,12 @@ export default function confir({ campaigns, saldoBersih }) {
             ...prevFormData,
             [name]: files ? files[0] : value, // Menangani input file dan input teks
         }));
-        if (parseInt(value) >= 25000) {
+        if (parseInt(value) >= 25000 && parseInt(value) <= saldoBersih) {
             setIsButtonDisabled(false);
         } else {
             setIsButtonDisabled(true);
         }
     };
-
     // Menyimpan data saat form disubmit
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,10 +47,7 @@ export default function confir({ campaigns, saldoBersih }) {
                         <h2 className="text-lg font-medium text-gray-900 text-center">
                             Konfrmasi Ke absahan Data
                         </h2>
-                        <p className="mt-1 text-sm text-gray-600 mb-3">
-                            Dana Terkumpul :{" "}
-                            {Number(saldoBersih).toLocaleString()}
-                        </p>
+                        <p className="mt-1 text-sm text-gray-600 mb-3"></p>
                     </header>
 
                     <div className="overflow-x-auto">
@@ -134,11 +132,33 @@ export default function confir({ campaigns, saldoBersih }) {
                                     name="nominal"
                                     required
                                     type="number"
-                                    value={formData.nominal}
+                                    value={formData.nominal} 
                                     onChange={handleChange}
                                     className="rounded-lg block w-full"
                                 />
-                                <p className="text-xs mt-2"><span className="font-bold text-red-600">Note</span>:minimal penarikan dana sebesar Rp:25,000</p>
+                                <p className="text-xs mt-2">
+                                    <span className="font-bold text-red-600">
+                                        Note
+                                    </span>
+                                    :minimal penarikan dana sebesar Rp:25,000
+                                </p>
+                                <p className="text-xs mt-2">
+                                    Dari dana yang terkumpul sebsar:
+                                    {Number(saldoBersih).toLocaleString()}
+                                </p>
+                            </div>
+                            <div className="form-control m-3 mt-4 border-2 p-2 rounded-md border-orange-500">
+                                <label className="cursor-pointer label">
+                                    <span className="label-text">
+                                        Saya Bertanggungjawab Atas Kebenaran
+                                        data saya
+                                    </span>
+                                    <input
+                                        type="checkbox"
+                                        required
+                                        className="checkbox checkbox-error"
+                                    />
+                                </label>
                             </div>
 
                             <div className="mb-5 flex justify-center gap-3">

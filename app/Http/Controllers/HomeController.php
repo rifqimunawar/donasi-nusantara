@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Donatur;
 use App\Models\Campaign;
 use App\Models\Category;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -142,8 +143,18 @@ class HomeController extends Controller
     }
     public function rincian($id){
       $campaign = Campaign::findOrFail($id);
-      // dd($campaign);
-      return Inertia::render('frontend/RincianPage', ['campaign' => $campaign]);
+      $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
+
+      // Menggunakan withCount() untuk menghitung jumlah nominal dari setiap objek Withdraw
+      $nominalsCount = $withdraws->sum(function ($withdraw) {
+          return $withdraw->nominal;
+      });
+      
+      // dd($nominalsCount);
+      return Inertia::render('frontend/RincianPage', [
+        'campaign' => $campaign,
+        'nominalsCount' => $nominalsCount
+      ]);
     }
 
 
@@ -159,29 +170,64 @@ class HomeController extends Controller
       $user_id = Auth::user()->id;
       $campaigns = Campaign::where('user_id', $user_id)->get();
       $saldoBersih = 0;
+
+      $totalSaldoCampaign = 0;
+      foreach ($campaigns as $campaign) {
+          $totalSaldoCampaign += $campaign->collected * 0.75 ; //tambahkan total penarikan dari campaign ini 
+      }
+      $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
+      $nominalsCount = $withdraws->sum(function ($withdraw) {
+          return $withdraw->nominal;
+      });
+      $sisaSaldo = $totalSaldoCampaign -= $nominalsCount;
+
       
       foreach ($campaigns as $campaign) {
           $saldoBersih += $campaign->collected * 0.75; 
       }
       return Inertia::render('frontend/withdraw/index', [
-        'campaigns' => $campaigns,
-        'saldoBersih' => $saldoBersih,
+        'campaigns' => $campaigns, //untuk looping
+        'totalSaldo' => $sisaSaldo, // sisa saldo
         'user_id' => $user_id,
       ]);
     }
 
     public function confirmasi($id){
+      $user = Auth::user();
       $campaigns = Campaign::findOrFail($id);
       $saldoBersih = 0;
+
       $saldoBersih += $campaigns->collected * 0.75; 
+      $withdraws = Withdraw::where('campaign_id', $campaigns->id)->get();
+      $nominalsCount = $withdraws->sum(function ($withdraw) {
+          return $withdraw->nominal;
+      });
+      $sisaSaldo = $saldoBersih -= $nominalsCount;
       return Inertia::render('frontend/withdraw/confir', [
         'campaigns' =>$campaigns,
-        'saldoBersih' =>$saldoBersih
+        'saldoBersih' =>$sisaSaldo,
+        'user' =>$user
       ]);
     }
 
     public function conStore(Request $request){
 
-      return $request;
+      $withdraw = new Withdraw();
+      $withdraw->name = $request->name;
+      $withdraw->user_id = $request->user_id;
+      $withdraw->campaign_id = $request->campaign_id;
+      $withdraw->email = $request->email;
+      $withdraw->nominal = $request->nominal;
+      $withdraw->bank = $request->bank;
+      $withdraw->norek = $request->norek;
+      $withdraw->save();
+
+      //kirim email ke penarik dana
+      //kirim email ke admin
+      $campaign = Campaign::findOrFail($request->campaign_id);
+      return Inertia::render('frontend/withdraw/waiting', [
+        'withdraw'=>$withdraw,
+        'campaign'=>$campaign
+      ]);
     }
 }

@@ -3,7 +3,7 @@ import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 
-export default function RincianPage({ campaign }) {
+export default function RincianPage({ campaign, nominalsCount }) {
     const collected = campaign.collected;
     const total = campaign.price;
 
@@ -13,6 +13,10 @@ export default function RincianPage({ campaign }) {
 
     const danaPenggalang = () => {
         return collected * 0.75; // 75% dari collected
+    };
+
+    const sisaDana = () => {
+        return danaPenggalang() - nominalsCount
     };
 
     return (
@@ -63,6 +67,24 @@ export default function RincianPage({ campaign }) {
                                     <td>
                                         {Number(
                                             danaPenggalang()
+                                        ).toLocaleString("id-ID")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>..</th>
+                                    <td>Sudah dicairkan</td>
+                                    <td>
+                                        {Number(nominalsCount).toLocaleString(
+                                            "id-ID"
+                                        )}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>..</th>
+                                    <td>Sisa Dana</td>
+                                    <td>
+                                        {Number(
+                                          sisaDana()
                                         ).toLocaleString("id-ID")}
                                     </td>
                                 </tr>

@@ -29,6 +29,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+// Route::get('/24', function () {
+//     return Inertia::render('frontend/withdraw/waiting',);
+// });
 
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
