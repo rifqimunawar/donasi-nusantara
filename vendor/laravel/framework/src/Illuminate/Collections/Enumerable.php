@@ -184,10 +184,9 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Dump the collection.
      *
-     * @param  mixed  ...$args
      * @return $this
      */
-    public function dump(...$args);
+    public function dump();
 
     /**
      * Get the items that are not present in the given items.
@@ -566,32 +565,6 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     public function intersect($items);
 
     /**
-     * Intersect the collection with the given items, using the callback.
-     *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
-     * @param  callable(TValue, TValue): int  $callback
-     * @return static
-     */
-    public function intersectUsing($items, callable $callback);
-
-    /**
-     * Intersect the collection with the given items with additional index check.
-     *
-     * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
-     * @return static
-     */
-    public function intersectAssoc($items);
-
-    /**
-     * Intersect the collection with the given items with additional index check, using the callback.
-     *
-     * @param  \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TValue>  $items
-     * @param  callable(TValue, TValue): int  $callback
-     * @return static
-     */
-    public function intersectAssocUsing($items, callable $callback);
-
-    /**
      * Intersect the collection with the given items by key.
      *
      * @param  \Illuminate\Contracts\Support\Arrayable<TKey, TValue>|iterable<TKey, TValue>  $items
@@ -816,8 +789,11 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Push all of the given items onto the collection.
      *
-     * @param  iterable<array-key, TValue>  $source
-     * @return static
+     * @template TConcatKey of array-key
+     * @template TConcatValue
+     *
+     * @param  iterable<TConcatKey, TConcatValue>  $source
+     * @return static<TKey|TConcatKey, TValue|TConcatValue>
      */
     public function concat($source);
 
@@ -889,9 +865,10 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Shuffle the items in the collection.
      *
+     * @param  int|null  $seed
      * @return static
      */
-    public function shuffle();
+    public function shuffle($seed = null);
 
     /**
      * Create chunks representing a "sliding window" view of the items in the collection.

@@ -3,7 +3,7 @@ import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 
-export default function RincianPage({ campaign }) {
+export default function RincianPage({ campaign, nominalsCount }) {
     const collected = campaign.collected;
     const total = campaign.price;
 
@@ -15,9 +15,13 @@ export default function RincianPage({ campaign }) {
         return collected * 0.75; // 75% dari collected
     };
 
+    const sisaDana = () => {
+        return danaPenggalang() - nominalsCount
+    };
+
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
-            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
+            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden pb-[66px]">
                 <Head title="Rincian" />
                 <div>
                     <NavbarComponent />
@@ -63,6 +67,24 @@ export default function RincianPage({ campaign }) {
                                     <td>
                                         {Number(
                                             danaPenggalang()
+                                        ).toLocaleString("id-ID")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>..</th>
+                                    <td>Sudah dicairkan</td>
+                                    <td>
+                                        {Number(nominalsCount).toLocaleString(
+                                            "id-ID"
+                                        )}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>..</th>
+                                    <td>Sisa Dana</td>
+                                    <td>
+                                        {Number(
+                                          sisaDana()
                                         ).toLocaleString("id-ID")}
                                     </td>
                                 </tr>

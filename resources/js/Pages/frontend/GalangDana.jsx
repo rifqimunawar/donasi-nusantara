@@ -9,7 +9,7 @@ export default function GalangDana({ categories }) {
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
             <Head title="Galang" />
-            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
+            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden pb-[66px]">
                 <div>
                     <NavbarComponent />
                 </div>
@@ -42,7 +42,7 @@ export default function GalangDana({ categories }) {
 
 function CategoriesComponent({ categories }) {
     return (
-        <Link href={'/login'}>
+        <Link href={'/u/camp/create'}>
         <hr/>
             <div className="bg-base-100 mb-3 rounded-lg shadow-md">
                 <div className="grid grid-cols-4">

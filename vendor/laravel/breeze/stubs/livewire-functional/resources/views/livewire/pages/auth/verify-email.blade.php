@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Actions\Logout;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -10,7 +11,7 @@ layout('layouts.guest');
 
 $sendVerification = function () {
     if (Auth::user()->hasVerifiedEmail()) {
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: RouteServiceProvider::HOME, navigate: true);
 
         return;
     }

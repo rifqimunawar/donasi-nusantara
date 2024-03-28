@@ -1,12 +1,25 @@
 <?php
 
-use App\Http\Controllers\backend\CampaignController;
-use App\Http\Controllers\backend\CategoryCampaignController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CampaignForUserCont;
+use App\Http\Controllers\DashboardController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,6 +29,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+// Route::get('/24', function () {
+//     return Inertia::render('frontend/withdraw/waiting',);
+// });
 
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
@@ -29,24 +45,16 @@ Route::get('/donasi/campaign/{id}/detail', [HomeController::class, 'detail'])->n
 Route::get('category/{id}/campaign', [HomeController::class, 'categorylist']);
 Route::get('/rincian/{id}', [HomeController::class, 'rincian']);
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-
-
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
 Route::middleware(['auth', 'verified'])->group(function () {
-  Route::get('/admin', [HomeController::class, 'admin']);
-  
-  
-  Route::get('/category/campaign', [CategoryCampaignController::class, 'index'])->name('category.campaign');
-  Route::get('/category/campaign/create', [CategoryCampaignController::class, 'create'])->name('category.create');
-  Route::post('/category/campaign/store', [CategoryCampaignController::class, 'store'])->name('category.store');
-  Route::get('/category/campaign/{id}/edit', [CategoryCampaignController::class, 'edit'])->name('category.edit');
-  Route::put('/category/campaign/{id}/update', [CategoryCampaignController::class, 'update'])->name('category.update');
-  Route::delete('/category/campaign/{id}/delete', [CategoryCampaignController::class, 'destroy'])->name('category.destroy');
-  
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+  Route::get('/category', [CategoryController::class, 'index'])->name('category');
+  Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+  Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+  Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+  Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
+  Route::delete('/category/{id}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
+
   Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign');
   Route::post('/upload', [CampaignController::class, 'upload'])->name('ckeditor.upload');
   Route::get('/campaign/create', [CampaignController::class, 'create'])->name('campaign.create');
@@ -55,16 +63,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::put('/campaign/{id}/update', [CampaignController::class, 'update'])->name('campaign.update');
   Route::delete('/campaign/{id}/delete', [CampaignController::class, 'destroy'])->name('campaign.destroy');
   
-  
 });
+
 Route::middleware('auth')->group(function () {
 
-  Route::get('/u/camp/create', [CampaignController::class, 'usercreate'])->name('user.create.campaign');
-  Route::post('/u/camp/post', [CampaignController::class, 'usercamstore'])->name('user.store.campaign');
+  Route::get('/u/camp/', [CampaignForUserCont::class, 'index'])->name('user.campaign');
+  Route::get('/u/camp/create', [CampaignForUserCont::class, 'create'])->name('user.campaign.create');
+  Route::post('/u/camp/store', [CampaignForUserCont::class, 'store'])->name('user.campaign.store');
+  Route::get('/u/camp/{id}/edit', [CampaignForUserCont::class, 'edit'])->name('user.campaign.edit');
+  Route::put('/u/camp/{id}/update', [CampaignForUserCont::class, 'update'])->name('user.campaign.update');
+  Route::get('/u/camp/withdraw', [HomeController::class, 'withdraw'])->name('user.withdraw');
+  Route::get('/u/camp/w/{id}/con', [HomeController::class, 'confirmasi'])->name('user.confirmasi');
+  Route::post('/u/camp/w/con/store', [HomeController::class, 'conStore'])->name('user.conStore');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

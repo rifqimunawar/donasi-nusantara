@@ -13,8 +13,6 @@ trait InstallsApiStack
      */
     protected function installApiStack()
     {
-        $this->runCommands(['php artisan install:api']);
-
         $files = new Filesystem;
 
         // Controllers...
@@ -24,13 +22,13 @@ trait InstallsApiStack
         // Middleware...
         $files->copyDirectory(__DIR__.'/../../stubs/api/app/Http/Middleware', app_path('Http/Middleware'));
 
-        $this->installMiddlewareAliases([
-            'verified' => '\App\Http\Middleware\EnsureEmailIsVerified::class',
-        ]);
+        $this->replaceInFile('// \Laravel\Sanctum\Http', '\Laravel\Sanctum\Http', app_path('Http/Kernel.php'));
 
-        $this->installMiddleware([
-            '\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class',
-        ], 'api', 'prepend');
+        $this->replaceInFile(
+            '\Illuminate\Auth\Middleware\EnsureEmailIsVerified::class',
+            '\App\Http\Middleware\EnsureEmailIsVerified::class',
+            app_path('Http/Kernel.php')
+        );
 
         // Requests...
         $files->ensureDirectoryExists(app_path('Http/Requests/Auth'));
@@ -38,6 +36,7 @@ trait InstallsApiStack
 
         // Providers...
         $files->copyDirectory(__DIR__.'/../../stubs/api/app/Providers', app_path('Providers'));
+        $this->replaceInFile("HOME = '/home'", "HOME = '/dashboard'", app_path('Providers/RouteServiceProvider.php'));
 
         // Routes...
         copy(__DIR__.'/../../stubs/api/routes/api.php', base_path('routes/api.php'));
@@ -46,6 +45,12 @@ trait InstallsApiStack
 
         // Configuration...
         $files->copyDirectory(__DIR__.'/../../stubs/api/config', config_path());
+
+        $this->replaceInFile(
+            "'url' => env('APP_URL', 'http://localhost')",
+            "'url' => env('APP_URL', 'http://localhost'),".PHP_EOL.PHP_EOL."    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000')",
+            config_path('app.php')
+        );
 
         // Environment...
         if (! $files->exists(base_path('.env'))) {

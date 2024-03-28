@@ -10,7 +10,7 @@ export default function CategoryList({ campaigns, category }) {
     console.log(title);
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
-            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden bg-white pb-[66px]">
+            <div className="my-0 mx-auto min-h-screen max-w-480 overflow-x-hidden pb-[66px]">
                 <Head title="List" />
                 <div>
                     <NavbarComponent />

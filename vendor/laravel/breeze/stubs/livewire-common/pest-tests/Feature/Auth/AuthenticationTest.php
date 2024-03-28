@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Livewire\Volt\Volt;
 
 test('login screen can be rendered', function () {
@@ -22,7 +23,7 @@ test('users can authenticate using the login screen', function () {
 
     $component
         ->assertHasNoErrors()
-        ->assertRedirect(route('dashboard', absolute: false));
+        ->assertRedirect(RouteServiceProvider::HOME);
 
     $this->assertAuthenticated();
 });

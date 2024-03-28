@@ -5,3 +5,9 @@
 - backup
 - color component
 - halaman dashboard
+- penambhan fitur withdraw
+
+// urgent malam ini harus beres
+- login with google
+- register with google
+- email send

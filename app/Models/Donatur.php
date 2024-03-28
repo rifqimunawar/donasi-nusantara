@@ -10,7 +10,6 @@ class Donatur extends Model
     use HasFactory;
     protected $guarded=[];
 
-    // Model Donatur
     public function campaign()
     {
         return $this->belongsTo(Campaign::class);

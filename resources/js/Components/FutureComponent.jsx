@@ -10,7 +10,7 @@ export default function FutureComponent({ categories }) {
             <div className="m-3 grid grid-cols-4 gap-3">
                 {categories.map((category, index) => (
                     <Link href={`/category/${category.id}/campaign`} className="text-center">
-                        <div className="bg-base-200 inline-block" key={index} style={{ width:"55px", height:"55px", objectFit:"cover", borderRadius:"50%" }}>
+                        <div className="bg-accent inline-block" key={index} style={{ width:"55px", height:"55px", objectFit:"cover", borderRadius:"50%" }}>
                             <img
                                 src={category.file}
                                 alt=""

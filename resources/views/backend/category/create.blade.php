@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="mb-5 flex justify-center gap-3">
-                    <a href={{ route('category.campaign') }} class="btn btn-warning btn-sm">
+                    <a href={{ route('category') }} class="btn btn-warning btn-sm">
                     Kembali
                     </a>
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>

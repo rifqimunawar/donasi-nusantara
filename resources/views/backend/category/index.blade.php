@@ -27,7 +27,7 @@
                             <td>{{ $item->title }}</td>
                             <td>
                                 <form action="{{ route('category.destroy', ['id' => $item->id]) }}" method="POST">
-                                    <a href="/category/campaign/{{ $item->id }}/edit"
+                                    <a href="/category/{{ $item->id }}/edit"
                                         class="btn btn-warning btn-sm">Edit</a>
                                     @csrf
                                     @method('DELETE')
