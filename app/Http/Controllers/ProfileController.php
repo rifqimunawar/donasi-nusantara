@@ -20,26 +20,32 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-      $user_id = Auth::user()->id;
-      $campaigns = Campaign::where('user_id', $user_id)->get();
-      $totalSaldoCampaign = 0;
-      
-      foreach ($campaigns as $campaign) {
-          $totalSaldoCampaign += $campaign->collected * 0.75; 
-      }
-
-      $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
-      $nominalsCount = $withdraws->sum(function ($withdraw) {
-          return $withdraw->nominal;
-      });
-      $sisaSaldo = $totalSaldoCampaign -= $nominalsCount;
+        $user_id = Auth::user()->id;
+        $campaigns = Campaign::where('user_id', $user_id)->get();
+        $totalSaldoCampaign = 0;
+    
+        foreach ($campaigns as $campaign) {
+            $totalSaldoCampaign += $campaign->collected * 0.75; 
+            
+            // Pindahkan kode yang memproses withdraw ke dalam lingkup foreach
+            $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
+            $nominalsCount = $withdraws->sum(function ($withdraw) {
+                return $withdraw->nominal;
+            });
+            $totalSaldoCampaign -= $nominalsCount;
+        }
+    
+        // Inisialisasi saldo jika tidak ada kampanye
+        $sisaSaldo = $totalSaldoCampaign;
+    
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
-            'campaigns'=>$campaigns,
-            'saldo'=>$sisaSaldo,
+            'campaigns' => $campaigns,
+            'saldo' => $sisaSaldo,
         ]);
     }
+    
 
     /**
      * Update the user's profile information.
