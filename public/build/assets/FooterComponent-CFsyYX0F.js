@@ -1,1 +1,0 @@
-import{j as e}from"./app-D0lykzP9.js";function r(){return e.jsx("div",{children:e.jsx("footer",{className:"footer footer-center",children:e.jsx("aside",{className:"p-4 bg-contet text-base-content footerRaound rounded-xl max-w-screen-sm shadow-md",children:e.jsx("p",{children:"Copyright © 2024 - All right reserved by Kelompok 8"})})})})}export{r as F};
