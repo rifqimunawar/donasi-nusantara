@@ -165,32 +165,36 @@ class HomeController extends Controller
     }
       return Inertia::render('frontend/GalangDana', ['categories'=>$categories]);
     }
-
     public function withdraw(){
       $user_id = Auth::user()->id;
       $campaigns = Campaign::where('user_id', $user_id)->get();
-      $saldoBersih = 0;
-
-      $totalSaldoCampaign = 0;
+  
       foreach ($campaigns as $campaign) {
-          $totalSaldoCampaign += $campaign->collected * 0.75 ; //tambahkan total penarikan dari campaign ini 
+          // Menghitung jumlah yang akan ditarik (25% dari total yang dikumpulkan)
+          $collected = $campaign->collected * 0.75;
+  
+          // Mengambil total penarikan untuk kampanye tertentu
+          $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
+  
+          // Menghitung jumlah total penarikan
+          $nominalsCount = $withdraws->sum('nominal');
+  
+          // Menambahkan jumlah yang akan ditarik dengan jumlah yang telah dikumpulkan
+          $remainingAmount = $collected - $nominalsCount;
+  
+          // Menyimpan saldo kampanye
+          $campaign->collected = $remainingAmount ;
       }
-      $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
-      $nominalsCount = $withdraws->sum(function ($withdraw) {
-          return $withdraw->nominal;
-      });
-      $sisaSaldo = $totalSaldoCampaign -= $nominalsCount;
-
-      
-      foreach ($campaigns as $campaign) {
-          $saldoBersih += $campaign->collected * 0.75; 
-      }
+  
       return Inertia::render('frontend/withdraw/index', [
-        'campaigns' => $campaigns, //untuk looping
-        'totalSaldo' => $sisaSaldo, // sisa saldo
-        'user_id' => $user_id,
+          'campaigns' => $campaigns,
+          'user_id' => $user_id,
       ]);
-    }
+  }
+  
+  
+  
+  
 
     public function confirmasi($id){
       $user = Auth::user();

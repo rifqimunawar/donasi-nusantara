@@ -29,7 +29,7 @@ export default function Create({ user, categories }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData)
-        // router.post("/u/camp/store", formData);
+        router.post("/u/camp/store", formData);
     };
 
     useEffect(() => {
