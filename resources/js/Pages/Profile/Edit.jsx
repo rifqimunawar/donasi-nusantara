@@ -15,7 +15,15 @@ export default function Edit({
     campaigns,
     saldo,
 }) {
-    const totalCamp = campaigns.length;
+    let totalCamp = 0; // Deklarasikan di luar blok if...else
+
+    if (!campaigns || campaigns.length === 0) {
+        saldo = 0;
+    } else {
+        totalCamp = campaigns.length; // Tetapkan nilai di dalam blok else
+        // Lakukan operasi lain sesuai kebutuhan dengan totalCamp
+    }
+
     const user = usePage().props.auth.user;
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
