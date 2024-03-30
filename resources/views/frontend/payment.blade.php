@@ -12,10 +12,7 @@
     <button autoclick id="saveButton" style="display: none"></button>
 
     <!-- TODO: gunakan yang ini untuk mode productions" -->
-    {{-- <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> --}}
-
-    <!-- TODO: gunakan yang ini untuk mode development" -->
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+    <script src="{{ env('MIDTRANS_SNAP_SCRIPT') }}" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
     <script type="text/javascript">
         document.getElementById('saveButton').onclick = function() {
