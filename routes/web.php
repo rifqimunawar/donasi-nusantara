@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/u/camp/{id}/edit', [CampaignForUserCont::class, 'edit'])->name('user.campaign.edit');
   Route::put('/u/camp/{id}/update', [CampaignForUserCont::class, 'update'])->name('user.campaign.update');
   Route::get('/u/camp/withdraw', [HomeController::class, 'withdraw'])->name('user.withdraw');
+  Route::get('/u/camp/withdraw/{id}/history', [HomeController::class, 'history'])->name('withdraw.history');
   Route::get('/u/camp/w/{id}/con', [HomeController::class, 'confirmasi'])->name('user.confirmasi');
   Route::post('/u/camp/w/con/store', [HomeController::class, 'conStore'])->name('user.conStore');
 

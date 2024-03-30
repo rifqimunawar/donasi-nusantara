@@ -1,6 +1,6 @@
 import BottomNavbar from "@/Components/BottomNavbar";
 import NavbarComponent from "@/Components/NavbarComponent";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, useForm } from "@inertiajs/react";
 import React, { useState } from "react";
 
 export default function confir({ campaigns, saldoBersih, user }) {
@@ -15,7 +15,6 @@ export default function confir({ campaigns, saldoBersih, user }) {
     });
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
     // Mengubah nilai input saat berubah
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -29,10 +28,10 @@ export default function confir({ campaigns, saldoBersih, user }) {
             setIsButtonDisabled(true);
         }
     };
-    // Menyimpan data saat form disubmit
+
     const handleSubmit = (e) => {
+        setIsButtonDisabled(true);
         e.preventDefault();
-        // console.log(formData);
         router.post(`/u/camp/w/con/store`, formData);
     };
     return (
@@ -132,7 +131,7 @@ export default function confir({ campaigns, saldoBersih, user }) {
                                     name="nominal"
                                     required
                                     type="number"
-                                    value={formData.nominal} 
+                                    value={formData.nominal}
                                     onChange={handleChange}
                                     className="rounded-lg block w-full"
                                 />
@@ -171,9 +170,9 @@ export default function confir({ campaigns, saldoBersih, user }) {
                                 <button
                                     type="submit"
                                     className="btn btn-primary btn-sm"
-                                    disabled={isButtonDisabled}
+                                    disabled={isButtonDisabled} // Disable button based on state
                                 >
-                                    Konfrmasi
+                                    Konfirmasi
                                 </button>
                             </div>
                         </form>
