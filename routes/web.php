@@ -58,6 +58,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
   Route::put('/dashboard/user/{id}/update', [DashboardController::class, 'updateAdmin'])->name('admin.update');
   Route::delete('/dashboard/user/{id}/delete', [DashboardController::class, 'destroyAdmin'])->name('admin.destroy');
 
+  Route::get('/d/withdraw', [DashboardController::class, 'withdraw'])->name('d.withdraw');
+  Route::get('/d/withdraw/{id}/edit', [DashboardController::class, 'withdrawedit'])->name('d.withdraw.edit');
+  Route::put('/d/withdraw/{id}/update', [DashboardController::class, 'withdrawupdate'])->name('d.withdraw.update');
+
   Route::get('/category', [CategoryController::class, 'index'])->name('category');
   Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
   Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
