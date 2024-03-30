@@ -6,6 +6,8 @@
         "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^41.2.1",
+        "@ckeditor/ckeditor5-react": "^6.2.0",
         "@headlessui/react": "^1.4.2",
         "@inertiajs/react": "^1.0.0",
         "@tailwindcss/forms": "^0.5.3",
