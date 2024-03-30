@@ -3,35 +3,42 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Mail\PendingMail;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
 
-class RegisterEmail extends Mailable
+class WithdrawSucess extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    protected $userName;
-
-    public function __construct($userName)
+    public function __construct()
     {
-        $this->userName = $userName;
+        //
     }
 
     /**
      * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this->view('mail.register-email')
-                    ->with(['userName' => $this->userName])
-                    ->subject('Register Akun');
+        return new Envelope(
+            subject: 'Withdraw Sucess',
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'view.name',
+        );
     }
 
     /**

@@ -46,7 +46,9 @@ export default function NavbarComponent() {
                 </div>
             </div>
             <div className="navbar-center">
-                <a className="btn btn-ghost text-xl">Donasi Nusantara</a>
+                <a className="btn btn-ghost text-xl">Donasi Nusantara
+                <img src="https://donasi-nusantara.my.id/img/logo.png" className="w-12"/>
+                </a>
             </div>
             <div className="navbar-end">
                 {/* <button className="btn btn-ghost btn-circle">

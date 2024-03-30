@@ -44,7 +44,7 @@ export default function Login({ status, canResetPassword }) {
                     )}
 
                     <div className="heading mt-14 flex align-middle items-center justify-center">
-                        <img src="https://donasi-nusantara.my.id/img/logo.jpg" alt="logo"/>
+                        <img src="https://donasi-nusantara.my.id/img/logo.png" className="w-48" alt="logo"/>
                     </div>
 
                     <form onSubmit={submit} className="m-8 mt-16">
