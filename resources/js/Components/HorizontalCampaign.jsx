@@ -46,7 +46,7 @@ function CampaignList({ campaign }) {
 
     return (
         <Link
-            className="listCom bg-info"
+            className="listCom bg-info shadow-md"
             style={{ flex: "0 0 auto", width: "200px" }}
             href={`/donasi/campaign/${campaign.id}/detail`}
         >

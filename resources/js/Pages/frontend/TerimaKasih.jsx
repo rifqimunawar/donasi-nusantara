@@ -14,7 +14,7 @@ export default function TerimaKasih({donatur, campaign}) {
         <h2 className='text-xl'>Melalui kontribusi Anda yang murah hati, <span className='text-green-500'>{campaign.title}</span> akan terlakasana dengan baik.</h2>
         <h2 className='text-xl'>Setiap kontribusi Anda memiliki dampak yang nyata dan berkelanjutan bagi ummat.</h2>
 
-        {/* <Link href={'/home'} className='btn btn-primary btn-sm mt-5'> Kembali </Link> */}
+        <a href={'/home'} className='btn btn-primary btn-sm mt-5'> Kembali </a>
       </div>
     </div>
   )

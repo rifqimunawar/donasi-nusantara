@@ -38,7 +38,10 @@ export default function Register() {
                     <Head title="Register" />
 
                     <div className="heading mt-14 flex align-middle items-center justify-center">
-                        <h2 className="text-xl">Ini Logo</h2>
+                        <img
+                            src="https://donasi-nusantara.my.id/img/logo.jpg"
+                            alt="logo"
+                        />
                     </div>
                     <form onSubmit={submit} className="m-8 mt-16">
                         <div>

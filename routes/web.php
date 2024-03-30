@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -29,10 +30,14 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-// Route::get('/24', function () {
-//     return Inertia::render('frontend/withdraw/waiting',);
-// });
 
+
+Route::get('/email', [HomeController::class, 'email'])->name('email');
+
+Route::get('/login/redirect', [SocialiteController::class, 'redirect'])->name('login.redirect');
+Route::get('/login/google/callback', [SocialiteController::class, 'callback'])->name('login.callback');
+
+Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/list', [HomeController::class, 'list'])->name('list');
@@ -45,8 +50,13 @@ Route::get('/donasi/campaign/{id}/detail', [HomeController::class, 'detail'])->n
 Route::get('category/{id}/campaign', [HomeController::class, 'categorylist']);
 Route::get('/rincian/{id}', [HomeController::class, 'rincian']);
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+  Route::get('/dashboard/user', [DashboardController::class, 'admin'])->name('admin');
+  Route::get('/dashboard/user/{id}/edit', [DashboardController::class, 'editAdmin'])->name('admin.edit');
+  Route::put('/dashboard/user/{id}/update', [DashboardController::class, 'updateAdmin'])->name('admin.update');
+  Route::delete('/dashboard/user/{id}/delete', [DashboardController::class, 'destroyAdmin'])->name('admin.destroy');
 
   Route::get('/category', [CategoryController::class, 'index'])->name('category');
   Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');

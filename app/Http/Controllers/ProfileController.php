@@ -43,6 +43,7 @@ class ProfileController extends Controller
             'status' => session('status'),
             'campaigns' => $campaigns,
             'saldo' => $sisaSaldo,
+            'user_id' => $user_id,
         ]);
     }
     

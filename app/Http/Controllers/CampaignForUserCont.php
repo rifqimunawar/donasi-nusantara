@@ -85,31 +85,36 @@ class CampaignForUserCont extends Controller
     $categories = Category::all();
     $campaign = Campaign::findOrFail($id);
     $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
+    // return view('frontend/edit-campaign', [
+    //   'campaign'=>$campaign,
+    //   'categories'=>$categories,
+    //   'user'=>$user,
+    // ]);
     return Inertia::render('frontend/campaign/edit', [
       'campaign'=>$campaign,
       'categories'=>$categories,
       'user'=>$user,
     ]);
   }
-
   public function update(Request $request, $id)
   {
-      $campaign = Campaign::findOrFail($id);
-  
-      // Update only if the request has a new title
-      if ($request->has('title')) {
-          $campaign->title = $request->input('title');
-      }
-  
-      // Update image if provided
+    // return response()->json($request->all());
+
+    dd($request);
+      $campaign = Campaign::findOrFail($id);  
       if ($request->hasFile('img')) {
-          $image = $request->file('img');
-          $newFileName = 'pamflet' . now()->timestamp . '.' . $image->getClientOriginalExtension();
-          $image->move(public_path('img/'), $newFileName);
-          $campaign->img = $newFileName;
-      }
+        $image = $request->file('img');
+        if ($image->isValid()) {
+            $newFileName = 'pamflet_' . now()->timestamp . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/img', $newFileName);
+            $campaign->img = $newFileName;
+        } else {
+            return back()->withErrors(['img' => 'File tidak valid'])->withInput(); // Pesan kesalahan spesifik
+        }
+    }
   
       // Update other fields
+      $campaign->title = $request->input('title', $campaign->title);
       $campaign->description = $request->input('description', $campaign->description);
       $campaign->price = $request->input('price', $campaign->price);
       $campaign->time = $request->input('time', $campaign->time);
@@ -121,8 +126,9 @@ class CampaignForUserCont extends Controller
   
       $campaign->save();
   
-      return redirect()->route('user.campaign');
+      return redirect()->route('user.campaign'); // Arahkan ke route yang benar
   }
+  
 
 
   

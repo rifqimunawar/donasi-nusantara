@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 export default function Edit({ user, categories, campaign }) {
     const [formData, setFormData] = useState({
         title: campaign.title,
-        img: campaign.img,
+        img: null,
         description: campaign.description,
         price: campaign.price,
         user_id: user.id,
@@ -28,6 +28,7 @@ export default function Edit({ user, categories, campaign }) {
     // Menyimpan data saat form disubmit
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(formData);
         router.put(`/u/camp/${campaign.id}/update`, formData);
     };
 

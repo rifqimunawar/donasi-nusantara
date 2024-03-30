@@ -22,7 +22,9 @@ export default function VerticalCampaign({ campaigns }) {
 function CampaignItem({ campaign }) {
     const [countdown, setCountdown] = useState("");
     const [presentase, setPresentase] = useState("");
-    const formattedCollected = Number(campaign.collected).toLocaleString("id-ID");
+    const formattedCollected = Number(campaign.collected).toLocaleString(
+        "id-ID"
+    );
     useEffect(() => {
         const calculateCountdown = () => {
             const targetDate = new Date(campaign.time);
@@ -46,16 +48,14 @@ function CampaignItem({ campaign }) {
 
     return (
         <Link href={`/donasi/campaign/${campaign.id}/detail`}>
-            <div className="verCampaign flex mb-3 bg-info" style={{ flex: "0 0 auto" }}>
-                <img
-                    src={campaign.img}
-                    style={{
-                        width: "200px",
-                        height: "100px",
-                        objectFit: "cover",
-                    }}
-                />
-                <div style={{ width: "100%", padding:"5px" }}>
+            <div
+                className="verCampaign flex mb-3 bg-info shadow-md"
+                style={{ flex: "0 0 auto" }}
+            >
+                <div className="w-60 h-24 object-cover">
+                    <img src={campaign.img} className="w-full h-full object-cover" />
+                </div>
+                <div style={{ width: "100%", padding: "5px" }}>
                     <p className="text-info-content">{campaign.title}</p>
                     <progress
                         className="progress progress secondary"

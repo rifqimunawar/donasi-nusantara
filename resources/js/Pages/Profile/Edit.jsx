@@ -23,7 +23,7 @@ export default function Edit({
         totalCamp = campaigns.length; // Tetapkan nilai di dalam blok else
         // Lakukan operasi lain sesuai kebutuhan dengan totalCamp
     }
-
+    const isAdmin = auth.user.role === "admin";
     const user = usePage().props.auth.user;
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">
@@ -45,10 +45,20 @@ export default function Edit({
                             </header>
                             <Link
                                 href={route("user.campaign")}
-                                className="btn btn-info btn-sm text-white"
+                                className="btn btn-info btn-sm text-white w-full"
                             >
                                 Buat Campaign Sekarang
                             </Link>
+                            {isAdmin && (
+                                <div>
+                                    <a
+                                        href={'/dashboard'}
+                                        className="btn btn-secondary btn-sm mt-3 w-full text-white"
+                                    >
+                                        Halaman Admin
+                                    </a>
+                                </div>
+                            )}
                         </div>
 
                         <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

@@ -1,13 +1,45 @@
-- role admin/user
-- status aktivasi campaign
-- galang dana page
-- profile page -> next create button for list my campaign
-- backup
-- color component
-- halaman dashboard
-- penambhan fitur withdraw
 
-// urgent malam ini harus beres
-- login with google
-- register with google
-- email send
+================ selesai ==============
+
+# profile page
+    - ubah nama, pasword
+    - campaign management
+    - fitur withdraw dana
+    - history withdraw
+    - send email after withdraw
+    - galang dana
+
+# pembayaran donasi
+    - integrasi payement gateway
+    - send email thank for donations
+    - invoice pembayaran
+    - update data collected after pay
+
+# root homepage
+    - halaman category 
+    - halaman list campaign 
+    - halaman detail campaign
+    - share by sosmed
+    - rincian dana donasi
+    - list donatur
+
+================ prosess =====================
+
+# dashboard
+    - edit role admin
+    - statistik dan graphics
+    - hak akses user 
+    - tampilan yang menarik
+    - konfirmasi status aktivasi campaign
+
+================ belum sama sekali ===========
+
+# google authentication
+    - login with google
+    - register with google
+    - sending email
+
+================ yang masih error butuh waktu lama
+
+- edit campaign img with relationship db
+- saldo user tidak sinkron

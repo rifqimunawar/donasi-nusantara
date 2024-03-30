@@ -7,9 +7,11 @@ use App\Models\Donatur;
 use App\Models\Campaign;
 use App\Models\Category;
 use App\Models\Withdraw;
+use App\Mail\RegisterEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -233,5 +235,10 @@ class HomeController extends Controller
         'withdraw'=>$withdraw,
         'campaign'=>$campaign
       ]);
+    }
+
+    public function email(){
+      Mail::to("rifqimunawar48@gmail.com")->send(new RegisterEmail());
+      return "email berhasil dikirim";
     }
 }
