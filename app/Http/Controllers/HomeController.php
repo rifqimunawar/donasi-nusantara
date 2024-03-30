@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WithdrawRequest;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Donatur;
 use App\Models\Campaign;
@@ -9,6 +11,9 @@ use App\Models\Category;
 use App\Models\Withdraw;
 use App\Mail\RegisterEmail;
 use Illuminate\Http\Request;
+use App\Mail\DonasiInputEmail;
+use App\Mail\EmailForDonatur;
+use App\Mail\Withdraw as MailWithdraw;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -127,18 +132,20 @@ class HomeController extends Controller
       $donatur->statusPay = true;
       $donatur->save();
 
-      // $pesan ="
-      // <h3>Terima Kasih</h3>
-      // <h4>$donasi->name anda sudah berdonasi pada $campaign->title sebesar Rp: $donasi->nominal rupiah</h4>
-      // <p>Semoga menjadi amal ibadah yang baik untuk anda</p>
-      // ";
 
-      // $data_email = [
-      //     'subject' => "Terima Kasih Sudah Berdonasi",
-      //     'sender_name' => 'rifqimunawar48@gmail.com',
-      //     'isi' => $pesan
-      // ];
-      // Mail::to('rifqimunawar47@gmail.com')->send(new KonfirmasiEmail($data_email));
+      $data_donatur = [
+          'name' => $donatur->name,
+          'nominal' => $donatur->nominal,
+          'message' => $donatur->message,
+      ];
+
+      $toDonatur = $donatur->name;
+
+      // dd($toDonatur);
+    // Mendapatkan pengguna yang terkait dengan campaign
+      $user = User::findOrFail($campaign->user_id);
+      Mail::to($user->email)->send(new DonasiInputEmail($data_donatur));
+      Mail::to($donatur->email)->send(new EmailForDonatur($toDonatur));
 
       return Inertia::render('frontend/TerimaKasih', ['donatur'=>$donatur, 'campaign'=>$campaign]);
         // return response()->json(['Data donatur berhasil disimpan Terima Kasih'], 200);
@@ -216,29 +223,46 @@ class HomeController extends Controller
       ]);
     }
 
-    public function conStore(Request $request){
-
-      $withdraw = new Withdraw();
-      $withdraw->name = $request->name;
-      $withdraw->user_id = $request->user_id;
-      $withdraw->campaign_id = $request->campaign_id;
-      $withdraw->email = $request->email;
-      $withdraw->nominal = $request->nominal;
-      $withdraw->bank = $request->bank;
-      $withdraw->norek = $request->norek;
-      $withdraw->save();
-
-      //kirim email ke penarik dana
-      //kirim email ke admin
-      $campaign = Campaign::findOrFail($request->campaign_id);
-      return Inertia::render('frontend/withdraw/waiting', [
-        'withdraw'=>$withdraw,
-        'campaign'=>$campaign
-      ]);
+    public function conStore(Request $request)
+    {
+        // Menyimpan data penarikan saldo
+        $withdraw = new Withdraw();
+        $withdraw->name = $request->name;
+        $withdraw->user_id = $request->user_id;
+        $withdraw->campaign_id = $request->campaign_id;
+        $withdraw->email = $request->email;
+        $withdraw->nominal = $request->nominal;
+        $withdraw->bank = $request->bank;
+        $withdraw->norek = $request->norek;
+        $withdraw->save();
+        
+        // Mengirim email konfirmasi penarikan saldo kepada pengguna
+        $penarikSaldo = $withdraw->name;
+        Mail::to($withdraw->email)->send(new MailWithdraw($penarikSaldo));
+    
+        // Mengirim email pemberitahuan penarikan saldo ke admin
+        $dataPenarik = [
+            'name' => $withdraw->name,
+            'nominal' => $withdraw->nominal,
+            'bank' => $withdraw->bank,
+            'norek' => $withdraw->norek,
+        ];
+        Mail::to("rifqimunawar47@gmail.com")->send(new WithdrawRequest($dataPenarik));
+        
+        // Mendapatkan data campaign untuk ditampilkan dalam respons
+        $campaign = Campaign::findOrFail($request->campaign_id);
+        
+        // Menampilkan halaman "waiting" dengan data yang diperlukan
+        return Inertia::render('frontend/withdraw/waiting', [
+            'withdraw' => $withdraw,
+            'campaign' => $campaign
+        ]);
     }
+    
 
     public function email(){
-      Mail::to("rifqimunawar48@gmail.com")->send(new RegisterEmail());
+      $userName = "Kontol";
+      Mail::to("rifqimunawar48@gmail.com")->send(new RegisterEmail($userName));
       return "email berhasil dikirim";
     }
 }

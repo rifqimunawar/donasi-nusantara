@@ -3,25 +3,24 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Mail\PendingMail;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
 
-class RegisterEmail extends Mailable
+class DonasiInputEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    protected $userName;
+    protected $data_donatur;
 
-    public function __construct($userName)
+    public function __construct($data_donatur)
     {
-        $this->userName = $userName;
+        $this->data_donatur = $data_donatur;
     }
 
     /**
@@ -29,9 +28,9 @@ class RegisterEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.register-email')
-                    ->with(['userName' => $this->userName])
-                    ->subject('Register Akun');
+        return $this->view('mail.donasi-input')
+                    ->with('data_donatur', $this->data_donatur)
+                    ->subject('Donasi Masuk!!');
     }
 
     /**
