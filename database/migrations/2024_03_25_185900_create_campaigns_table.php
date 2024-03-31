@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('img');
             $table->text('description'); // Menggunakan tipe data 'text' untuk deskripsi yang panjang
-            $table->boolean('statusAktif')->default(false);
+            $table->boolean('statusAktif')->default(true);
             $table->integer('price'); // Menggunakan tipe data 'decimal' untuk harga
             $table->integer('collected')->default(0); // Menggunakan tipe data 'decimal' untuk harga
-            $table->timestamp('time'); // Menggunakan tipe data 'timestamp' untuk waktu
+            $table->timestamp('time')->nullable();
             $table->string('bank')->default('BRI');
             $table->string('norek')->default('407301012966508');
             $table->string('statusDana')->default(0); //digunakan untuk mengetahui status pendarikan dana

@@ -44,17 +44,13 @@ class CampaignForUserCont extends Controller
   }
   public function store(Request $request)
   {
-    // return $request;
-    $title = $request->input('title');
-    $img = null;
-
     if ($request->hasFile('img')) {
         $image = $request->file('img');
         $newFileName = 'pamflet' . now()->timestamp . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('img/'), $newFileName);
         $img = $newFileName;
     }
-
+    $title = $request->input('title');
     $description = $request->input('description');
     $price = $request->input('price');
     $time = $request->input('time');
@@ -74,7 +70,6 @@ class CampaignForUserCont extends Controller
         'user_id'=>$user_id,
         'category_id' => $category_id,
         'created_at' => now(),
-        'updated_at' => now(),
     ]);
 
     return redirect()->route('user.campaign'); 
@@ -100,7 +95,7 @@ class CampaignForUserCont extends Controller
   {
     // return response()->json($request->all());
 
-    dd($request);
+    // dd($request);
       $campaign = Campaign::findOrFail($id);  
       if ($request->hasFile('img')) {
         $image = $request->file('img');
@@ -122,9 +117,10 @@ class CampaignForUserCont extends Controller
       $campaign->norek = $request->input('norek', $campaign->norek);
       $campaign->user_id = $request->input('user_id', $campaign->user_id);
       $campaign->category_id = $request->input('category_id', $campaign->category_id);
+      $campaign->statusAktif = $request->input('statusAktif', $campaign->statusAktif);
       $campaign->updated_at = now();
   
-      $campaign->save();
+      $campaign->update();
   
       return redirect()->route('user.campaign'); // Arahkan ke route yang benar
   }

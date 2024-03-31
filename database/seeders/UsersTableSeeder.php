@@ -21,42 +21,17 @@ class UsersTableSeeder extends Seeder
         \DB::table('users')->insert(array (
             0 => 
             array (
-                'id' => 1,
-                'name' => 'rifqi',
+                'id' => 6,
+                'name' => 'Rifqi Munawar R.',
                 'role' => 'admin',
                 'saldo' => 0,
-                'email' => 'rifqi@gmail.com',
+                'email' => 'rifqimunawar48@gmail.com',
                 'email_verified_at' => NULL,
-                'password' => '$2y$12$si3ziGbbfWa2ot1KHH48BuVFWmimrOwxjpgt7N/j76QdgkntVjesS',
-                'remember_token' => NULL,
-                'created_at' => '2024-03-25 19:14:28',
-                'updated_at' => '2024-03-25 19:14:28',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'name' => 'munawar',
-                'role' => 'user',
-                'saldo' => 0,
-                'email' => 'munawar@gmail.com',
-                'email_verified_at' => NULL,
-                'password' => '$2y$12$hDtLxmqzFRH0Wru4WNJEB.ADluAzGKz1EJrvqkLQ/jxihmNhcYIWS',
-                'remember_token' => NULL,
-                'created_at' => '2024-03-27 15:23:09',
-                'updated_at' => '2024-03-27 15:23:09',
-            ),
-            2 => 
-            array (
-                'id' => 4,
-                'name' => 'ikeh',
-                'role' => 'user',
-                'saldo' => 0,
-                'email' => 'ikeh@gmail.com',
-                'email_verified_at' => NULL,
-                'password' => '$2y$12$0D2lt9egm8EnaXUKJ8BlYOmglzrRoC1b23SQJscl8nWev43o8KLiu',
-                'remember_token' => NULL,
-                'created_at' => '2024-03-28 16:56:19',
-                'updated_at' => '2024-03-28 16:56:19',
+                'password' => '$2y$12$wYY8Rywj6H6X.TmkEUvdoOOLXVhr68d9Ru7ztDjDqpiuLSUz1u7t2',
+                'remember_token' => 'oZpCOoTmavA2ESs7jCvFmaNlXqOmUCuGKARZx7bqwRVpVpYCqpYRxLV9x4fb',
+                'google_id' => '116773779989527340914',
+                'created_at' => '2024-03-30 21:57:12',
+                'updated_at' => '2024-03-30 21:57:12',
             ),
         ));
         

@@ -22,9 +22,10 @@ class HomeController extends Controller
 {
   public function home(){
     $masterUrl = env('MASTER_IMG_URL') . 'img/';
-    $campaigns = Campaign::all();
+    $campaigns = Campaign::latest()->where('statusAktif', true)->with('donaturs')->get();
     $categories = Category::all();
 
+    // dd($campaigns);
     foreach ($campaigns as $campaign) {
         $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
     }

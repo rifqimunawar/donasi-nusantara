@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\SocialiteController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -10,6 +9,8 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CampaignForUserCont;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,8 @@ Route::get('/', function () {
 
 Route::get('/email', [HomeController::class, 'email'])->name('email');
 
-Route::get('/login/redirect', [SocialiteController::class, 'redirect'])->name('login.redirect');
-Route::get('/login/google/callback', [SocialiteController::class, 'callback'])->name('login.callback');
+Route::get('/auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');

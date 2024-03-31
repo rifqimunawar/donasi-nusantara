@@ -40,8 +40,8 @@ export default function BottomDonasi({ campaign }) {
                                 Bagikan Melalui
                             </h3>
                             <div className="grid grid-cols-4">
-                                <Link href={whatsappUrl}>
-                                    <div className="col-span-1 text-center">
+                                <a href={whatsappUrl}>
+                                    <div className="col-span-1 text-center w-20">
                                         <img
                                             src="https://donasi-nusantara.my.id/img/wa.png"
                                             alt="wa"
@@ -49,7 +49,7 @@ export default function BottomDonasi({ campaign }) {
                                         />
                                         <p className="mx-auto">WhatsApp</p>
                                     </div>
-                                </Link>
+                                </a>
                             </div>
                             <div className="modal-action">
                                 <button className="btn" onClick={closeModal}>
