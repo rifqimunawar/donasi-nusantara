@@ -101,7 +101,14 @@ class HomeController extends Controller
         $donatur->update(['like' => $like]);
     }
     public function list(){
-      $campaigns = DB::table('campaigns')->get();
+      $campaigns = Campaign::latest()
+      ->where('statusAktif', true)
+      ->with(['donaturs' => function ($query) {
+          $query->select(['id', 'name', 'nominal', 'campaign_id']) // Include selected columns
+              ->where('statusPay', true)
+              ->latest();
+      }])
+      ->get();
 
       foreach ($campaigns as $campaign) {
         $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
