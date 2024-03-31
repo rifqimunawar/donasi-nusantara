@@ -2,11 +2,13 @@ import BottomNavbar from "@/Components/BottomNavbar";
 import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link, router } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function Edit({ user, categories, campaign }) {
     const [formData, setFormData] = useState({
         title: campaign.title,
-        img: null,
+        img: campaign.img,
         description: campaign.description,
         price: campaign.price,
         user_id: user.id,
@@ -14,21 +16,24 @@ export default function Edit({ user, categories, campaign }) {
         norek: campaign.norek,
         bank: campaign.bank,
         category_id: campaign.category_id,
+        statusAktif: campaign.statusAktif,
     });
 
-    // Mengubah nilai input saat berubah
+    console.log(campaign.statusAktif)
     const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: files ? files[0] : value, // Menangani input file dan input teks
-        }));
-    };
+      const { name, value, checked, files } = e.target;
+      const newValue = e.target.type === 'checkbox' ? (checked ? 1 : 0) : value;
+      setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: files ? files[0] : newValue, // Menangani input file dan input teks
+      }));
+  };
+  
 
     // Menyimpan data saat form disubmit
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        console.log(formData.img);
         router.put(`/u/camp/${campaign.id}/update`, formData);
     };
 
@@ -68,13 +73,12 @@ export default function Edit({ user, categories, campaign }) {
                                 className="rounded-lg block w-full"
                             />
                         </div>
-
                         <img
                             src={campaign.img}
                             className="rounded-2xl shadow-lg my-5"
+                            alt="Campaign Image"
                         />
-
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <label
                                 className="block mb-2 text-sm font-medium text-gray-900"
                                 htmlFor="user_avatar"
@@ -87,8 +91,7 @@ export default function Edit({ user, categories, campaign }) {
                                 onChange={handleChange}
                                 className="block file-input file-input-bordered file-input-secondary w-full"
                             />
-                        </div>
-
+                        </div> */}
                         <div className="mb-5">
                             <label
                                 htmlFor="description"
@@ -96,15 +99,17 @@ export default function Edit({ user, categories, campaign }) {
                             >
                                 Deskripsi
                             </label>
-                            <textarea
-                                name="description"
-                                id="editor"
-                                required
-                                value={formData.description}
-                                onChange={handleChange}
-                                className="rounded-lg block w-full"
-                                rows="5"
-                            ></textarea>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={formData.description} // Data diambil dari state
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    setFormData((prevFormData) => ({
+                                        ...prevFormData,
+                                        description: data,
+                                    }));
+                                }}
+                            />
                         </div>
 
                         <div className="mb-5">
@@ -124,7 +129,7 @@ export default function Edit({ user, categories, campaign }) {
                             />
                         </div>
 
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <label
                                 htmlFor="time"
                                 className="block mb-1 text-sm font-medium text-gray-900"
@@ -139,7 +144,7 @@ export default function Edit({ user, categories, campaign }) {
                                 onChange={handleChange}
                                 className="rounded-lg block w-full"
                             />
-                        </div>
+                        </div> */}
 
                         <div className="mb-5">
                             <label
@@ -210,6 +215,21 @@ export default function Edit({ user, categories, campaign }) {
                                 value={formData.norek}
                                 onChange={handleChange}
                                 className="rounded-lg block w-full"
+                            />
+                        </div>
+                        <div className="mb-5">
+                            <label
+                                htmlFor="norek"
+                                className="block mb-1 text-sm font-medium text-gray-900"
+                            >
+                                Aktif/Nonaktif
+                            </label>
+                            <input
+                                type="checkbox"
+                                name="statusAktif"
+                                onChange={handleChange}
+                                checked={formData.statusAktif === 1}
+                                // className="toggle toggle-primary"
                             />
                         </div>
 

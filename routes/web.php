@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\SocialiteController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -10,6 +9,8 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CampaignForUserCont;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GoogleLoginController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,8 @@ Route::get('/', function () {
 
 Route::get('/email', [HomeController::class, 'email'])->name('email');
 
-Route::get('/login/redirect', [SocialiteController::class, 'redirect'])->name('login.redirect');
-Route::get('/login/google/callback', [SocialiteController::class, 'callback'])->name('login.callback');
+Route::get('/auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
@@ -57,6 +58,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
   Route::get('/dashboard/user/{id}/edit', [DashboardController::class, 'editAdmin'])->name('admin.edit');
   Route::put('/dashboard/user/{id}/update', [DashboardController::class, 'updateAdmin'])->name('admin.update');
   Route::delete('/dashboard/user/{id}/delete', [DashboardController::class, 'destroyAdmin'])->name('admin.destroy');
+
+  Route::get('/d/withdraw', [DashboardController::class, 'withdraw'])->name('d.withdraw');
+  Route::get('/d/withdraw/{id}/edit', [DashboardController::class, 'withdrawedit'])->name('d.withdraw.edit');
+  Route::put('/d/withdraw/{id}/update', [DashboardController::class, 'withdrawupdate'])->name('d.withdraw.update');
 
   Route::get('/category', [CategoryController::class, 'index'])->name('category');
   Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -83,6 +88,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/u/camp/{id}/edit', [CampaignForUserCont::class, 'edit'])->name('user.campaign.edit');
   Route::put('/u/camp/{id}/update', [CampaignForUserCont::class, 'update'])->name('user.campaign.update');
   Route::get('/u/camp/withdraw', [HomeController::class, 'withdraw'])->name('user.withdraw');
+  Route::get('/u/camp/withdraw/{id}/history', [HomeController::class, 'history'])->name('withdraw.history');
   Route::get('/u/camp/w/{id}/con', [HomeController::class, 'confirmasi'])->name('user.confirmasi');
   Route::post('/u/camp/w/con/store', [HomeController::class, 'conStore'])->name('user.conStore');
 

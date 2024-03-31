@@ -52,7 +52,7 @@ export default function Edit({
                             {isAdmin && (
                                 <div>
                                     <a
-                                        href={'/dashboard'}
+                                        href={"/dashboard"}
                                         className="btn btn-secondary btn-sm mt-3 w-full text-white"
                                     >
                                         Halaman Admin
@@ -72,12 +72,20 @@ export default function Edit({
                                     {Number(saldo).toLocaleString()}
                                 </p>
                             </header>
-                            <Link
-                                href={route("user.withdraw")}
-                                className="btn btn-warning btn-sm text-white"
-                            >
-                                Tarik Saldo
-                            </Link>
+                            <div className="grid grid-cols-2 text-center gap-3">
+                                <Link
+                                    href={route("user.withdraw")}
+                                    className="btn btn-warning btn-sm text-white"
+                                >
+                                    Tarik Saldo
+                                </Link>
+                                <Link
+                                    href={`/u/camp/withdraw/${user.id}/history`}
+                                    className="btn btn-success btn-sm text-white"
+                                >
+                                    History
+                                </Link>
+                            </div>
                         </div>
 
                         <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

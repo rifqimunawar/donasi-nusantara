@@ -22,9 +22,10 @@ class HomeController extends Controller
 {
   public function home(){
     $masterUrl = env('MASTER_IMG_URL') . 'img/';
-    $campaigns = Campaign::all();
+    $campaigns = Campaign::latest()->where('statusAktif', true)->with('donaturs')->get();
     $categories = Category::all();
 
+    // dd($campaigns);
     foreach ($campaigns as $campaign) {
         $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
     }
@@ -174,37 +175,36 @@ class HomeController extends Controller
     }
       return Inertia::render('frontend/GalangDana', ['categories'=>$categories]);
     }
-    public function withdraw(){
+    
+
+    public function withdraw() {
       $user_id = Auth::user()->id;
       $campaigns = Campaign::where('user_id', $user_id)->get();
+      $saldoBersih = 0;
   
       foreach ($campaigns as $campaign) {
-          // Menghitung jumlah yang akan ditarik (25% dari total yang dikumpulkan)
-          $collected = $campaign->collected * 0.75;
-  
-          // Mengambil total penarikan untuk kampanye tertentu
+          $saldoBersih += $campaign->collected * 0.75;
           $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
-  
-          // Menghitung jumlah total penarikan
           $nominalsCount = $withdraws->sum('nominal');
-  
-          // Menambahkan jumlah yang akan ditarik dengan jumlah yang telah dikumpulkan
-          $remainingAmount = $collected - $nominalsCount;
-  
-          // Menyimpan saldo kampanye
-          $campaign->collected = $remainingAmount ;
+          $remainingAmount = $campaign->collected - $nominalsCount;
+          $campaign->collected = $remainingAmount;
       }
+      $withdrawnAmount = Withdraw::where('user_id', $user_id)->sum('nominal');
+      $sisaSaldo = $saldoBersih - $withdrawnAmount;
   
       return Inertia::render('frontend/withdraw/index', [
           'campaigns' => $campaigns,
           'user_id' => $user_id,
+          'sisaSaldo' => $sisaSaldo,
       ]);
   }
   
+  public function history ($id){
+    $withdraw = Withdraw::where('user_id', $id)->latest()->get();
+    // dd($withdraw);
+    return Inertia::render('frontend/withdraw/history', ['withdraw'=>$withdraw]);
+  }
   
-  
-  
-
     public function confirmasi($id){
       $user = Auth::user();
       $campaigns = Campaign::findOrFail($id);
@@ -236,11 +236,9 @@ class HomeController extends Controller
         $withdraw->norek = $request->norek;
         $withdraw->save();
         
-        // Mengirim email konfirmasi penarikan saldo kepada pengguna
         $penarikSaldo = $withdraw->name;
         Mail::to($withdraw->email)->send(new MailWithdraw($penarikSaldo));
-    
-        // Mengirim email pemberitahuan penarikan saldo ke admin
+        
         $dataPenarik = [
             'name' => $withdraw->name,
             'nominal' => $withdraw->nominal,
@@ -248,16 +246,14 @@ class HomeController extends Controller
             'norek' => $withdraw->norek,
         ];
         Mail::to("rifqimunawar47@gmail.com")->send(new WithdrawRequest($dataPenarik));
-        
-        // Mendapatkan data campaign untuk ditampilkan dalam respons
+
         $campaign = Campaign::findOrFail($request->campaign_id);
-        
-        // Menampilkan halaman "waiting" dengan data yang diperlukan
         return Inertia::render('frontend/withdraw/waiting', [
             'withdraw' => $withdraw,
             'campaign' => $campaign
         ]);
     }
+
     
 
     public function email(){

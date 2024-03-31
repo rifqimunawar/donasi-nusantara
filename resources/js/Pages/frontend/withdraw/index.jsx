@@ -3,7 +3,7 @@ import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React from "react";
 
-export default function Index({ campaigns, withdrawals }) {
+export default function Index({ campaigns, sisaSaldo }) {
   const collected = campaigns.collected;
   const danaPenggalang = () => {
     return collected * 0.75; // 75% dari collected
@@ -18,7 +18,7 @@ export default function Index({ campaigns, withdrawals }) {
                 <div className="p-4 sm:p-8 shadow lg:rounded-lg m-3">
                     <header>
                         <h2 className="text-lg font-medium text-gray-900 text-center">Withdraw</h2>
-                        {/* <p className="mt-1 text-sm text-gray-600 mb-3">Total : {Number(withdrawals).toLocaleString()}</p> */}
+                        <p className="mt-1 text-sm text-gray-600 mb-3">Total : {Number(sisaSaldo).toLocaleString()}</p>
                     </header>
                 </div>
 
@@ -28,7 +28,6 @@ export default function Index({ campaigns, withdrawals }) {
                             <tr>
                                 <th>No</th>
                                 <th>Title</th>
-                                <th>Saldo</th>
                                 <th className="text-center">Action</th>
                             </tr>
                         </thead>
@@ -38,7 +37,6 @@ export default function Index({ campaigns, withdrawals }) {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{campaign.title}</td>
-                                    <td>{Number(campaign.collected * 0.75 ).toLocaleString()}</td>
                                     <td className="text-center">
                                         <Link
                                             href={`/u/camp/w/${campaign.id}/con`}

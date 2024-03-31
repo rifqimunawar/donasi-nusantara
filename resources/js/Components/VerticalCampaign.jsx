@@ -25,6 +25,14 @@ function CampaignItem({ campaign }) {
     const formattedCollected = Number(campaign.collected).toLocaleString(
         "id-ID"
     );
+    let donaturCount = 0;
+    if (campaign.donatur) {
+        donaturCount = campaign.donatur.count();
+    } else {
+        donaturCount = 0;
+    }
+    
+
     useEffect(() => {
         const calculateCountdown = () => {
             const targetDate = new Date(campaign.time);
@@ -64,15 +72,16 @@ function CampaignItem({ campaign }) {
                         max="100"
                     ></progress>
                     <div className="flex justify-between text-info-content text-sm">
-                        <p>
+                        <p className="text-xs">
                             Terkumpul{" "}
                             <span className="">{formattedCollected}</span>
                         </p>
                         <p>
-                            {countdown > 0 ? countdown : 0}{" "}
+                            {/* {countdown > 0 ? countdown : 0}{" "}
                             <span className="">
                                 {countdown === 1 ? "hari" : "hari lagi"}
-                            </span>
+                            </span> */}
+                            <p className="text-xs">{donaturCount} Donatur</p>
                         </p>
                     </div>
                 </div>

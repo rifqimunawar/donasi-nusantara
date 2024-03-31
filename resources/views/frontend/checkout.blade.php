@@ -21,7 +21,7 @@
                     <div class="label">
                         <span class="label-text">Nama Lengkap</span>
                     </div>
-                    <input type="text" name="name" required value="Hamba Allah" class="input input-bordered" />
+                    <input type="text" name="name" required  class="input input-bordered" />
                     <div class="label">
                     </div>
                 </label>
@@ -29,7 +29,7 @@
                     <div class="label">
                         <span class="label-text">Email</span>
                     </div>
-                    <input type="text" name="email" required value="Hamba@gmail.com"
+                    <input type="text" name="email" required value="Donasinusantara23@gmail.com"
                         class="input input-bordered" />
                     <div class="label">
                     </div>

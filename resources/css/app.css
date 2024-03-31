@@ -44,11 +44,14 @@ section {
 }
 .listCom {
     border-radius: 10px;
+    margin-bottom: 0.7rem;
+    box-shadow: 3px 4px 5px #b7947e;
 }
 
 .verCampaign {
     border-radius: 10px;
     padding: 0px;
+    box-shadow: 5px 5px 5px #b7947e;
 }
 .verCampaign img {
     border-radius: 10px;
@@ -56,5 +59,5 @@ section {
 }
 
 .footerRaound{
-  box-shadow: 5px 5px 12px #b7947e;;
+  box-shadow: 1px 1px 1px #b7947e;
 }

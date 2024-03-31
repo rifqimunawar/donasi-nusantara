@@ -2,6 +2,8 @@ import BottomNavbar from "@/Components/BottomNavbar";
 import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link, router } from "@inertiajs/react";
 import React, { useState, useEffect } from "react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function Create({ user, categories }) {
     const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ export default function Create({ user, categories }) {
     // Menyimpan data saat form disubmit
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
+        console.log(formData);
         router.post("/u/camp/store", formData);
     };
 
@@ -92,15 +94,17 @@ export default function Create({ user, categories }) {
                             >
                                 Deskripsi
                             </label>
-                            <textarea
-                                name="description"
-                                id="editor"
-                                required
-                                value={formData.description}
-                                onChange={handleChange}
-                                className="rounded-lg block w-full"
-                                rows="5"
-                            ></textarea>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={formData.description} // Data diambil dari state
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    setFormData((prevFormData) => ({
+                                        ...prevFormData,
+                                        description: data,
+                                    }));
+                                }}
+                            />
                         </div>
 
                         <div className="mb-5">
@@ -120,7 +124,7 @@ export default function Create({ user, categories }) {
                             />
                         </div>
 
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <label
                                 htmlFor="time"
                                 className="block mb-1 text-sm font-medium text-gray-900"
@@ -129,13 +133,12 @@ export default function Create({ user, categories }) {
                             </label>
                             <input
                                 name="time"
-                                required
                                 type="datetime-local"
                                 value={formData.time}
                                 onChange={handleChange}
                                 className="rounded-lg block w-full"
                             />
-                        </div>
+                        </div> */}
 
                         <div className="mb-5">
                             <label
