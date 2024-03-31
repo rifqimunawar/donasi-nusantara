@@ -2,11 +2,12 @@ import BottomDonasi from "@/Components/BottomDonasi";
 import BottomNavbar from "@/Components/BottomNavbar";
 import DonaturComponent from "@/Components/DonaturComponent";
 import FooterComponent from "@/Components/FooterComponent";
+import MessageDon from "@/Components/MessageDon";
 import NavbarComponent from "@/Components/NavbarComponent";
 import { Head, Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 
-export default function DetailCampaign({ campaign, donaturs }) {
+export default function DetailCampaign({ campaign, donaturs, messDonaturs }) {
     const [presentase, setPresentase] = useState("");
     const formattedPrice = Number(campaign.price).toLocaleString("id-ID");
     const formattedCollected = Number(campaign.collected).toLocaleString(
@@ -14,7 +15,6 @@ export default function DetailCampaign({ campaign, donaturs }) {
     );
     const jumlahDonatur = donaturs.length;
 
-    console.log(donaturs);
     useEffect(() => {
         const calculatePercentage = () => {
             const collected = campaign.collected;
@@ -100,8 +100,14 @@ export default function DetailCampaign({ campaign, donaturs }) {
 
                 <div className="m-5 mt-7 ">
                     <p className="text-xl mb-3">Para Donatur</p>
-                    {donaturs.map((donatur, index) => (
+                    {donaturs.slice(0, 10).map((donatur, index) => (
                         <DonaturComponent donatur={donatur} key={index} />
+                    ))}
+                </div>
+                <div className="m-5 mt-7 ">
+                    <p className="text-xl mb-3">Do'a dan pesan</p>
+                    {messDonaturs.map((message, index) => (
+                        <MessageDon message={message} key={index} />
                     ))}
                 </div>
 

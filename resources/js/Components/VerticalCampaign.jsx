@@ -25,13 +25,7 @@ function CampaignItem({ campaign }) {
     const formattedCollected = Number(campaign.collected).toLocaleString(
         "id-ID"
     );
-    let donaturCount = 0;
-    if (campaign.donatur) {
-        donaturCount = campaign.donatur.count();
-    } else {
-        donaturCount = 0;
-    }
-    
+
 
     useEffect(() => {
         const calculateCountdown = () => {
@@ -77,11 +71,7 @@ function CampaignItem({ campaign }) {
                             <span className="">{formattedCollected}</span>
                         </p>
                         <p>
-                            {/* {countdown > 0 ? countdown : 0}{" "}
-                            <span className="">
-                                {countdown === 1 ? "hari" : "hari lagi"}
-                            </span> */}
-                            <p className="text-xs">{donaturCount} Donatur</p>
+                            <p className="text-xs">{campaign.donaturs.length} Donatur</p> {/* Use donaturCount */}
                         </p>
                     </div>
                 </div>

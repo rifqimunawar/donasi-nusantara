@@ -117,7 +117,6 @@ export default function Edit({
                                 <Link
                                     href={route("logout")}
                                     as="button"
-                                    method="post"
                                     className=" text-white"
                                 >
                                     Logout
