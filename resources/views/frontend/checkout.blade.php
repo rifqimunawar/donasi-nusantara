@@ -39,7 +39,7 @@
                         <span class="label-text">Pesan/Do'a (Opstional)</span>
                     </div>
                     <input type="text" hidden name="campaign_id" value="{{ $campaignID }}">
-                    <textarea class="textarea textarea-bordered h-24" placeholder="Do'a dan pesan"></textarea>
+                    <textarea class="textarea textarea-bordered h-24" name="message" placeholder="Do'a dan pesan"></textarea>
                     <div class="label">
                     </div>
                 </label>

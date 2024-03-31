@@ -20,18 +20,28 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
-  public function home(){
+  public function home()
+{
     $masterUrl = env('MASTER_IMG_URL') . 'img/';
-    $campaigns = Campaign::latest()->where('statusAktif', true)->with('donaturs')->get();
+    
+    // Load campaigns with their associated donaturs
+    $campaigns = Campaign::latest()
+        ->where('statusAktif', true)
+        ->with(['donaturs' => function ($query) {
+            $query->select(['id', 'name', 'nominal', 'campaign_id']) // Include selected columns
+                ->where('statusPay', true)
+                ->latest();
+        }])
+        ->get();
+    
     $categories = Category::all();
 
-    // dd($campaigns);
     foreach ($campaigns as $campaign) {
-        $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
+        $campaign->img = $masterUrl . $campaign->img;
     }
 
     foreach ($categories as $item) {
-        $item->file = env('MASTER_IMG_URL') . 'img/' . $item->file;
+        $item->file = $masterUrl . $item->file;
     }
 
     $data = [
@@ -52,22 +62,43 @@ class HomeController extends Controller
     return Inertia::render('frontend/Homepage', [
         'campaigns' => $campaigns,
         'categories' => $categories,
-        'data' => $data
+        'data' => $data,
     ]);
-  }
+}
 
-    public function detail($id)
+  
+
+    public function detail($id){ 
+      {
+          $campaign = Campaign::findOrFail($id);
+      
+          if (!$campaign) {
+              abort(404);
+          }
+      
+          $donaturs = $campaign->donaturs()->where('statusPay', true)->latest()->get();
+          $messDonaturs = $campaign->donaturs()
+              ->whereNotNull('message') // Filter out records where message column is null
+              ->where('statusPay', true)
+              ->select(['id', 'name', 'message', 'like'])->get(); // Include selected columns
+      
+          // Modify campaign image URL
+          $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
+      // dd($messDonaturs);
+          return Inertia::render('frontend/DetailCampaign', [
+              'campaign' => $campaign,
+              'donaturs' => $donaturs,
+              'messDonaturs' => $messDonaturs,
+          ]);
+      }
+      
+    }
+
+    public function like($id, Request $request)
     {
-        $campaign = Campaign::findOrFail($id);
-        if (!$campaign) {
-            abort(404);
-        }
-        $donaturs = $campaign->donaturs()->where('statusPay', true)->latest()->get();
-        $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
-        return Inertia::render('frontend/DetailCampaign', [
-            'campaign' => $campaign,
-            'donaturs' => $donaturs,
-        ]);
+        $donatur = Donatur::findOrFail($id);
+        $like = $request->input('count');
+        $donatur->update(['like' => $like]);
     }
     public function list(){
       $campaigns = DB::table('campaigns')->get();

@@ -50,6 +50,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/donasi/campaign/{id}/detail', [HomeController::class, 'detail'])->name('detail');
 Route::get('category/{id}/campaign', [HomeController::class, 'categorylist']);
 Route::get('/rincian/{id}', [HomeController::class, 'rincian']);
+Route::put('/like/{id}', [HomeController::class, 'like']);
 
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
