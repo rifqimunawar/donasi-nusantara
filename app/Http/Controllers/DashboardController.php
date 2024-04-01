@@ -35,6 +35,14 @@ class DashboardController extends Controller
     return view('backend.admin.edit', ['users'=>$users]);
   }
 
+  public function updateAdmin($id, Request $request){
+    // dd($request);
+    $user = User::find($id);
+    $user->role=$request->input('role');
+    $user->save();
+    return redirect()->route('admin');
+  }
+
   public function withdraw()  {
     $withdraw = Withdraw::latest()->get();
     return view('backend.withdraw.index', ['withdraw' =>$withdraw]);
