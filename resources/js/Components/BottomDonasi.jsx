@@ -12,10 +12,10 @@ export default function BottomDonasi({ campaign }) {
         setModalOpen(false);
     };
 
-    const shareUrl = `https://donasi-nusantara.my.id/campaign/${campaign.id}/detail`;
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
-        `${campaign.title} ${shareUrl}`
-    )}`;
+    const shareUrl = `https://donasi-nusantara.my.id/donasi/campaign/${campaign.id}/detail`;
+    const imageUrl = `https://donasi-nusantara.my.id/img/${campaign.img}`; // Ganti URL ini dengan URL gambar yang sesuai
+    const message = `Mari Berdonasi ${campaign.title}\n${shareUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}&image=${encodeURIComponent(imageUrl)}`;
 
     return (
         <div className="fixed bottom-1 w-full container">
