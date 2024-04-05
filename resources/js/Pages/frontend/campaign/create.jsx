@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-export default function Create({ user, categories }) {
+export default function Create({ user, categories, uploadUrl }) {
     const [formData, setFormData] = useState({
         title: "",
         img: null,
@@ -17,6 +17,14 @@ export default function Create({ user, categories }) {
         bank: "",
         category_id: "",
     });
+
+    // console.log(editorConfig)
+    // Konfigurasi CKEditor dengan CKFinder upload URL
+    const editorConfig = {
+        ckfinder: {
+            uploadUrl: {uploadUrl},
+        },
+    };
 
     // Mengubah nilai input saat berubah
     const handleChange = (e) => {
@@ -97,6 +105,7 @@ export default function Create({ user, categories }) {
                             <CKEditor
                                 editor={ClassicEditor}
                                 data={formData.description} // Data diambil dari state
+                                config={editorConfig} // Konfigurasi CKEditor dengan CKFinder upload URL
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
                                     setFormData((prevFormData) => ({
