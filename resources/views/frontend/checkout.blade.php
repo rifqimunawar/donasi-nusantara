@@ -29,7 +29,7 @@
                     <div class="label">
                         <span class="label-text">Email</span>
                     </div>
-                    <input type="text" name="email" required value="Donasinusantara23@gmail.com"
+                    <input type="text" name="email" required placeholder="Donasinusantara23@gmail.com"
                         class="input input-bordered" />
                     <div class="label">
                     </div>
