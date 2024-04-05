@@ -120,7 +120,13 @@ class HomeController extends Controller
     }
 
     public function categorylist($id) {
-      $campaigns = DB::table('campaigns')->where('category_id', $id)->get();
+      $campaigns = Campaign::where('category_id', $id)->where('statusAktif', true)
+      ->with(['donaturs' => function ($query) {
+          $query->select(['id', 'name', 'nominal', 'campaign_id'])
+              ->where('statusPay', true)
+              ->latest();
+      }])
+      ->get();
       foreach ($campaigns as $campaign) {
           $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
       }

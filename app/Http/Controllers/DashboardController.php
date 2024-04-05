@@ -15,14 +15,18 @@ class DashboardController extends Controller
       $totalDonatur = Donatur::count();
       $totalDonasi = 0;
       $campaigns = Campaign::all(); // Mengambil semua data Campaign
-  
+      $user = User::all(); // Mengambil semua data Campaign
+      $januari = 20;
       foreach ($campaigns as $campaign) {
           $totalDonasi += $campaign->collected; // Menambahkan nominal campaign ke totalDonasi
       }
-  
+      $totalCamp = Campaign::where('statusAktif', 1);
       return view('backend.index', [
           'totalDonatur' => $totalDonatur,
           'totalDonasi' => $totalDonasi,
+          'totalCamp' => $totalCamp,
+          'user' => $user,
+          'januari' => $januari,
       ]);
   }
   
