@@ -47,7 +47,7 @@ export default function Edit({
                                 href={route("user.campaign")}
                                 className="btn btn-info btn-sm text-white w-full"
                             >
-                                Buat Campaign Sekarang
+                                Galang Dana Sekarang
                             </Link>
                             {isAdmin && (
                                 <div>
