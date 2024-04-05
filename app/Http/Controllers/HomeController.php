@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use App\Mail\DonasiInputEmail;
 use App\Mail\EmailForDonatur;
 use App\Mail\Withdraw as MailWithdraw;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -151,16 +150,40 @@ class HomeController extends Controller
       $donasi->email = $request->email;
       $gross_amount = $request->nominal;
 
+      $nameCampaign = Campaign::findOrFail($donasi->campaign_id)->name;
+      
       \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
       \Midtrans\Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
       \Midtrans\Config::$isSanitized = env('MIDTRANS_IS_SANITIZED');
       \Midtrans\Config::$is3ds = env('MIDTRANS_IS_3DS');
+      
+      if ($gross_amount >= 10000) {
+          $enabledPayments = [
+              "credit_card", "cimb_clicks", "bca_klikbca", "bca_klikpay", 
+              "bri_epay", "echannel", "permata_va", "bca_va", "bni_va", 
+              "bri_va", "cimb_va", "other_va", "gopay", "indomaret", 
+              "danamon_online", "akulaku", "shopeepay", "kredivo", 
+              "uob_ezpay", "other_qris"
+          ];
+      } else {
+          $enabledPayments = [
+              "gopay", "shopeepay", "other_qris"
+          ];
+      }
+      
       $params = array(
           'transaction_details' => array(
               'order_id' => rand(),
               'gross_amount' => $gross_amount,
-          )
+          ),
+          'customer_details' => array(
+              'first_name' => $donasi->name,
+              'email' => $donasi->email,
+          ),
+          'enabled_payments' => $enabledPayments, // Masukkan jenis pembayaran berdasarkan kondisi
       );
+      
+    
       $snapToken = \Midtrans\Snap::getSnapToken($params);
       $donasi->snap_token = $snapToken;
       $donasi->save();
