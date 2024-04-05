@@ -39,7 +39,6 @@ Route::get('/auth/google', [GoogleLoginController::class, 'redirectToGoogle'])->
 Route::get('/auth/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
-Route::get('/galang/dana', [HomeController::class, 'galang'])->name('galang');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/list', [HomeController::class, 'list'])->name('list');
 Route::get('/create/{id}/donasi', [HomeController::class, 'create'])->name('createDonasi');

@@ -71,7 +71,7 @@ function CampaignItem({ campaign }) {
                             <span className="">{formattedCollected}</span>
                         </p>
                         <p>
-                            <p className="text-xs">{campaign.donaturs.length} Donatur</p> {/* Use donaturCount */}
+                            <p className="text-xs">{campaign.donaturs.length} Donatur</p>
                         </p>
                     </div>
                 </div>
