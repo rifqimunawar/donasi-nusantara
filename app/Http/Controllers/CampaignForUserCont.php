@@ -24,11 +24,13 @@ class CampaignForUserCont extends Controller
   public function create()
   {
     $user = Auth::user();
+    $uploadUrl = env('MASTER_IMG_URL') . 'upload';
       // dd($user);
       $categories = DB::table('categories')->get(); // Mengambil semua kategori dari database
       return Inertia::render('frontend/campaign/create', [
         'categories' => $categories, 
         'user'=>$user,
+        'uploadUrl'=>$uploadUrl,
       ]);
   }
   public function upload(Request $request)
