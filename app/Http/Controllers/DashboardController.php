@@ -16,18 +16,45 @@ class DashboardController extends Controller
       $totalDonasi = 0;
       $campaigns = Campaign::all(); // Mengambil semua data Campaign
       $user = User::all(); // Mengambil semua data Campaign
-      $januari = 20;
+
+      $jan = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 1)->count();
+      $feb = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 2)->count();
+      $mar = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 3)->count();
+      $apr = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 4)->count();
+      $mei = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 5)->count();
+      $jun = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 6)->count();
+      $jul = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 7)->count();
+      $ags = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 8)->count();
+      $sep = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 9)->count();
+      $okt = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 10)->count();
+      $nov = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 11)->count();
+      $des = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 12)->count();
+
+
+    // dd($mar);
       foreach ($campaigns as $campaign) {
           $totalDonasi += $campaign->collected; // Menambahkan nominal campaign ke totalDonasi
       }
       $totalCamp = Campaign::where('statusAktif', 1);
       return view('backend.index', [
-          'totalDonatur' => $totalDonatur,
-          'totalDonasi' => $totalDonasi,
-          'totalCamp' => $totalCamp,
-          'user' => $user,
-          'januari' => $januari,
-      ]);
+        'totalDonatur' => $totalDonatur,
+        'totalDonasi' => $totalDonasi,
+        'totalCamp' => $totalCamp,
+        'user' => $user,
+        'jan' => $jan,
+        'feb' => $feb,
+        'mar' => $mar,
+        'apr' => $apr,
+        'mei' => $mei,
+        'jun' => $jun,
+        'jul' => $jul,
+        'ags' => $ags,
+        'sep' => $sep,
+        'okt' => $okt,
+        'nov' => $nov,
+        'des' => $des
+    ]);
+    
   }
   
   public function admin(){
