@@ -328,4 +328,12 @@ class HomeController extends Controller
       Mail::to("rifqimunawar48@gmail.com")->send(new RegisterEmail($userName));
       return "email berhasil dikirim";
     }
+
+    public function about(){
+      $masterImageUrl = env('MASTER_IMG_URL') . 'img/';
+
+      return Inertia::render('frontend/AboutPage', [
+        'masterImageUrl'=>$masterImageUrl
+      ]);
+    }
 }

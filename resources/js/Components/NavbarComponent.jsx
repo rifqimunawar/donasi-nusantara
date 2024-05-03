@@ -31,23 +31,30 @@ export default function NavbarComponent() {
                         className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                     >
                         <li>
-                            <Link href={'/home'}>Homepage</Link>
+                            <Link href={"/home"}>Homepage</Link>
                         </li>
                         <li>
-                            <Link href={'/list'}>List Campaign</Link>
+                            <Link href={"/home"}>About</Link>
                         </li>
                         <li>
-                            <Link href={'/galang/dana'}>Galang Dana</Link>
+                            <Link href={"/list"}>List Campaign</Link>
                         </li>
                         <li>
-                            <Link href={'/profile'}>Profile</Link>
+                            <Link href={"/galang/dana"}>Galang Dana</Link>
+                        </li>
+                        <li>
+                            <Link href={"/profile"}>Profile</Link>
                         </li>
                     </ul>
                 </div>
             </div>
             <div className="navbar-center">
-                <a className="btn btn-ghost text-xl">Donasi Nusantara
-                <img src="https://donasi-nusantara.my.id/img/logo.png" className="w-12"/>
+                <a className="btn btn-ghost text-xl">
+                    Donasi Nusantara
+                    <img
+                        src="https://donasi-nusantara.my.id/img/logo.png"
+                        className="w-12"
+                    />
                 </a>
             </div>
             <div className="navbar-end">
