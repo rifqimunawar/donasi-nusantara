@@ -82,16 +82,16 @@ class CampaignForUserCont extends Controller
     $categories = Category::all();
     $campaign = Campaign::findOrFail($id);
     $campaign->img = env('MASTER_IMG_URL') . 'img/' . $campaign->img;
-    // return view('frontend/edit-campaign', [
-    //   'campaign'=>$campaign,
-    //   'categories'=>$categories,
-    //   'user'=>$user,
-    // ]);
-    return Inertia::render('frontend/campaign/edit', [
+    return view('frontend/edit-campaign', [
       'campaign'=>$campaign,
       'categories'=>$categories,
       'user'=>$user,
     ]);
+    // return Inertia::render('frontend/campaign/edit', [
+    //   'campaign'=>$campaign,
+    //   'categories'=>$categories,
+    //   'user'=>$user,
+    // ]);
   }
   public function update(Request $request, $id)
   {

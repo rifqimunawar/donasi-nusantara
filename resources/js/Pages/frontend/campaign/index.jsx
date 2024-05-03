@@ -1,7 +1,7 @@
 import BottomNavbar from "@/Components/BottomNavbar";
 import NavbarComponent from "@/Components/NavbarComponent";
-import { Head, Link } from "@inertiajs/react";
-import React from "react";
+import { Head, Link, router } from "@inertiajs/react";
+import React, { useEffect, useState } from "react";
 
 export default function Index({ campaigns }) {
     return (
@@ -39,19 +39,31 @@ export default function Index({ campaigns }) {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{campaign.title}</td>
-                                    <td className="grid grid-cols-2 gap-2">
+                                    <td className="grid grid-cols-3 gap-2">
+                                        <button
+                                            key={campaign.id}
+                                            className={
+                                                campaign.statusAktif === 1
+                                                    ? "btn btn-secondary btn-xs"
+                                                    : "btn btn-warning btn-xs"
+                                            }
+                                        >
+                                            {campaign.statusAktif === 1
+                                                ? "Aktif"
+                                                : "Nonaktif"}
+                                        </button>
                                         <Link
                                             href={`/donasi/campaign/${campaign.id}/detail`}
                                             className="btn btn-info btn btn-xs"
                                         >
                                             Lihat
                                         </Link>
-                                        <Link
+                                        <a
                                             href={`/u/camp/${campaign.id}/edit`}
                                             className="btn btn-warning btn btn-xs"
                                         >
                                             Edit
-                                        </Link>
+                                        </a>
                                     </td>
                                 </tr>
                             ))}

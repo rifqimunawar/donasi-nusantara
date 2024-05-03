@@ -50,6 +50,8 @@ Route::get('/donasi/campaign/{id}/detail', [HomeController::class, 'detail'])->n
 Route::get('category/{id}/campaign', [HomeController::class, 'categorylist']);
 Route::get('/rincian/{id}', [HomeController::class, 'rincian']);
 Route::put('/like/{id}', [HomeController::class, 'like']);
+Route::post('campaigns/{id}/activate', [HomeController::class, 'aktifkan']);
+Route::post('campaigns/{id}/deactivate', [HomeController::class, 'deaktifkan']);
 
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

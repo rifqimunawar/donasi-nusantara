@@ -47,7 +47,7 @@
                             Upload Image Pamflet
                         </label>
                         <input name="img" type="file"
-                            class="block file-input file-input-bordered file-input-secondary w-full"/>
+                            class="block file-input file-input-bordered file-input-secondary w-full" />
                     </div>
 
                     <div class="mb-5">
@@ -63,14 +63,6 @@
                             Target Dana Terkumpul
                         </label>
                         <input name="price" required type="number" value="{{ $campaign->price }}"
-                            class="rounded-lg block w-full input input-bordered" />
-                    </div>
-
-                    <div class="mb-5">
-                        <label htmlFor="time" class="block mb-1 text-sm font-medium text-gray-900">
-                            Waktu
-                        </label>
-                        <input name="time" required type="datetime-local" value="{{ $campaign->time }}"
                             class="rounded-lg block w-full input input-bordered" />
                     </div>
 
@@ -117,9 +109,22 @@
                             class="rounded-lg block w-full input input-bordered" />
                     </div>
 
+                    <div class="mb-5">
+                        <label htmlFor="statusAktif" class="block mb-1 text-sm font-medium text-gray-900">
+                            Nonaktif/Aktfikan
+                        </label>
+                        <input type="hidden" name="statusAktif" value="0">
+                        <!-- Nilai default saat checkbox tidak dicentang -->
+                        <input type="checkbox" id="statusAktif" {{ $campaign->statusAktif == 1 ? 'checked' : '' }}
+                            name="statusAktif" class="toggle toggle-primary" value="1">
+                        <!-- Nilai saat checkbox dicentang -->
+                    </div>
+
+
+
                     <div class="mb-5 flex justify-center gap-3">
                         <a href="/u/camp/" class="btn btn-warning btn-sm">
-                        Kembali
+                            Kembali
                         </a>
                         <button type="submit" class="btn btn-primary btn-sm">
                             Simpan
