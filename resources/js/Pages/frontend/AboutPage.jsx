@@ -15,13 +15,13 @@ export default function AboutPage({ masterImageUrl }) {
                 <div className="my-8 text-center">
                     <p className="text-2xl">About Us</p>
                 </div>
-                <div className="h-96 mb-5">
+                <div className="h-72 mb-5 m-3">
                     <img
                         src={`${masterImageUrl}sempro1.jpg`}
                         className="w-full h-full object-cover rounded-3xl shadow"
                     />
                 </div>
-                <div className="text-lg text-justify">
+                <div className="text-md text-justify m-3">
                     <p>
                         Website ini merupakan hasil dari upaya kelompok 8 dalam
                         menyelesaikan tugas akhir perkuliahan pada Program Studi

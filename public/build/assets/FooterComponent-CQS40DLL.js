@@ -1,0 +1,1 @@
+import{j as e}from"./app-BDWMuUck.js";function r(){return e.jsx("div",{children:e.jsx("footer",{className:"footer footer-center",children:e.jsx("aside",{className:"p-4 bg-contet text-base-content footerRaound rounded-xl max-w-screen-sm",children:e.jsx("p",{children:"Copyright © 2024 - All right reserved by Kelompok 8"})})})})}export{r as F};
