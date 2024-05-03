@@ -34,7 +34,7 @@ export default function NavbarComponent() {
                             <Link href={"/home"}>Homepage</Link>
                         </li>
                         <li>
-                            <Link href={"/home"}>About</Link>
+                            <Link href={"/about"}>About</Link>
                         </li>
                         <li>
                             <Link href={"/list"}>List Campaign</Link>
