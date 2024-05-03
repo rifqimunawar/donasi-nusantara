@@ -336,4 +336,17 @@ class HomeController extends Controller
         'masterImageUrl'=>$masterImageUrl
       ]);
     }
+
+    public function aktifkan($id, Request $request)
+    {
+        $campaign = Campaign::findOrFail($id);
+        $campaign->statusAktif = 1;
+        $campaign->save();
+    }
+    public function deaktifkan($id, Request $request)
+    {
+        $campaign = Campaign::findOrFail($id);
+        $campaign->statusAktif = 0;
+        $campaign->save();
+    }
 }
