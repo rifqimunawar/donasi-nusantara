@@ -94,38 +94,34 @@ class CampaignForUserCont extends Controller
     // ]);
   }
   public function update(Request $request, $id)
-  {
-    // return response()->json($request->all());
+{
+    $campaign = Campaign::findOrFail($id);
 
-    // dd($request);
-      $campaign = Campaign::findOrFail($id);  
-      if ($request->hasFile('img')) {
+    if ($request->hasFile('img')) {
         $image = $request->file('img');
-        if ($image->isValid()) {
-            $newFileName = 'pamflet_' . now()->timestamp . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/img', $newFileName);
-            $campaign->img = $newFileName;
-        } else {
-            return back()->withErrors(['img' => 'File tidak valid'])->withInput(); // Pesan kesalahan spesifik
-        }
+        $newFileName = 'pamflet' . now()->timestamp . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('img/'), $newFileName);
+        $campaign->img = $newFileName; // Simpan lokasi gambar yang baru
     }
+
+    // Mengambil nilai input dari permintaan
+    $campaign->title = $request->input('title', $campaign->title);
+    $campaign->description = $request->input('description', $campaign->description);
+    $campaign->price = $request->input('price', $campaign->price);
+    $campaign->time = $request->input('time', $campaign->time);
+    $campaign->bank = $request->input('bank', $campaign->bank);
+    $campaign->norek = $request->input('norek', $campaign->norek);
+    $campaign->statusAktif = $request->input('statusAktif', $campaign->statusAktif);
+    $campaign->user_id = $request->input('user_id', $campaign->user_id);
+    $campaign->category_id = $request->input('category_id', $campaign->category_id);
+    $campaign->updated_at = now();
+
+    $campaign->save(); // Simpan perubahan
+
+    return redirect()->route('user.campaign');
+}
+
   
-      // Update other fields
-      $campaign->title = $request->input('title', $campaign->title);
-      $campaign->description = $request->input('description', $campaign->description);
-      $campaign->price = $request->input('price', $campaign->price);
-      $campaign->time = $request->input('time', $campaign->time);
-      $campaign->bank = $request->input('bank', $campaign->bank);
-      $campaign->norek = $request->input('norek', $campaign->norek);
-      $campaign->user_id = $request->input('user_id', $campaign->user_id);
-      $campaign->category_id = $request->input('category_id', $campaign->category_id);
-      $campaign->statusAktif = $request->input('statusAktif', $campaign->statusAktif);
-      $campaign->updated_at = now();
-  
-      $campaign->update();
-  
-      return redirect()->route('user.campaign'); // Arahkan ke route yang benar
-  }
   
 
 

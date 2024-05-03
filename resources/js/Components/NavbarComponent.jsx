@@ -33,14 +33,15 @@ export default function NavbarComponent() {
                         <li>
                             <Link href={"/home"}>Homepage</Link>
                         </li>
-                        <li>
-                            <Link href={"/about"}>About</Link>
-                        </li>
+
                         <li>
                             <Link href={"/list"}>List Campaign</Link>
                         </li>
                         <li>
                             <Link href={"/galang/dana"}>Galang Dana</Link>
+                        </li>
+                        <li>
+                            <Link href={"/about"}>About</Link>
                         </li>
                         <li>
                             <Link href={"/profile"}>Profile</Link>

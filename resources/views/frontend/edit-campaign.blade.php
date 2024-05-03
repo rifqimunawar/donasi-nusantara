@@ -43,10 +43,10 @@
                     <img src="{{ $campaign->img }}" class="rounded-2xl shadow-lg my-5" />
 
                     <div class="mb-5">
-                        <label class="block mb-2 text-sm font-medium text-gray-900" htmlFor="user_avatar">
+                        <label class="block mb-2 text-sm font-medium text-gray-900">
                             Upload Image Pamflet
                         </label>
-                        <input name="img" type="file"
+                        <input name="img" type="file" value="{{ $campaign->img }}"
                             class="block file-input file-input-bordered file-input-secondary w-full" />
                     </div>
 
