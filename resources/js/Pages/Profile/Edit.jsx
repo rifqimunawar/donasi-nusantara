@@ -49,7 +49,15 @@ export default function Edit({
                             >
                                 Galang Dana Sekarang
                             </Link>
-                            {isAdmin && (
+                            <div>
+                                <a
+                                    href={"/dashboard"}
+                                    className="btn btn-secondary btn-sm mt-3 w-full text-white"
+                                >
+                                    Halaman Admin
+                                </a>
+                            </div>
+                            {/* {isAdmin && (
                                 <div>
                                     <a
                                         href={"/dashboard"}
@@ -58,7 +66,7 @@ export default function Edit({
                                         Halaman Admin
                                     </a>
                                 </div>
-                            )}
+                            )} */}
                         </div>
 
                         {/* <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

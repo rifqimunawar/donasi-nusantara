@@ -16,7 +16,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
     };
 
     const sisaDana = () => {
-        return danaPenggalang() - nominalsCount
+        return danaPenggalang() - nominalsCount;
     };
 
     return (
@@ -54,7 +54,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
                                 {/* row 2 */}
                                 <tr>
                                     <th>25%</th>
-                                    <td>Biaya Teknologi</td>
+                                    <td>Biaya Pengelolaan</td>
                                     <td>
                                         {Number(
                                             biayaTeknologi()
@@ -83,20 +83,29 @@ export default function RincianPage({ campaign, nominalsCount }) {
                                     <th>..</th>
                                     <td>Sisa Dana</td>
                                     <td>
-                                        {Number(
-                                          sisaDana()
-                                        ).toLocaleString("id-ID")}
+                                        {Number(sisaDana()).toLocaleString(
+                                            "id-ID"
+                                        )}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div className="bg-base-200 rounded-lg">
-                        <p className="p-2 mt-8">
-                            Dana teknologi adalah dana yang digunakan oleh
-                            developer/pengembang website untuk mengelola dan
-                            memaksimalkan website "Donasi Nusantara"
+                    <div className="bg-base-200 rounded-lg text-center">
+                        <p className="p-2 mt-8 text-justify">
+                            Dana Pengelolaan adalah dana yang digunakan
+                            pengembangan website untuk mengelola dan
+                            memaksimalkan website "Donasi Nusantara", hal
+                            tersebut sesuai dengan PP No. 29 Tahun 1980 Tentang
+                            Pelaksanaan Pengumpulan Sumbangan.
                         </p>
+                        <a
+                            href="https://peraturan.bpk.go.id/Details/66625/pp-no-29-tahun-1980"
+                            target="_blank"
+                            className="btn btn-warning my-4"
+                        >
+                            Lihat Undang-Undang
+                        </a>
                     </div>
                 </div>
                 <div className="btm-center">
