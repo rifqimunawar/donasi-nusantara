@@ -4,7 +4,7 @@ import React from "react";
 export default function BottomNavbar() {
     return (
         <div className="fixed bottom-1 flex w-full container">
-            <div className="btm-nav grid grid-cols-4 mx-auto max-w-screen-sm">
+            <div className="btm-nav grid grid-cols-5 mx-auto max-w-screen-sm">
                 <Link href="/home">
                     <button
                         className={
@@ -14,17 +14,6 @@ export default function BottomNavbar() {
                         }
                     >
                         <i className="bi bi-house"></i>
-                    </button>
-                </Link>
-                <Link href="/about">
-                    <button
-                        className={
-                            window.location.pathname === "/about"
-                                ? "text-primary active"
-                                : "text-secondary"
-                        }
-                    >
-                        <i className="bi bi-info-circle"></i>
                     </button>
                 </Link>
                 <Link href="/list">
@@ -38,6 +27,29 @@ export default function BottomNavbar() {
                         <i className="bi bi-list-ul"></i>
                     </button>
                 </Link>
+                <Link href="/galang/dana">
+                    <button
+                        className={
+                            window.location.pathname === "/galang/dana"
+                                ? "text-primary active"
+                                : "text-secondary"
+                        }
+                    >
+                        <i class="bi bi-coin"></i>
+                    </button>
+                </Link>
+                <Link href="/about">
+                    <button
+                        className={
+                            window.location.pathname === "/about"
+                                ? "text-primary active"
+                                : "text-secondary"
+                        }
+                    >
+                        <i className="bi bi-info-circle"></i>
+                    </button>
+                </Link>
+
                 <Link href="/profile">
                     <button
                         className={
