@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Donatur;
 use App\Models\Campaign;
-use App\Models\User;
+use App\Models\Category;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,10 @@ class DashboardController extends Controller
 {
     public function index(){
       $totalDonatur = Donatur::count();
+      $donaturNoPay = Donatur::where('statusPay', 1)->count();
       $totalDonasi = 0;
       $campaigns = Campaign::all(); // Mengambil semua data Campaign
+      $categories = Category::count(); // Mengambil semua data Campaign
       $user = User::all(); // Mengambil semua data Campaign
 
       $jan = Donatur::whereYear('created_at', 2024)->whereMonth('created_at', 1)->count();
@@ -38,7 +41,9 @@ class DashboardController extends Controller
       $totalCamp = Campaign::where('statusAktif', 1);
       return view('backend.index', [
         'totalDonatur' => $totalDonatur,
+        'donaturNoPay' => $donaturNoPay,
         'totalDonasi' => $totalDonasi,
+        'categories' => $categories,
         'totalCamp' => $totalCamp,
         'user' => $user,
         'jan' => $jan,
