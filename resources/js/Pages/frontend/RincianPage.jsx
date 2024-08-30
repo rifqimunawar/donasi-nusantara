@@ -12,7 +12,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
     };
 
     const danaPenggalang = () => {
-        return collected * 0.75; // 75% dari collected
+        return collected  * 0.90; // 75% dari collected
     };
 
     const sisaDana = () => {
@@ -95,7 +95,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
                         <p className="p-2 mt-8 text-justify">
                             Dana Pengelolaan adalah dana yang digunakan
                             pengembangan website untuk mengelola dan
-                            memaksimalkan website "Donasi Nusantara", hal
+                            memaksimalkan website "DoNagrak Peduli Disabilitas", hal
                             tersebut sesuai dengan PP No. 29 Tahun 1980 Tentang
                             Pelaksanaan Pengumpulan Sumbangan.
                         </p>

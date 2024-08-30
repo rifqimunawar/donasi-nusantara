@@ -39,7 +39,7 @@ export default function Register() {
 
                     <div className="heading mt-14 flex align-middle items-center justify-center">
                         <img
-                            src="https://donasi-nusantara.my.id/img/logo.png"
+                            src="https://donasi-nusantara.my.id/img/new_logo.png"
                             className="w-48"
                             alt="logo"
                         />

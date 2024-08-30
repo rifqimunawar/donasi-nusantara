@@ -44,7 +44,7 @@ export default function Login({ status, canResetPassword }) {
                     )}
 
                     <div className="heading mt-14 flex align-middle items-center justify-center">
-                        <img src="https://donasi-nusantara.my.id/img/logo.png" className="w-48" alt="logo"/>
+                        <img src="https://donasi-nusantara.my.id/img/new_logo.png" className="w-48" alt="logo"/>
                     </div>
 
                     <form onSubmit={submit} className="m-8 mt-16">
@@ -119,10 +119,10 @@ export default function Login({ status, canResetPassword }) {
                                 href={route("register")}
                                 className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
-                                Don't have account?
+                                {/* Don't have account? */}
                             </Link>
                         </div>
-                        <div className="text-center m-3">
+                        {/* <div className="text-center m-3">
                             <a href='auth/google'>
                                 <button
                                     type="button"
@@ -144,7 +144,7 @@ export default function Login({ status, canResetPassword }) {
                                     Sign in with Google
                                 </button>
                             </a>
-                        </div>
+                        </div> */}
                     </form>
                 </div>
                 <div className="btm-center">

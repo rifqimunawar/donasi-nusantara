@@ -6,7 +6,7 @@ import React from "react";
 export default function Index({ campaigns, sisaSaldo }) {
   const collected = campaigns.collected;
   const danaPenggalang = () => {
-    return collected * 0.75; // 75% dari collected
+    return collected  * 0.90; // 75% dari collected
 };
     return (
         <section className="my-0 mx-auto min-h-full max-w-screen-sm">

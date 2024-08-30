@@ -51,9 +51,9 @@ export default function NavbarComponent() {
             </div>
             <div className="navbar-center">
                 <a className="btn btn-ghost text-xl">
-                    Donasi Nusantara
+                    Nagrak Peduli Disabilitas
                     <img
-                        src="https://donasi-nusantara.my.id/img/logo.png"
+                        src="https://donasi-nusantara.my.id/img/new_logo.png"
                         className="w-12"
                     />
                 </a>
