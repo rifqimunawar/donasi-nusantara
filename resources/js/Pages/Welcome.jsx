@@ -23,7 +23,7 @@ export default function Welcome() {
                 >
                     <img
                         src="https://donasi-nusantara.my.id/img/new_logo.png"
-                        alt="Donasi Nusantara Logo"
+                        alt="Nagrak Peduli Disabilitas Logo"
                         width={200}
                         height={200}
                     />

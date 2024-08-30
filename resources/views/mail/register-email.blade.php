@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ucapan Selamat Datang - Donasi Nusantara</title>
+    <title>Ucapan Selamat Datang - Nagrak Peduli Disabilitas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,9 +29,15 @@
 <body>
     <div class="container">
         <h1>Selamat Datang {{ $userName }}</h1>
-        <p>Kami sangat senang saudara {{ $userName }} telah bergabung dengan kami untuk menjadi bagian dari perubahan yang positif di era digital ini. Di sini, kami berkomitmen untuk membangun kebaikan bersama dan memberikan bantuan kepada mereka yang membutuhkan.</p>
-        <p>Dengan setiap tindakan kebaikan yang Anda lakukan, Anda membantu mewujudkan impian orang-orang yang membutuhkan, serta membawa harapan dan keceriaan kepada banyak orang. Bersama-sama, kita dapat membuat perbedaan yang berarti dalam kehidupan orang lain dan mendorong kemajuan yang berkelanjutan di seluruh Nusantara.</p>
-        <p>Terima kasih telah memilih Donasi Nusantara sebagai tempat Anda untuk berbagi dan peduli. Mari bersama-sama membangun masa depan yang lebih baik bagi masyarakat kita.</p>
+        <p>Kami sangat senang saudara {{ $userName }} telah bergabung dengan kami untuk menjadi bagian dari
+            perubahan yang positif di era digital ini. Di sini, kami berkomitmen untuk membangun kebaikan bersama dan
+            memberikan bantuan kepada mereka yang membutuhkan.</p>
+        <p>Dengan setiap tindakan kebaikan yang Anda lakukan, Anda membantu mewujudkan impian orang-orang yang
+            membutuhkan, serta membawa harapan dan keceriaan kepada banyak orang. Bersama-sama, kita dapat membuat
+            perbedaan yang berarti dalam kehidupan orang lain dan mendorong kemajuan yang berkelanjutan di seluruh
+            Nusantara.</p>
+        <p>Terima kasih telah memilih Nagrak Peduli Disabilitas sebagai tempat Anda untuk berbagi dan peduli. Mari
+            bersama-sama membangun masa depan yang lebih baik bagi masyarakat kita.</p>
         <p>Selamat berdonasi dan selamat menjelajahi layanan kami!</p>
     </div>
 </body>

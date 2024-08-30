@@ -122,7 +122,7 @@ export default function Login({ status, canResetPassword }) {
                                 {/* Don't have account? */}
                             </Link>
                         </div>
-                        {/* <div className="text-center m-3">
+                        <div className="text-center m-3">
                             <a href='auth/google'>
                                 <button
                                     type="button"
@@ -144,7 +144,7 @@ export default function Login({ status, canResetPassword }) {
                                     Sign in with Google
                                 </button>
                             </a>
-                        </div> */}
+                        </div>
                     </form>
                 </div>
                 <div className="btm-center">
