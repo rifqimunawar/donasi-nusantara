@@ -53,7 +53,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
                                 </tr>
                                 {/* row 2 */}
                                 <tr>
-                                    <th>25%</th>
+                                    <th>10%</th>
                                     <td>Biaya Pengelolaan</td>
                                     <td>
                                         {Number(
