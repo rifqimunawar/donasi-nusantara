@@ -22,7 +22,7 @@ export default function Welcome() {
                     style={{ height: "80vh" }}
                 >
                     <img
-                        src="https://donasi-nusantara.my.id/img/logo.png"
+                        src="https://donasi-nusantara.my.id/img/new_logo.png"
                         alt="Donasi Nusantara Logo"
                         width={200}
                         height={200}
@@ -31,12 +31,12 @@ export default function Welcome() {
                 <dialog id="my_modal_1" className="modal text-center">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">
-                            Selamat Datang di Donasi Nusantara!
+                            Selamat Datang di Nagrak Peduli Disabilitas!
                         </h3>
                         <p className="py-4">
-                            Kita bantu saudara kita di Nusantara
+                            Kita bantu saudara kita
                         </p>
-                        <p className="py-4">"Sandang, Pangan, Jajan" </p>
+                        <p className="py-4">"Gotong Royong Digital" </p>
                         <Link href="/home" className="py-4">
                             <button className="btn">Lanjutkan!!!</button>
                         </Link>
