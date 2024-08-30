@@ -17,32 +17,28 @@ export default function AboutPage({ masterImageUrl }) {
                 </div>
                 <div className="h-72 mb-5 m-3">
                     <img
-                        src={`${masterImageUrl}sempro1.jpg`}
+                        src={`${masterImageUrl}kelompok.jpg`}
                         className="w-full h-full object-cover rounded-3xl shadow"
                     />
                 </div>
                 <div className="text-md text-justify m-3">
                     <p>
-                        Website ini merupakan hasil dari upaya kelompok 8 dalam
-                        menyelesaikan tugas akhir perkuliahan pada Program Studi
-                        Teknik Informatika. Kami, Delaisa Lisyami, Endi Rahman,
-                        Ilyas Khairul Alimnis, Melyta Contesa, dan Rifqi
-                        Munawar, dengan rendah hati menyadari bahwa website kami
-                        belum mencapai kesempurnaan yang Anda harapkan. Kami
-                        mengakui bahwa terdapat kekurangan dan keterbatasan
-                        dalam fitur yang kami tawarkan.
+                    Mahasiswa KKN Kelompok 4 UNINUS dengan bangga mempersembahkan sebuah inisiatif yang akan menghubungkan kita semua—'Nagrak Peduli Disabilitas'.
                     </p>
+
+                  
                     <br />
                     <p>
-                        Namun, kami merasa terhormat karena dengan sederhananya
-                        website ini, kami telah berhasil melalui tahap seminar
-                        proposal pada tanggal 24 April 2024. Kami memohon doa
-                        dan dukungan agar kami dapat menyelesaikan studi kami
-                        dengan baik, dan kami akan terus berkomitmen untuk
-                        mengembangkan website ini guna memberikan pengalaman
-                        yang lebih baik bagi pengunjung. Terima kasih atas
-                        segala dukungan dan kesempatan yang diberikan!
-                    </p>
+                    Website ini hadir sebagai platform gotong royong yang dirancang khusus untuk masyarakat Desa Nagrak, mulai dari tingkat RT, RW, hingga Desa.
+            </p>
+            <br />
+            <p>
+            Melalui 'Nagrak Peduli Disabilitas', kita bisa bersama-sama bergotong royong untuk berbagai keperluan sosial, dengan fokus utama mendukung teman-teman disabilitas.	
+            </p>
+            <br />
+            <p>
+            Namun, tidak hanya terbatas pada itu, website ini juga dapat digunakan untuk menggalang dana bagi perbaikan jalan, pembangunan infrastruktur, dan berbagai keperluan sosial lainnya yang bermanfaat bagi seluruh warga desa.
+            </p>
                 </div>
                 <div>
                     <FooterComponent />
