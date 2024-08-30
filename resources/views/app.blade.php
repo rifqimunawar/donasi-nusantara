@@ -14,11 +14,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    {{-- <html data-theme="light"></html> --}}
-    {{-- <html data-theme="dark"></html> --}}
-    <html data-theme="cupcake">
+    <html data-theme="light">
 
     </html>
+    {{-- <html data-theme="dark"></html> --}}
+    {{-- <html data-theme="cupcake"></html> --}}
     {{-- <html data-theme="bumblebee"></html> --}}
     {{-- <html data-theme="emerald"></html> --}}
     {{-- <html data-theme="corporate"></html> --}}
