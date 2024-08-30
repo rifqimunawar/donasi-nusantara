@@ -16,7 +16,9 @@
 
     {{-- <html data-theme="light"></html> --}}
     {{-- <html data-theme="dark"></html> --}}
-    {{-- <html data-theme="cupcake"></html> --}}
+    <html data-theme="cupcake">
+
+    </html>
     {{-- <html data-theme="bumblebee"></html> --}}
     {{-- <html data-theme="emerald"></html> --}}
     {{-- <html data-theme="corporate"></html> --}}
@@ -28,9 +30,7 @@
     {{-- <html data-theme="garden"></html> --}}
     {{-- <html data-theme="forest"></html> --}}
     {{-- <html data-theme="aqua"></html> --}}
-    <html data-theme="lofi">
-
-    </html>
+    {{-- <html data-theme="lofi"></html> --}}
     {{-- <html data-theme="pastel"></html> --}}
     {{-- <html data-theme="fantasy"></html> --}}
     {{-- <html data-theme="wireframe"></html> --}}
