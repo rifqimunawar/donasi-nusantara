@@ -12,7 +12,7 @@ export default function waiting({ withdraw, campaign }) {
                     <NavbarComponent />
                 </div>
                 <div className="p-4 sm:p-8 shadow lg:rounded-lg m-3">
-                    <img src="https://static.vecteezy.com/system/resources/previews/021/286/391/non_2x/24-hours-sign-on-transparent-background-free-png.png" />
+                    <img src="https://media.istockphoto.com/id/1173930154/vector/24-7-service-open-24h-hours-day-and-7-days-a-week-green-and-black-colors-vector.jpg?s=612x612&w=0&k=20&c=8Dg2kbK_G-aVndTr4dKeqcA618ZdPBZXF8H31oB_pZI=" />
                     <p>
                         Anda telah melakukan penarikan hasil donasi dari
                         kampanye <strong>{campaign.title}</strong> sebesar{" "}
@@ -31,7 +31,7 @@ export default function waiting({ withdraw, campaign }) {
                         <strong>{withdraw.bank}</strong>.
                     </p>
                     <p>
-                        Pengiriman akan dilakukan paling lambat 24 jam setelah
+                        Pengiriman akan dilakukan paling lambat 24 * 7 jam setelah
                         tanggal{" "}
                         <strong>
                             {new Date(

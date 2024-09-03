@@ -12,7 +12,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
     };
 
     const danaPenggalang = () => {
-        return collected  * 0.90; // 75% dari collected
+        return collected  * 0.80; // 75% dari collected
     };
 
     const sisaDana = () => {
@@ -53,7 +53,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
                                 </tr>
                                 {/* row 2 */}
                                 <tr>
-                                    <th>10%</th>
+                                    <th>15%</th>
                                     <td>Biaya Pengelolaan</td>
                                     <td>
                                         {Number(
@@ -62,7 +62,7 @@ export default function RincianPage({ campaign, nominalsCount }) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>75%</th>
+                                    <th>85%</th>
                                     <td>Dana Penggalang</td>
                                     <td>
                                         {Number(
