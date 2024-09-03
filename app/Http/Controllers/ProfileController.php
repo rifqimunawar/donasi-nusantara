@@ -25,7 +25,7 @@ class ProfileController extends Controller
     $totalSaldoCampaign = 0;
 
     foreach ($campaigns as $campaign) {
-      $totalSaldoCampaign += $campaign->collected * 0.90;
+      $totalSaldoCampaign += $campaign->collected * 0.80;
 
       // Pindahkan kode yang memproses withdraw ke dalam lingkup foreach
       $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();

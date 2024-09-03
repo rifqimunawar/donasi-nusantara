@@ -283,7 +283,7 @@ class HomeController extends Controller
     $saldoBersih = 0;
 
     foreach ($campaigns as $campaign) {
-      $saldoBersih += $campaign->collected * 0.90;
+      $saldoBersih += $campaign->collected * 0.80;
       $withdraws = Withdraw::where('campaign_id', $campaign->id)->get();
       $nominalsCount = $withdraws->sum('nominal');
       $remainingAmount = $campaign->collected - $nominalsCount;
@@ -312,7 +312,7 @@ class HomeController extends Controller
     $campaigns = Campaign::findOrFail($id);
     $saldoBersih = 0;
 
-    $saldoBersih += $campaigns->collected * 0.90;
+    $saldoBersih += $campaigns->collected * 0.80;
     $withdraws = Withdraw::where('campaign_id', $campaigns->id)->get();
     $nominalsCount = $withdraws->sum(function ($withdraw) {
       return $withdraw->nominal;
